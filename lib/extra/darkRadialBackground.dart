@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 import 'Values/values.dart';
@@ -15,33 +17,39 @@ class DarkRadialBackground extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-        child: Stack(
-          // alignment: AlignmentDirectional.topStart ,
-          children:[
-            Container(
-                decoration: BoxDecoration(
-                  gradient: RadialGradient(
-                    colors: [...list, this.color],
-                    center: (position == "bottomRight")
-                        ? Alignment(1.0, 1.0)
-                        : Alignment(-1.0, -0.9),
-                  ),
-                )
-            ),
-            // Container(
-            //     decoration: BoxDecoration(
-            //       gradient: RadialGradient(
-            //         // transform: GradientRotation(0.25),
-            //         radius: 1.9,
-            //         focalRadius: 50,
-            //         colors: [Color(0xFF5B3FDB).withOpacity(0.4), Colors.transparent],
-            //         center: (position == "topRight")
-            //             ? Alignment(1.4, 0.0)
-            //             : AlignmentDirectional(2.2, -0.9),
-            //       ),
-            //     )
-            // ),
-          ],
+        child: ClipRRect(
+        // child: BackdropFilter(
+        // filter: ImageFilter.blur(sigmaY: 200, sigmaX: 200),
+          child: Stack(
+            // alignment: AlignmentDirectional.topStart ,
+            children:[
+              Container(
+                  decoration: BoxDecoration(
+                    gradient: RadialGradient(
+                      colors: [...list, this.color],
+                      center: (position == "bottomRight")
+                          ? Alignment(1.0, 1.0)
+                          : Alignment(-1.0, -0.9),
+                    ),
+                  )
+              ),
+              // Container(
+              //     decoration: BoxDecoration(
+              //       gradient: RadialGradient(
+              //         // transform: GradientRotation(0.25),
+              //         radius: 1.2,
+              //         focalRadius: 100,
+              //         colors: [Color(0xFFBEA6F5).withOpacity(0.07),
+              //           Colors.transparent],
+              //         center: (position == "topRight")
+              //             ? Alignment(1.4, 0.0)
+              //             : AlignmentDirectional(-0.02, 0.01),
+              //       ),
+              //     )
+              // ),
+
+            ],
+          ),
         )
     );
   }

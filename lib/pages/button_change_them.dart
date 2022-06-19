@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_todo/data/thems.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_todo/pages/homepage.dart';
 
 
 class ChangeThembutton extends StatefulWidget {
@@ -29,12 +30,13 @@ class _ChangeThembuttonState extends State<ChangeThembutton> {
         },
         icon: Isicons
             ? const Icon(
-                Icons.mode_night_outlined,
-                color: Colors.grey,
+                Icons.light_mode_outlined,
+                color: Mytheme.primary_color,
               )
             : const Icon(
-                Icons.light_mode_outlined,
-                color: Colors.grey,
-              ));
+                Icons.mode_night_outlined,
+                color: Mytheme.primary_color,
+              )
+    );
   }
 }

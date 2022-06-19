@@ -1,6 +1,8 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
-import '../../extra/Values/values.dart';
-import '../../extra/darkRadialBackground.dart';
+import 'package:flutter_todo/data/thems.dart';
+
 import '../homepage.dart';
 import 'Drawer_widget.dart';
 import 'package:flutter/services.dart';
@@ -24,7 +26,7 @@ class _HidenDrawerState extends State<HidenDrawer> {
     setState(() {
       xOffset = 300;
       yOffset = 70;
-      scaleFactor = 0.85;
+      scaleFactor = 0.8;
       isDrawingOpen = true;
     });
 
@@ -53,10 +55,7 @@ class _HidenDrawerState extends State<HidenDrawer> {
       // backgroundColor: Colors.transparent,
 
       body: Stack(children: [
-        DarkRadialBackground(
-          color: HexColor.fromHex("#181a1f"),
-          position: "topLeft",
-        ),
+        Mytheme.darkapp,
         DrawerWidget(
           closdDrawer: closeDrawer,
         ),

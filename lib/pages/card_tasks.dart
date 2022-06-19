@@ -32,6 +32,7 @@ class CardTasks extends StatelessWidget {
     var he = MediaQuery.of(context).size.height;
 
     return Card(
+      color: Colors.transparent,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       child: Container(
         width: we * 0.9,

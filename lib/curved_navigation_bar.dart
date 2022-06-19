@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_todo/glass.dart';
 import 'package:meta/meta.dart';
+import 'data/thems.dart';
 
 import 'src/nav_button.dart';
 import 'src/nav_custom_painter.dart';
@@ -107,7 +108,15 @@ class CurvedNavigationBarState extends State<CurvedNavigationBar>
     return Container(
       decoration: BoxDecoration(
           color: widget.backgroundColor,
-
+          // borderRadius: BorderRadius.all(Radius.circular(30)),
+          // boxShadow: [
+          //   BoxShadow(
+          //     color: Mytheme.prime_color2.withOpacity(0.35),
+          //     offset: const Offset(-10,20),
+          //     spreadRadius: 1.5,
+          //     blurRadius: 30,
+          //   ),
+          // ],
           // gradient: widget.backgroundGradient
       ),
       height: widget.height,
@@ -115,6 +124,48 @@ class CurvedNavigationBarState extends State<CurvedNavigationBar>
         clipBehavior: Clip.none,
         alignment: Alignment.bottomCenter,
         children: <Widget>[
+
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: 0 - (75.0 - widget.height),
+            child: Container(
+              // color: Colors.transparent,
+
+              child: ClipRRect(
+                borderRadius: BorderRadius.vertical(
+                  top: Radius.elliptical(200,70),
+                ),
+                child: BackdropFilter(
+                  filter: ImageFilter.blur(sigmaX: 4,sigmaY: 4),
+                  child: CustomPaint(
+                    painter: NavCustomPainter(
+                        _pos, _length, widget.color, Directionality.of(context),
+                        widget.gradient ),
+                    child: ClipRRect(
+
+                      child: Container(
+                        // bottom nav shadow light
+
+                        // color: Color(0xFF7A69DB),
+                        decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                              color: Mytheme.nav_shadow, //0xFF483D76
+                              offset: Offset(0, 58),
+                              blurRadius: 20,
+                              spreadRadius: 5,
+                            ),
+                          ],
+                        ),
+                        height: 80,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
           Positioned(
             bottom: -43 - (70.0 - widget.height),
             left: Directionality.of(context) == TextDirection.rtl
@@ -130,59 +181,35 @@ class CurvedNavigationBarState extends State<CurvedNavigationBar>
                   0,
                   -(1 - _buttonHide) * 80,
                 ),
-                child: Material(
-                  color: Colors.transparent,
-                  type: MaterialType.circle,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(50),
+                  child: BackdropFilter(
+                    filter: ImageFilter.blur(sigmaX: 5,sigmaY: 5),
+                    child: Material(
+                      color: Colors.transparent,
+                      type: MaterialType.circle,
 
-                  child: Container(
-                    decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          color :Color(0xFF6A88E5).withOpacity(0.6),
-                          offset: const Offset(10, 10),
-                          blurRadius: 16,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                              color : Mytheme.nav_button_color.withOpacity(0.5),
+                              offset: const Offset(-5, 5),
+                              spreadRadius: 7,
+                              blurRadius: 20,
+                            ),
+                          ],
+                          shape: BoxShape.circle,
+                          color: widget.buttonBackgroundColor ?? widget.color,
+                          gradient: widget.buttonBackgroundGradient ,
+
                         ),
-                      ],
-                        shape: BoxShape.circle,
-                        color: widget.buttonBackgroundColor ?? widget.color,
-                        gradient: widget.buttonBackgroundGradient ,
-
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: _icon,
-                    ),
-                  ).asGlass(
-                    frosted: false,
-                    clipBorderRadius: BorderRadius.all(Radius.circular(25)),
-                  ),
-                ),
-              ),
-            ),
-          ),
-          Positioned(
-            left: 0,
-            right: 0,
-            bottom: 0 - (75.0 - widget.height),
-            child: Container(
-
-              child: ClipRRect(
-                borderRadius: BorderRadius.vertical(top: Radius.elliptical(200,70),),
-                child: CustomPaint(
-                  painter: NavCustomPainter(
-                      _pos, _length, widget.color, Directionality.of(context), widget.gradient ),
-                  child: Container(
-                    // color: Color(0xFF7A69DB),
-                    decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          color: Color(0xFF9182EC), //0xFF483D76
-                          offset: Offset(0, 55),
-                          blurRadius: 28,
+                        child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: _icon,
                         ),
-                      ],
+                      ),
                     ),
-                    height: 80,
                   ),
                 ),
               ),
@@ -201,7 +228,8 @@ class CurvedNavigationBarState extends State<CurvedNavigationBar>
                     position: _pos,
                     length: _length,
                     index: widget.items.indexOf(item),
-                    child: Center(child: item),
+                    child: Center(
+                        child: item),
                   );
                 }).toList())),
           ),

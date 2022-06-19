@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'dart:ui';
+import 'package:flutter_todo/data/thems.dart';
 import 'package:flutter_todo/pages/detail/widgets/task_timeline.dart';
 import 'package:flutter_todo/pages/mysettings.dart';
 
@@ -17,12 +18,11 @@ import '../data/tasks.dart';
 import '../Animation/linearprogress.dart';
 import '../data/time_say.dart';
 import '../db/notes_database.dart';
-import '../extra/Values/values.dart';
-import '../extra/darkRadialBackground.dart';
 import '../model/note.dart';
 import 'button_change_them.dart';
 import 'card_tasks.dart';
-import 'package:date_picker_timeline/date_picker_timeline.dart';
+// import 'package:date_picker_timeline/date_picker_timeline.dart';
+import '/date_picker_widget.dart';
 
 
 class MyHomePage extends StatefulWidget {
@@ -36,54 +36,113 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   List<String> all_selected_tasks = []; // your tasks
   //pages
-  int pageIndex = 0 ;
   final PageSettings _settingsmy = PageSettings();
   // final My1HomePage _home = My1HomePage();
-  
+  GlobalKey _bottomNavigationKey = GlobalKey();
+  int selectedIndex = 0 ;
+  static List<Widget> _widgetOptions = <Widget>[
 
+  ];
+  bool isVisible =true;
   final List<Map<String, dynamic>> details = [
     {
-      'time': '07:00 AM',
+      'time': '05:00 AM',
       'title': 'Wake Up time ',
-      'slot': '07:00 AM - 07:10 AM',
-      'tlColor': Colors.deepPurple.shade200,
-      'bgColor': Colors.deepPurple.shade400,
+      'slot': 'Within 5 minutes',
+      'tlColor': Mytheme.tl_color,
+      'bgColor': Mytheme.bg_color,
     },
     {
-      'time': '08:00 AM',
-      'title': 'Workout',
-      'slot': '08:00 AM - 09:00 AM',
-      'tlColor': Colors.deepPurple.shade200,
-      'bgColor': Colors.deepPurple.shade400,
+      'time': '05:20 AM',
+      'title': 'Top Priority Work ',
+      'slot': '05:20 AM - 06:00 AM',
+      'tlColor': Mytheme.tl_color,
+      'bgColor': Mytheme.bg_color,
+    },
+    {
+      'time': '06:00 AM',
+      'title': 'Workout ',
+      'slot': '06:00 AM - 06:30 AM',
+      'tlColor': Mytheme.tl_color,
+      'bgColor': Mytheme.bg_color,
+    },
+    {
+      'time': '07:00 AM',
+      'title': 'Research/ Work',
+      'slot': '07:00 AM - 09:00 AM',
+      'tlColor': Mytheme.tl_color,
+      'bgColor': Mytheme.bg_color,
     },
     {
       'time': '09:00 AM',
       'title': 'Rest',
       'slot': '09:00 AM - 09:30 AM',
-      'tlColor': Colors.deepPurple.shade200,
-      'bgColor': Colors.deepPurple.shade400,
+      'tlColor': Mytheme.tl_color,
+      'bgColor': Mytheme.bg_color,
     },
     {
       'time': '09:30 AM',
       'title': 'Lunch',
       'slot': '09:30 AM - 10:00 AM',
-      'tlColor': Colors.deepPurple.shade200,
-      'bgColor': Colors.deepPurple.shade400,
+      'tlColor': Mytheme.tl_color,
+      'bgColor': Mytheme.bg_color,
     },
     {
       'time': '10:00 AM',
       'title': 'Get Ready',
       'slot': '10:00 AM - 10:30 AM',
-      'tlColor': Colors.deepPurple.shade200,
-      'bgColor': Colors.deepPurple.shade400,
+      'tlColor': Mytheme.tl_color,
+      'bgColor': Mytheme.bg_color,
     },
     {
       'time': '10:30 AM',
       'title': 'College Time',
       'slot': '10:30 AM - 03:00 PM',
-      'tlColor': Colors.deepPurple.shade200,
-      'bgColor': Colors.deepPurple.shade400,
+      'tlColor': Mytheme.tl_color,
+      'bgColor': Mytheme.bg_color,
       // 'isLast': true
+    },
+    {
+      'time': '03:00 PM',
+      'title': 'Library',
+      'slot': '03:00 PM - 05:00 PM',
+      'tlColor': Mytheme.tl_color,
+      'bgColor': Mytheme.bg_color,
+    },
+    {
+      'time': '05:00 PM',
+      'title': 'Chill Time ',
+      'slot': '05:00 PM - 07:00 PM',
+      'tlColor': Mytheme.tl_color,
+      'bgColor': Mytheme.bg_color,
+    },
+    {
+      'time': '07:00 PM',
+      'title': 'Get Home & Dinner ',
+      'slot': '07:00 PM - 08:00 PM',
+      'tlColor': Mytheme.tl_color,
+      'bgColor': Mytheme.bg_color,
+    },
+    {
+      'time': '08:00 PM',
+      'title': 'Get Home & Dinner ',
+      'slot': '08:00 PM - 09:00 PM',
+      'tlColor': Mytheme.tl_color,
+      'bgColor': Mytheme.bg_color,
+    },
+    {
+      'time': '09:00 PM',
+      'title': 'Other Work/Reading ',
+      'slot': '09:00 PM - 10:00 PM',
+      'tlColor': Mytheme.tl_color,
+      'bgColor': Mytheme.bg_color,
+    },
+    {
+      'time': '10:00 PM',
+      'title': 'Sleep ',
+      'slot': ' ',
+      'tlColor': Mytheme.tl_color,
+      'bgColor': Mytheme.bg_color,
     },
   ];
   List<Note> notes = []; // get info from Database and add to this list
@@ -123,11 +182,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return Scaffold(
       extendBody: true,
-      // backgroundColor: Colors.black,
+      // backgroundColor: Colors.black54,
       extendBodyBehindAppBar: true,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         bottomNavigationBar: CurvedNavigationBar(
-          backgroundColor: Colors.transparent,
+          key: _bottomNavigationKey,
+          backgroundColor: Mytheme.main_bg,
           animationDuration: const Duration(milliseconds: 600),
           // buttonBackgroundColor: Color(0xFF8a75ff),
           index: 0,
@@ -150,23 +210,23 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
           buttonBackgroundGradient: LinearGradient(
             colors: [
-              Color(0xFF8147EF).withOpacity(0.3),
-              Color(0xFF6A88E5).withOpacity(0.8),
+              Mytheme.nav_button_color1.withOpacity(0.5),
+              Mytheme.nav_button_color2.withOpacity(0.2),
             ],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
-// Color(0xFFC296E8)
+
           gradient: LinearGradient(
-            colors: [
-              // Color(0xFF685AB4).withOpacity(0.7),
-              // // Colors.transparent.withOpacity(0.8),
+            colors: [ // Color(0xFFC296E8)
               // Color(0xFF726AE5),//0xFF726AE5
-              Color(0xFF7D8EDB).withOpacity(0.7),
-              Color(0xFF5A5694),
+              Mytheme.prime_color1.withOpacity(0.3),
+              Mytheme.prime_color2,
+              // Colors.transparent,
             ],
-            begin: Alignment.topRight,
+            begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
+            // stops: [0.6,1.9],
           ),
         ),
       appBar: AppBar(
@@ -179,31 +239,19 @@ class _MyHomePageState extends State<MyHomePage> {
               IconButton(
                   onPressed: widget.opendrawer,
                   icon: const Icon(
-                    Icons.drag_handle_rounded,
-                    color: Colors.grey,
-                    size: 35,
+                    Icons.bar_chart_rounded,
+                    color: Mytheme.primary_color,
+                    size: 32,
                   )
               ),
               SizedBox(
                 width: we * 0.42,
               ),
 
-              // const Text(
-              //   "PRODO",
-              //   style: TextStyle(
-              //       letterSpacing: 2,
-              //       color: Constants.kBlueColor,
-              //       fontWeight: FontWeight.w600,
-              //       // fontSize: 13),
-              //       fontSize: 16),
-              // ),
               SizedBox(
                 width: we * 0.3,
               ),
 
-              // SizedBox(
-              //   width: we * 0.01,
-              // ),
               ChangeThembutton()
             ],
           )
@@ -215,341 +263,401 @@ class _MyHomePageState extends State<MyHomePage> {
         width: we,
         child: Stack(
           children: [
-            // LightRadialBackground(
-            //   color1: HexColor.fromHex("#d4cef0"),
-            //   position1: "topLeft",
-            // ),
-
-            DarkRadialBackground(
-              color: HexColor.fromHex("#181a1f"),
-              position: "topLeft",
-            ),
-
+            Mytheme.metheme ,
             SizedBox(
             // width: we,
             // height: he*0.65,
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  FadeAnimation(
-                    delay: 0.6,
-                    child: Container(
-                      margin: EdgeInsets.only(left: 15,top: he * 0.12,bottom: 10),//0.002
-                      width: we * 0.9,
-                      height: he * 0.1,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Welcome(),
-                          SizedBox(
-                            height: he * 0.02,
-                          ),
-                          Text(
-                            "MODES",
-                            style: TextStyle(
-                                letterSpacing: 1,
-                                color: Colors.white70,
-                                fontWeight: FontWeight.w500,
-                                // fontSize: 13),
-                                fontSize: 15),
-                          ),
-                        ],
-                      ),
+            child: Column(
+              children: [
+                FadeAnimation(
+                  delay: 0.6,
+                  child: Container(
+                    margin: EdgeInsets.only(left: 15,top: he * 0.11,bottom: 2),//0.002
+                    width: we * 0.9,
+                    height: he * 0.06,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Welcome(),
+                      ],
                     ),
                   ),
-                  FadeAnimation(
-                    delay: 0.9,
-                    child: SizedBox(
-                      width: we * 1.7,
-                      height: he * 0.19,
-                      // height: he * 0.16,
-                      child: ListView.builder(
-
-                       physics: const BouncingScrollPhysics(),
-                        itemBuilder: (context, i) {
-                          return Card(
-                            color: Colors.white12.withOpacity(0.02),
-
-                            margin: const EdgeInsets.only(left: 23),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(15)),
-                            clipBehavior: Clip.antiAlias,
-                            elevation: 3,
-                            // shadowColor: Colors.pinkAccent,
-                            child: Container(
-                              width: we * 0.8,
-                              // width: we * 0.5,
-                              height: he * 0.06,
+                ),
+                FadeAnimation(
+                  delay: 0.9,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(left: 28,bottom: 3),
+                        child: Text(
+                          "MODES",
+                          style: TextStyle(
+                              letterSpacing: 0.4,
+                              color: Mytheme.primary_color1,
+                              fontWeight: FontWeight.w600,
+                              // fontSize: 13),
+                              fontSize: 16),
+                        ),
+                      ),
+                    ],
+                  ),
+                      SizedBox(
+                        width: we * 1.7,
+                        // height: he * 0.19,
+                        height: he * 0.24,
+                        child: ListView.builder(
+                         physics: const BouncingScrollPhysics(),
+                          itemBuilder: (context, i) {
+                            return Container(
+                              margin: EdgeInsets.only(left: 20,top: 10,bottom: 30),
                               decoration: BoxDecoration(
+                                borderRadius: BorderRadius.all(Radius.circular(30)),
                                 gradient: LinearGradient(
                                   colors: [//0xFF5C5292
-                                    Color(0xFF5C5292).withOpacity(0.7),
-                                    Color(0xFF6A88E5).withOpacity(0.7),
+                                    Mytheme.card_color1.withOpacity(0.7),
+                                    Mytheme.card_color2.withOpacity(0.7),
                                   ],
-                                  begin: Alignment.topLeft,
-                                  end: Alignment.bottomRight,
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomLeft,
                                 ),
-                                // boxShadow: [
-                                //   BoxShadow(
-                                //     color: Colors.deepPurple.withOpacity(0.4),
-                                //     offset: const Offset(8, 16),
-                                //     blurRadius: 16,
-                                //   ),
-                                // ],
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Mytheme.prime_color2.withOpacity(0.35),
+                                    offset: const Offset(-10,10),
+                                    spreadRadius: 1.5,
+                                    blurRadius: 20,
+                                  ),
+                                ],
                               ),
-                              // margin: const EdgeInsets.only(
-                              //   top: 25,
-                              //   left: 14,
-                              // ),
-                              child: Container(
-                          margin: const EdgeInsets.only(
-                            top: 25,
-                            left: 18,
-                          ),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "Insert tasks",
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w500,
-                                          color: Colors.white.withOpacity(0.7)),
+                              child: Card(
+                                color: Colors.transparent,
+                                margin: const EdgeInsets.only(left: 5),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(25)),
+                                clipBehavior: Clip.antiAlias,
+                                elevation: 0,
+                                // shadowColor: Colors.pinkAccent,
+                                child: Container(
+                                  width: we * 0.85,
+                                  child: Container(
+                              margin: const EdgeInsets.only(
+                                top: 25,
+                                left: 20,
+                              ),
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          "Insert tasks",
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w600,
+                                              color: Colors.white70.withOpacity(0.7)),
+                                        ),
+                                        SizedBox(
+                                          height: he * 0.01,
+                                        ),
+                                        Text(
+                                          tasklist[i].title,
+                                          style: TextStyle(
+                                            fontSize: 35,
+                                            color: Colors.white70.withOpacity(0.85),
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        SizedBox(height: he * 0.04),
+                                        Padding(
+                                            padding: const EdgeInsets.only(right: 30),
+                                            child: LineProgress(
+                                              value: notes.length.toDouble(),
+                                              Color: tasklist[i].progresscolor,
+                                            )),
+                                      ],
                                     ),
-                                    SizedBox(
-                                      height: he * 0.01,
-                                    ),
-                                    Text(
-                                      tasklist[i].title,
-                                      style: TextStyle(
-                                        fontSize: 40,
-                                        color: Colors.white.withOpacity(0.9),
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    SizedBox(height: he * 0.05),
-                                    Padding(
-                                        padding: const EdgeInsets.only(right: 30),
-                                        child: LineProgress(
-                                          value: notes.length.toDouble(),
-                                          Color: tasklist[i].progresscolor,
-                                        )),
-                                  ],
+                                  ),
                                 ),
                               ),
-                            ),
-                          );
-                        },
-                        scrollDirection: Axis.horizontal,
-                        itemCount: tasklist.length,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: he * 0.02,
-                  ),
-
-                  FadeAnimation(
-                    delay: 1.4,
-                    child: Container(
-                      color: Color(0xFF5C5292).withOpacity(0.1),
-                      margin: const EdgeInsets.only(left: 0, bottom: 0),
-                      child: Container(
-                        margin: const EdgeInsets.only(left: 15,top:5,bottom: 5,right: 15),
-                        child: DatePicker(
-                          DateTime.now(),
-                          dayTextStyle: const TextStyle(fontSize: 12,color: Colors.white70),
-                          monthTextStyle: const TextStyle(fontSize: 12,color: Colors.white70),
-                          dateTextStyle: const TextStyle(fontWeight: FontWeight.w600,fontSize: 25,color: Color(0xFFA481F5)),
-                          width: 60,
-                          height: 80,
-                          deactivatedColor: Colors.white,
-                          controller: _controller,
-
-                          initialSelectedDate: DateTime.now(),
-                          selectionColor: Color(0xFF5C5292).withOpacity(0.9),
-
-                          selectedTextColor: Colors.white,
-                          // inactiveDates: [
-                          //   DateTime.now().add(Duration(days: 7)),
-                          //   DateTime.now().add(Duration(days: 8)),
-                          // ],
-                          onDateChange: (date) {
-
-                            // New date selected
-                            setState(() {
-                              _selectedValue = date;
-                            });
+                            );
                           },
+                          scrollDirection: Axis.horizontal,
+                          itemCount: tasklist.length,
                         ),
                       ),
-                    ).asGlass(frosted: false,tintColor: Colors.transparent),
+                    ],
                   ),
-                  // SizedBox(
-                  //   height: he * 0.02,
-                  // ),
-                  FadeAnimation(
-                    delay: 1.8,
+                ),
+                // SizedBox(
+                //   height: he * 0.0,
+                // ),
+
+                // //imp list ***
+                FadeAnimation(
+                  delay: 1.2,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(30),
+                    child: BackdropFilter(
+                      filter: ImageFilter.blur(sigmaY: 150, sigmaX: 150),
                     child: Container(
-                      alignment: Alignment.topLeft,
-                      margin: const EdgeInsets.only(top: 15, bottom:5,left: 20),
-                      child: Text(
-                        "TODAY'S ROUTINE",
-                        style: TextStyle(
-                            letterSpacing: 1,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.white70.withOpacity(0.6),
-                            fontSize: 16),
+                      decoration: BoxDecoration(
+                        // color : Mytheme.prime_color2.withOpacity(0.05),
+
+                        borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(20),
+                            topLeft: Radius.circular(20),
+                        ) ,
                       ),
-                    ),
-                  ),
-                  // Container(
-                  //   padding: EdgeInsets.only(left: 30,right: 30,bottom: 0),
-                  //   child: Divider(
-                  //     thickness: 1.5,
-                  //     color: Color(0xFF9676DE),
-                  //   ),
-                  // ),
-                  // //imp list ***
-                  FadeAnimation(
-                    delay: 2.8,
-                    child: SizedBox(
-                      width: we,
-                      height: he*0.35,
-                      child: details != null
-                          ? SingleChildScrollView(
-                        padding: EdgeInsets.only(top: 10,bottom: 20),
-                            child: Center(
-                        heightFactor: 0.68,
-                              child: ListView.builder(
-                                    physics: const NeverScrollableScrollPhysics(),
-                                    scrollDirection: Axis.vertical,
-                                    shrinkWrap: true,
-                                    itemCount: details.length,
-                                    itemBuilder: (BuildContext context, int index) {
-                                      return TaskTimeline(
-                                        detail: details.elementAt(index),
-                                      );
-                                    }),
+                      child: Column(
+                        children: [
+                          Container(
+                            margin: const EdgeInsets.only(
+                                left: 30,top:5,bottom: 0),
+
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Calendar",
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w600,
+                                      color: Mytheme.primary_color1),
+                                ),
+                                SizedBox(
+                                  width: we * 0.55,
+                                ),
+                                IconButton(
+                                    onPressed: null,
+                                    icon: Icon(
+                                      Icons.keyboard_arrow_down,
+                                      color: Mytheme.primary_color1,
+                                      size: 30,
+                                    )
+                                ),
+                              ],
                             ),
-                          )
-                          : Container(
-                        margin: const EdgeInsets.only(left: 30, top: 30),
-                        child: Text(
-                          "No Tasks",
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Theme.of(context).primaryColor,
                           ),
-                        ),
+                      Container(
+                        height:130,
+                      // margin: const EdgeInsets.only(
+                      //     left: 0,top:0,bottom: 0,right: 0),
+
+                      child: DatePicker(
+                        DateTime.now(),
+                        daysCount: 7,
+                        width: 60,
+                        height: 105,
+                        // deactivatedColor: Mytheme.prime_color2,
+                        controller: _controller,
+
+                        initialSelectedDate: DateTime.now(),
+                        // selectionColor: Mytheme.prime_color2,
+
+                        selectedTextColor: Colors.white.withOpacity(0.97),
+                        dateTextStyle: const TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 26,
+                            color: Mytheme.date_color),
+                        dayTextStyle: const TextStyle(fontSize: 13,
+                            color: Mytheme.date_color),
+                        // monthTextStyle: const TextStyle(fontSize: 12,
+                        //     color: Mytheme.main_bg),
+
+
+                        // activeDates: [
+                        //   DateTime.now().add(Duration(days: 0)),
+                        //   DateTime.now().add(Duration(days: 1)),
+                        // ],
+                        onDateChange: (date) {
+
+                          // New date selected
+                          setState(() {
+                            _selectedValue = date;
+                          });
+                        },
                       ),
                     ),
+
+                          Container(
+                            alignment: Alignment.topLeft,
+                            margin: const EdgeInsets.only(left: 30,bottom: 5),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+
+                              children:[ Text(
+                                "Today's Routine",
+                                style: TextStyle(
+                                    letterSpacing: 0.2,
+                                    fontWeight: FontWeight.w600,
+                                    color: Mytheme.primary_color1,
+                                    fontSize: 17.5),
+                              ),
+                                SizedBox(
+                                  width: we * 0.4,
+                                ),
+                                IconButton(
+                                    onPressed: (){
+                                      setState((){
+                                        isVisible =!isVisible;
+                                      });
+                                    },
+                                    icon: Icon(
+                                      Icons.keyboard_arrow_down,
+                                      color: Mytheme.primary_color1,
+                                      size: 30,
+                                    )
+                                ),
+                              ]
+                            ),
+                          ),
+                          Visibility(
+                            visible: isVisible,
+                            child: SizedBox(
+                            width: we,
+                            height: he*0.25,
+                            child: details != null
+                                ? SingleChildScrollView(
+                              padding: EdgeInsets.only(top: 140,bottom: 50),//error flex top
+                                  child: Center(
+                              heightFactor: 0.65,
+                                    child: ListView.builder(
+                                          physics: const NeverScrollableScrollPhysics(),
+                                          scrollDirection: Axis.vertical,
+                                          shrinkWrap: true,
+                                          itemCount: details.length,
+                                          itemBuilder: (BuildContext context, int index) {
+                                            return TaskTimeline(
+                                              detail: details.elementAt(index),
+                                            );
+                                          }),
+                                  ),
+                                )
+                                : Container(
+                              margin: const EdgeInsets.only(left: 30, top: 30),
+                              child: Text(
+                                "No Tasks",
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  color: Mytheme.primary_color,
+                                ),
+                              ),
+                            ),
+                        ),
+                          ),]
+                      ),
+                    )),
                   ),
+                ),
 
-                  //old list extra
+                //old list extra
 
-                  // FadeAnimation(
-                  //     delay: 1,
-                  //     child: SizedBox(
-                  //         width: we * 0.9,
-                  //         height: he * 0.23,
-                  //         child: isLoading
-                  //             ? const CircularProgressIndicator()
-                  //             : notes.isEmpty
-                  //                 ? Container(
-                  //                     margin:
-                  //                         const EdgeInsets.only(left: 130, top: 120),
-                  //                     child: Text("No Tasks",
-                  //                         style: TextStyle(
-                  //                           fontSize: 20,
-                  //                           color: Theme.of(context).primaryColor,
-                  //                         )))
-                  //                 : ListView(
-                  //                    physics: const BouncingScrollPhysics(),
-                  //                     children: notes.map((note) {
-                  //                     final IsSelected = all_selected_tasks
-                  //                         .contains(note.description);
-                  //
-                  //                     return Slidable(
-                  //                         endActionPane: ActionPane(
-                  //                           // A motion is a widget used to control how the pane animates.
-                  //                           motion: const StretchMotion(),
-                  //
-                  //                           // A pane can dismiss the Slidable.
-                  //
-                  //                           // All actions are defined in the children parameter.
-                  //                           children: [
-                  //                             // A SlidableAction can have an icon and/or a label.
-                  //                             SlidableAction(
-                  //                               onPressed: (context) async {
-                  //                                 NotesDatabase.instance
-                  //                                     .delete(note.id!);
-                  //                                 refreshNote();
-                  //                               },
-                  //                               backgroundColor: Color(0xFFFE4A49),
-                  //                               foregroundColor: Colors.white,
-                  //                               icon: Icons.delete,
-                  //                               label: "Delete",
-                  //                             ),
-                  //                             SlidableAction(
-                  //                               onPressed: (context) async {
-                  //                                 await Navigator.of(context).push(
-                  //                                     MaterialPageRoute(
-                  //                                         builder: (context) =>
-                  //                                             Note_Task(
-                  //                                               note: note,
-                  //                                             )));
-                  //                                 refreshNote();
-                  //                               },
-                  //                               backgroundColor: const Color(0xFF21B7CA),
-                  //                               foregroundColor: Colors.white,
-                  //                               label: "Edit",
-                  //                               icon: Icons.edit,
-                  //                             ),
-                  //                           ],
-                  //                         ),
-                  //                         child: builditem(note, IsSelected));
-                  //                   }).toList()))),
-                ],
-              ),
+                // FadeAnimation(
+                //     delay: 1,
+                //     child: SizedBox(
+                //         width: we * 0.9,
+                //         height: he * 0.23,
+                //         child: isLoading
+                //             ? const CircularProgressIndicator()
+                //             : notes.isEmpty
+                //                 ? Container(
+                //                     margin:
+                //                         const EdgeInsets.only(left: 130, top: 120),
+                //                     child: Text("No Tasks",
+                //                         style: TextStyle(
+                //                           fontSize: 20,
+                //                           color: Theme.of(context).primaryColor,
+                //                         )))
+                //                 : ListView(
+                //                    physics: const BouncingScrollPhysics(),
+                //                     children: notes.map((note) {
+                //                     final IsSelected = all_selected_tasks
+                //                         .contains(note.description);
+                //
+                //                     return Slidable(
+                //                         endActionPane: ActionPane(
+                //                           // A motion is a widget used to control how the pane animates.
+                //                           motion: const StretchMotion(),
+                //
+                //                           // A pane can dismiss the Slidable.
+                //
+                //                           // All actions are defined in the children parameter.
+                //                           children: [
+                //                             // A SlidableAction can have an icon and/or a label.
+                //                             SlidableAction(
+                //                               onPressed: (context) async {
+                //                                 NotesDatabase.instance
+                //                                     .delete(note.id!);
+                //                                 refreshNote();
+                //                               },
+                //                               backgroundColor: Color(0xFFFE4A49),
+                //                               foregroundColor: Colors.white,
+                //                               icon: Icons.delete,
+                //                               label: "Delete",
+                //                             ),
+                //                             SlidableAction(
+                //                               onPressed: (context) async {
+                //                                 await Navigator.of(context).push(
+                //                                     MaterialPageRoute(
+                //                                         builder: (context) =>
+                //                                             Note_Task(
+                //                                               note: note,
+                //                                             )));
+                //                                 refreshNote();
+                //                               },
+                //                               backgroundColor: const Color(0xFF21B7CA),
+                //                               foregroundColor: Colors.white,
+                //                               label: "Edit",
+                //                               icon: Icons.edit,
+                //                             ),
+                //                           ],
+                //                         ),
+                //                         child: builditem(note, IsSelected));
+                //                   }).toList()))),
+              ],
             ),
           ),
         ]),
       ),
         floatingActionButton: FadeAnimation(
-          delay: 1.4,
+          delay: 1.2,
           child: FloatingActionButton(
-            backgroundColor: Colors.transparent.withOpacity(0.1),
+            // isExtended: true,
+            backgroundColor: Colors.transparent,
             // hoverElevation: 0.5,
             child: Container(
               // color: Colors.transparent,
-              width: 95,
-              height: 95,
+              width: 100,
+              height: 100,
               child: const Icon(
                 Icons.add,
-                size: 36,
+                size: 38,
               ),
               decoration: BoxDecoration(
                 // color: Colors.transparent,
                 gradient: LinearGradient(
                   colors: [
-                    Colors.deepPurple.shade400.withOpacity(0.5),
-                    const Color(0xFF6A88E5).withOpacity(0.5),
+                    Mytheme.fbutton1,
+                    Mytheme.fbutton2,
+                    // Colors.transparent,
+                    // Colors.transparent,
                   ],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                 ),
                 shape: BoxShape.circle,
-                boxShadow: const [
+                boxShadow: [
                   BoxShadow(
-                    color: Color(0xFF6A88E5),
-                    offset: Offset(15, 15),
-                    blurRadius: 16,
+                    color: Mytheme.fbutton3.withOpacity(0.4),
+                    offset: Offset(-5, 10),
+                    spreadRadius: 6,
+                    blurRadius: 20,
                   ),
                 ],
               ),
-            ).asGlass(
-              frosted:false,clipBorderRadius: BorderRadius.circular(27),),
+            ),
 
             onPressed: () async {
             await Navigator.of(context).push(PageTransition(

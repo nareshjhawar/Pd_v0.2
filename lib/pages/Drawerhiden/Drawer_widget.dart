@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_todo/data/thems.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../Avatar_progerss.dart';
 import '../chart.dart';
@@ -24,7 +25,8 @@ class _DrawerWidgetState extends State<DrawerWidget>
         child: Column(
       children: [
         _buildButton(context),
-        Container(margin:EdgeInsets.only(left: 60),child: Progerss_Avater()),
+        Container(margin:EdgeInsets.only(left: 60),
+            child: Progerss_Avater()),
         SizedBox(
           height: he * 0.02,
         ),
@@ -50,11 +52,15 @@ class _DrawerWidgetState extends State<DrawerWidget>
                         const EdgeInsets.symmetric(horizontal: 30, vertical: 1),
                     leading: Icon(
                       item.icon,
-                      color: Color(0xFF958EF1),
+                      color: Mytheme.date_color,
+                      size: 25,
                     ),
                     title: Text(
                       item.title,
-                      style: const TextStyle(color: Colors.white),
+                      style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          color: Mytheme.primary_color),
                     ),
                     onTap: () {},
                   ))
@@ -70,15 +76,31 @@ class _DrawerWidgetState extends State<DrawerWidget>
       width: 50,
       height: 50,
       alignment: Alignment.center,
-      decoration:
-          const BoxDecoration(color: Colors.grey, shape: BoxShape.circle),
+      // decoration:
+      //     const BoxDecoration(
+      //         color: Mytheme.prime_color2,
+      //         shape: BoxShape.circle,
+      //
+      //     ),
+      decoration: BoxDecoration(
+        color: Mytheme.prime_color2,
+        shape: BoxShape.circle,
+        boxShadow: [
+          BoxShadow(
+            color: Mytheme.prime_color2.withOpacity(0.4),
+            offset: const Offset(-5,5),
+            spreadRadius: 4,
+            blurRadius: 20,
+          ),
+        ],
+      ),
       child: Container(
           width: 47,
           height: 47,
           alignment: Alignment.center,
           decoration: const BoxDecoration(
             shape: BoxShape.circle,
-            color: Color(0xFF1A1C21),
+            color: Mytheme.prime_color2,
           ),
           child: IconButton(
               onPressed: widget.closdDrawer,
@@ -104,7 +126,7 @@ class _DrawerWidgetState extends State<DrawerWidget>
             style: GoogleFonts.dancingScript(
                 fontSize: 30,
                 letterSpacing: 1,
-                color: Colors.white.withOpacity(0.8),
+                color: Mytheme.primary_color.withOpacity(0.8),
                 fontWeight: FontWeight.bold),
           ),
         ],

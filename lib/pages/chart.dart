@@ -1,6 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_todo/data/thems.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Chart extends StatefulWidget {
@@ -13,7 +14,7 @@ class _ChartState extends State<Chart> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(right: 100),
+      margin: const EdgeInsets.only(left: 50,right: 100),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -22,10 +23,10 @@ class _ChartState extends State<Chart> {
             child: Container(
               decoration: BoxDecoration(boxShadow: [
                 BoxShadow(
-                    color: const Color(0xFF726AE5).withAlpha(10),
-                    offset: const Offset(0.5, 0.5),
-                    spreadRadius: 10,
-                    blurRadius: 100)
+                    color: const Color(0xFFB69BF3).withOpacity(0.1),
+                    offset: const Offset(1.5, 1.5),
+                    spreadRadius: 3,
+                    blurRadius: 65)
               ]),
               width: 200,
               height: 100,
@@ -56,9 +57,10 @@ class _ChartState extends State<Chart> {
                             FlSpot(10, 3),
                           ],
                           isCurved: true,
-                          color: Color(0xFF726AD5),
+                          color: Color(0xFF9B96E7),
                           barWidth: 2,
-                          dotData: FlDotData(show: false))
+                          dotData: FlDotData(show: false)
+                      )
                     ]),
                 swapAnimationCurve: Curves.bounceInOut,
                 swapAnimationDuration: const Duration(milliseconds: 1000),
@@ -70,16 +72,31 @@ class _ChartState extends State<Chart> {
           ),
           Text(
             "Reports",
-            style: GoogleFonts.lato(color: Colors.white70),
+            style: GoogleFonts.lato(
+                fontSize: 18,
+                color: Mytheme.primary_color,
+                fontWeight: FontWeight.bold),
           ),
           const SizedBox(
             height: 12,
           ),
-          Text(
-            "80% Productive",
-            style: GoogleFonts.lato(
-                color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
-          )
+          Row(
+            children: [
+              Text(
+                "80% ",
+                style: GoogleFonts.lato(
+                    color: Mytheme.prime_color2,
+                    fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              Text(
+                " Productive",
+                style: GoogleFonts.lato(
+                    color: Mytheme.primary_color1,
+                    fontSize: 20),
+              )
+            ],
+          ),
+
         ],
       ),
     );
