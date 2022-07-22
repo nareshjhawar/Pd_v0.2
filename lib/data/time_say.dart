@@ -28,9 +28,9 @@ class Welcome extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(60)),
           boxShadow: [
             BoxShadow(
-              color: Mytheme.prime_color2.withOpacity(0.12),
+              color: Theme.of(context).primaryColor.withOpacity(0.06),
               offset: const Offset(-5,2),
-              spreadRadius: 1,
+              spreadRadius: 2,
               blurRadius: 20,
             ),
           ],
@@ -38,10 +38,11 @@ class Welcome extends StatelessWidget {
         child: Text(
       welcome(),
       style: GoogleFonts.poppins(
-        color : Mytheme.welcome_clr,
+        color : Theme.of(context).primaryColor,
         fontWeight: FontWeight.bold,
         fontSize: 30,
       ),
-    ));
+    )
+    );
   }
 }

@@ -62,6 +62,7 @@ class NavCustomPainter extends CustomPainter {
       ..lineTo(size.width, size.height)
       ..lineTo(0, size.height)
       ..close();
+
     canvas.drawPath(path, paint);
   }
 

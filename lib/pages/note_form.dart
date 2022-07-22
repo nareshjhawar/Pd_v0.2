@@ -13,7 +13,7 @@ class NoteFormWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     var we = MediaQuery.of(context).size.width;
     var he = MediaQuery.of(context).size.height;
-    
+
     return Container(
       width: we * 8,
       height: he * 0.49,

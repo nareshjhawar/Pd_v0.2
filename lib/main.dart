@@ -18,14 +18,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) => ChangeNotifierProvider(
       create: (context) => ThemProvider(),
-      builder: (context, _) {
+      builder: (context, _theme) {
         final themProvider = Provider.of<ThemProvider>(context);
         return MaterialApp(
           title: 'Prodo',
           debugShowCheckedModeBanner: false,
           themeMode: themProvider.themeMode,
-          darkTheme: Mytheme.darkthem,
-          theme: Mytheme.lightthem,
+          darkTheme: Mytheme.lightthem,
+          theme: Mytheme.darkthem,
+          // initialRoute: Routes.settings,
+          // onGenerateRoute: RouterGenerator.generateRoutes,
           home: HidenDrawer(),
         );
       });

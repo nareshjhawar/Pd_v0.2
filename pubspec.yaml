@@ -46,10 +46,14 @@ dependencies:
   provider: ^6.0.2
 
   flutter_svg: ^1.0.3
+  animated_theme_switcher:
   glassmorphism: ^3.0.0
   
   # use chart in App
   fl_chart: ^0.51.0
+  hidden_drawer_menu:
+
+  get:
 
 
   flutter_slidable: ^1.2.0

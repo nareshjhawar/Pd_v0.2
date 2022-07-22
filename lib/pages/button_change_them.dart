@@ -16,6 +16,8 @@ class _ChangeThembuttonState extends State<ChangeThembutton> {
   bool Ison = false;
   bool Isicons = false;
 
+  bool islight = true;
+
   @override
   Widget build(BuildContext context) {
     // Todo this button for change them of app .. 
@@ -24,18 +26,23 @@ class _ChangeThembuttonState extends State<ChangeThembutton> {
         onPressed: () {
           final provider = Provider.of<ThemProvider>(context, listen: false);
           Isicons = !Isicons;
-          Ison = themprovider.isDarkMode;
-
+          Ison = themprovider.isDarkMode ;
+          // TweenAnimationBuilder(
+          //     tween: Tween(begin: 0.0,end: 1.0),
+          //     duration: Duration(milliseconds: 1500),
+          //     child: provider.toggleThem(Ison),
+          //     builder: _ChangeThembuttonState);
+          // Ison = Ison ? themprovider.isLightMode :  themprovider.isDarkMode;
           provider.toggleThem(Ison);
         },
         icon: Isicons
-            ? const Icon(
+            ?  Icon(
                 Icons.light_mode_outlined,
-                color: Mytheme.primary_color,
+                color: Theme.of(context).primaryColor,
               )
-            : const Icon(
+            :  Icon(
                 Icons.mode_night_outlined,
-                color: Mytheme.primary_color,
+                color: Theme.of(context).primaryColor,
               )
     );
   }

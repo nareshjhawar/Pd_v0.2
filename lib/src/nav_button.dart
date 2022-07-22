@@ -28,6 +28,7 @@ class NavButton extends StatelessWidget {
           onTap(index);
         },
         child: Container(
+          // color: Colors.blue,
             height: 75.0,
             child: Transform.translate(
               offset: Offset(

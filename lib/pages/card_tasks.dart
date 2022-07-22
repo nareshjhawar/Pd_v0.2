@@ -18,11 +18,11 @@ class CardTasks extends StatelessWidget {
 
   CardTasks(
       {Key? key,
-      required this.taskuser,
-      required this.isActive,
-      required this.Index,
-      // required this.animation,
-      required this.onSelected})
+        required this.taskuser,
+        required this.isActive,
+        required this.Index,
+        // required this.animation,
+        required this.onSelected})
       : super(key: key);
 
   @override
@@ -32,7 +32,6 @@ class CardTasks extends StatelessWidget {
     var he = MediaQuery.of(context).size.height;
 
     return Card(
-      color: Colors.transparent,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       child: Container(
         width: we * 0.9,
@@ -47,11 +46,11 @@ class CardTasks extends StatelessWidget {
                   onTap: () => onSelected(taskuser),
                   child: isActive
                       ? const Icon(Icons.check_circle_outlined,
-                          color: Colors.grey)
+                      color: Colors.grey)
                       :  Icon(
-                          Icons.circle_outlined,
-                          color: color,
-                        ),
+                    Icons.circle_outlined,
+                    color: color,
+                  ),
                 )),
             SizedBox(
               width: we * 0.025,

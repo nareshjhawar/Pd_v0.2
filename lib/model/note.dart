@@ -29,12 +29,12 @@ class Note {
       );
 
   static Note fromJson(Map<String, Object?> json) => Note(
-        id: json[NoteFields.id] as int?,
-        description: json[NoteFields.description] as String,
-      );
+    id: json[NoteFields.id] as int?,
+    description: json[NoteFields.description] as String,
+  );
 
   Map<String, Object?> toJson() => {
-        NoteFields.id: id,
-        NoteFields.description: description,
-      };
+    NoteFields.id: id,
+    NoteFields.description: description,
+  };
 }

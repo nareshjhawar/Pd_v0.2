@@ -1,8 +1,6 @@
-import 'dart:ui';
-
+// import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter_todo/data/thems.dart';
-
+import '../../data/thems.dart';
 import '../homepage.dart';
 import 'Drawer_widget.dart';
 import 'package:flutter/services.dart';
@@ -29,7 +27,6 @@ class _HidenDrawerState extends State<HidenDrawer> {
       scaleFactor = 0.8;
       isDrawingOpen = true;
     });
-
   }
 
   void closeDrawer() {
@@ -52,15 +49,15 @@ class _HidenDrawerState extends State<HidenDrawer> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-      // backgroundColor: Colors.transparent,
-
       body: Stack(children: [
         Mytheme.darkapp,
         DrawerWidget(
           closdDrawer: closeDrawer,
         ),
         buildpage()
-      ]));
+      ]
+      )
+  );
 
   Widget buildpage() {
     return GestureDetector(

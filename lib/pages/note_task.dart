@@ -18,7 +18,10 @@ class Note_Task extends StatefulWidget {
 }
 
 class _Note_TaskState extends State<Note_Task> {
+  // late String time;
   late String description;
+  // late String slot;
+
 
   bool Ison = false;
   final _controller = TextEditingController();
@@ -27,8 +30,9 @@ class _Note_TaskState extends State<Note_Task> {
   void initState() {
     // TODO: implement initState
     super.initState();
-
+    // time = widget.note?.time ?? '';
     description = widget.note?.description ?? ''; // for get null or value
+    // slot = widget.note?.slot ?? '';
   }
 
   @override
@@ -53,10 +57,20 @@ class _Note_TaskState extends State<Note_Task> {
                   FadeAnimation(
                       delay: 0.3,
                       child: NoteFormWidget(
-                          description: description,
-                          onChangedDescription: (description) {
-                            setState(() => this.description = description);
-                          })),
+                        // time: time,
+                        // onChangedtime: (time) {
+                        //   setState(() => this.time = time);
+                        // },
+                        description: description,
+                          onChangedDescription: (title) {
+                            setState(() => this.description = title);
+                          },
+                        // slot: slot,
+                        // onChangedslot: (slot) {
+                        //   setState(() => this.slot = slot);
+                        // },
+                          )
+                  ),
                   FadeAnimation(
                       delay: 0.4,
                       child: widget.note?.description == null
@@ -103,7 +117,7 @@ class _Note_TaskState extends State<Note_Task> {
   }
 
   // TODO Update button ...
-  Widget _buildButtonCreate(BuildContext contex) {
+  Widget _buildButtonCreate(BuildContext context) {
     var we = MediaQuery.of(context).size.width;
     var he = MediaQuery.of(context).size.height;
     return Container(
@@ -153,7 +167,7 @@ class _Note_TaskState extends State<Note_Task> {
   }
 
   // TODO Save button ..
-  Widget _buildButtonSave(BuildContext contex) {
+  Widget _buildButtonSave(BuildContext context) {
     var we = MediaQuery.of(context).size.width;
     var he = MediaQuery.of(context).size.height;
     return Container(
@@ -187,7 +201,7 @@ class _Note_TaskState extends State<Note_Task> {
 
   // Todo add note in db
   Future addNote() async {
-    final note = Note(description: description);
+    final note = Note(description: description, );
     if (description.isNotEmpty) {
       // TODO null text
       await NotesDatabase.instance.create(note);

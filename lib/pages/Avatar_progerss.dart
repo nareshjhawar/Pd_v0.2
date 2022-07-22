@@ -44,10 +44,10 @@ class _Progerss_AvaterState extends State<Progerss_Avater>
 
         boxShadow: [
           BoxShadow(
-            color: Mytheme.prime_color2.withOpacity(0.4),
+            color: Theme.of(context).shadowColor.withOpacity(0.4),
             offset: const Offset(-5,5),
             spreadRadius: 3.5,
-            blurRadius: 30,
+            blurRadius: 50,
           ),
         ],
       ),
@@ -63,7 +63,8 @@ class _Progerss_AvaterState extends State<Progerss_Avater>
           const Center(
               child: CircleAvatar(
                   radius: 45.0,
-                  backgroundImage: AssetImage("assets/Avatar.png"))),
+                  backgroundImage: AssetImage("assets/Avatar.png"))
+          ),
         ],
       ),
     );

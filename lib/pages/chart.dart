@@ -23,10 +23,10 @@ class _ChartState extends State<Chart> {
             child: Container(
               decoration: BoxDecoration(boxShadow: [
                 BoxShadow(
-                    color: const Color(0xFFB69BF3).withOpacity(0.1),
+                    color: Theme.of(context).shadowColor.withAlpha(40),
                     offset: const Offset(1.5, 1.5),
-                    spreadRadius: 3,
-                    blurRadius: 65)
+                    spreadRadius: 5,
+                    blurRadius: 60)
               ]),
               width: 200,
               height: 100,
@@ -73,9 +73,9 @@ class _ChartState extends State<Chart> {
           Text(
             "Reports",
             style: GoogleFonts.lato(
-                fontSize: 18,
-                color: Mytheme.primary_color,
-                fontWeight: FontWeight.bold),
+                fontSize: 20,
+                color: Theme.of(context).focusColor,
+                fontWeight: FontWeight.w500),
           ),
           const SizedBox(
             height: 12,
@@ -85,14 +85,14 @@ class _ChartState extends State<Chart> {
               Text(
                 "80% ",
                 style: GoogleFonts.lato(
-                    color: Mytheme.prime_color2,
-                    fontSize: 20, fontWeight: FontWeight.bold),
+                    color: Theme.of(context).cardColor,
+                    fontSize: 25, fontWeight: FontWeight.w800),
               ),
               Text(
                 " Productive",
                 style: GoogleFonts.lato(
-                    color: Mytheme.primary_color1,
-                    fontSize: 20),
+                    color: Theme.of(context).focusColor,
+                    fontSize: 18),
               )
             ],
           ),

@@ -33,8 +33,9 @@ class DateWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       child: Container(
+
         width: width,
-        margin: EdgeInsets.only(top:5,left: 15,bottom: 30),
+        margin: EdgeInsets.only(top:5,left: 15,bottom: 5),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(40.0)),
           gradient: LinearGradient(
@@ -47,7 +48,7 @@ class DateWidget extends StatelessWidget {
           ),
           boxShadow: [
             BoxShadow(
-              color: Mytheme.prime_color1.withOpacity(0.35),
+              color: Theme.of(context).shadowColor.withAlpha(60),
               offset: const Offset(-10,10),
               // spreadRadius: 0.5,
               blurRadius: 20,

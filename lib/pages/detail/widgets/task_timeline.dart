@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_todo/Animation/fadeAnimation.dart';
 import 'package:flutter_todo/data/thems.dart';
 import 'package:timeline_tile/timeline_tile.dart';
-import 'package:glass/glass.dart';
 
 class TaskTimeline extends StatelessWidget {
   final Map<String, dynamic> detail;
@@ -13,11 +13,12 @@ class TaskTimeline extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 80,
-      padding: const EdgeInsets.symmetric(horizontal: 25),
+      padding: const EdgeInsets.symmetric(horizontal: 15),
       child: Row(
         children: [
-          _buildTimeline(detail['tlColor']),
+          _buildTimeline(context,detail['tlColor']),
           Expanded(
+            flex: 1,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -28,69 +29,75 @@ class TaskTimeline extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        margin: const EdgeInsets.only(top:4,),
+                        margin: const EdgeInsets.only(top:0,),
                         decoration:BoxDecoration(
                           boxShadow: [
                             BoxShadow(
-                              color: Mytheme.prime_color1.withOpacity(0.2),
+                              color: Theme.of(context).shadowColor.withOpacity(0.15),
                               offset: const Offset(-4, 5),
                               spreadRadius: 0.4,
                               blurRadius: 20,
                             ),
                           ],
                         ) ,
-                          child: Text(
-                              detail['time'],
-                          style: TextStyle(
-                            fontSize: 15.5,
-                            color: Mytheme.primary_color1.withOpacity(0.6),
-                          ),
+                          child: FadeAnimation(
+                            delay: 1.5,
+                            child: Text(
+                                detail['time'],
+                            style: TextStyle(
+                              fontSize: 15.5,
+                              color: Theme.of(context).primaryColor,
+                            ),
+                            ),
                           ),
 
                       ),
                       !detail.containsKey('isLast')
                           ? detail['title'].isNotEmpty
-                          ? _buildCard(detail['bgColor'], detail['title'],
-                          detail['slot'])
-                          : _buildCard(Mytheme.prime_color1, '', '')
-                          : Container()
+                          ? FadeAnimation(
+                              delay: 1.4,
+                            child: _buildCard(context,detail['bgColor'], detail['title'],
+                            detail['slot']),
+                          )
+                          : _buildCard(context,Mytheme.prime_color2, '', '')
+                          : Container(),
                     ],
                   ),
                 ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );
   }
 
-  Widget _buildCard(Color bgColor, String title, String slot) {
+  Widget _buildCard(context,Color bgColor, String title, String slot) {
     return Container(
-      height: 60,
+      height: 65,
       width: 200,
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            Mytheme.tl_color.withOpacity(0.5),
-            Mytheme.bg_color.withOpacity(0.4),
+            Theme.of(context).cardColor.withOpacity(0.7),
+            Theme.of(context).canvasColor.withOpacity(0.9),
           ],
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
         ),
         boxShadow: [
           BoxShadow(
-            color: Mytheme.bg_color.withOpacity(0.35),
+            color: Theme.of(context).shadowColor.withOpacity(0.15),
             offset: const Offset(-6, 6),
-            spreadRadius: 3,
+            spreadRadius: 4,
             blurRadius: 16,
           ),
         ],
           // color: Mytheme.primary_color.withOpacity(0.09),
           borderRadius: BorderRadius.circular(20),
       ),
-      padding: const EdgeInsets.only(left: 5,top: 8),
-      margin: const EdgeInsets.only(top:7,bottom: 10),
+      padding: const EdgeInsets.only(left: 5,top: 10),
+      margin: const EdgeInsets.only(top:5,bottom: 10),
       child: Container(
         margin: const EdgeInsets.only(top: 3, left: 15,),
         child: Column(
@@ -114,7 +121,7 @@ class TaskTimeline extends StatelessWidget {
     );
   }
 
-  Widget _buildTimeline(Color tlColor) {
+  Widget _buildTimeline(context,Color tlColor) {
     return SizedBox(
       height: 80,
       width: 30,
@@ -125,17 +132,17 @@ class TaskTimeline extends StatelessWidget {
         isLast: detail.containsKey('isLast') ? true : false,
         indicatorStyle: IndicatorStyle(
             indicatorXY: 0,
-            width: 18,
+            width: 16,
             indicator: Container(
               decoration: BoxDecoration(
-                color: Mytheme.primary_color1,
+                color: Theme.of(context).focusColor,
                 shape: BoxShape.circle,
                 border: Border.all(width: 5,
-                    color: Mytheme.prime_color1),
+                    color: Theme.of(context).canvasColor),
                 boxShadow: [
                   BoxShadow(
-                    color: Mytheme.prime_color1.withOpacity(0.7),
-                    // offset: const Offset(8, 16),
+                    color: Theme.of(context).shadowColor.withOpacity(0.3),
+                    offset: const Offset(-4, 4),
                     spreadRadius: 2,
                     blurRadius: 15,
                   ),

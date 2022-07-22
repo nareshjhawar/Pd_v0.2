@@ -8,6 +8,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
+  animated_theme_switcher:
+    dependency: "direct main"
+    description:
+      name: animated_theme_switcher
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.6"
   archive:
     dependency: transitive
     description:
@@ -205,6 +212,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "10.1.0"
+  get:
+    dependency: "direct main"
+    description:
+      name: get
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.6.5"
   glass:
     dependency: "direct main"
     description:
@@ -223,6 +237,13 @@ packages:
     dependency: "direct main"
     description:
       name: google_fonts
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.1"
+  hidden_drawer_menu:
+    dependency: "direct main"
+    description:
+      name: hidden_drawer_menu
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.1"
