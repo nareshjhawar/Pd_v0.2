@@ -250,16 +250,16 @@ class _MyHomePageState extends State<MyHomePage> {
                 size: 28,
                 color : Colors.white70),
             Icon(
-                Icons.home,
+                Icons.settings,
                 size: 28,
                 color : Colors.white70),
             Icon(
-                Icons.home,
+                Icons.account_circle_outlined,
                 size: 28,
                 color : Colors.white70),
 
             Icon(
-              Icons.settings,
+              Icons.cable,
               size: 28,
               color : Colors.white70,
             ),
@@ -317,15 +317,12 @@ class _MyHomePageState extends State<MyHomePage> {
           )
         ],
       ): null,
-        body: index == 0 ? homeScreen(he, we)
-        // (
-        //     SimpleGlobal.hindex==0 ? MyRoutine() :
-        //     SimpleGlobal.hindex==1 ? MyAnalytics() :
-        //     SimpleGlobal.hindex==2 ? homeScreen(he, we) :
-        //
-        //     homeScreen(he, we)
-        // )
-            : const PageSettings() ,
+
+      body: index == 0 ? homeScreen(he, we) :
+            index==1? PageSettings() :
+            index==2 ? MyRoutine(opendrawer: (){}) :
+            index==3 ? MyAnalytics()
+                : PageSettings(),
         // body: if (index== 0 ),
         floatingActionButton: index ==0 ?FadeAnimation(
           delay: 1.2,
