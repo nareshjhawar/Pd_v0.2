@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_todo/data/thems.dart';
 import 'package:provider/provider.dart';
 
-import '../curved_navigation_bar.dart';
+// import '../curved_navigation_bar.dart';
 import 'button_change_them.dart';
 
 class MyRoutine extends StatefulWidget {
@@ -101,40 +101,6 @@ class _MyRoutineState extends State<MyRoutine> {
               // ),
             ),
           ),
-          Stack(
-            children:<Widget> [
-              // Image(image:AssetImage("assets/Avatar.png") ),
-              Center(
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(30),
-                  child: BackdropFilter(
-                    filter: ImageFilter.blur(sigmaX: 10,sigmaY: 10),
-                    child: Container(
-                      height: 100,
-                      width: 300,
-                      decoration: BoxDecoration(
-                        color: Colors.transparent.withOpacity(0.1),
-                        boxShadow: [
-                          BoxShadow(
-                              color: Theme.of(context).shadowColor,
-                              offset: Offset(4,4),
-                              blurRadius: 2,
-                              spreadRadius: 1.0
-                          ),
-                          BoxShadow(
-                              color: Theme.of(context).shadowColor,
-                              offset: Offset(4,4),
-                              blurRadius: 2,
-                              spreadRadius: 1.0
-                          )
-                        ],
-                      ),),
-                  ),
-                ),
-              ),
-
-            ],
-          )
 
         ],
       ),

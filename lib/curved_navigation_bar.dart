@@ -298,7 +298,7 @@ class CurvedNavigationBarState extends State<CurvedNavigationBar>
   }
 }
 
-
+// second expand
 class CurvedNavigationBar2 extends StatefulWidget {
   final List<Widget> items;
   final int index;
@@ -395,8 +395,9 @@ class CurvedNavigationBarState2 extends State<CurvedNavigationBar2>
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Container(
+      clipBehavior: Clip.none,
       decoration: BoxDecoration(
-        // color: widget.backgroundColor,
+        color: widget.backgroundColor,
         // gradient: widget.backgroundGradient
       ),
       height: widget.height,
@@ -414,7 +415,7 @@ class CurvedNavigationBarState2 extends State<CurvedNavigationBar2>
               ),
 
               child: BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 30,sigmaY: 30),
+                filter: ImageFilter.blur(sigmaX: 5,sigmaY: 5),
                 child: CustomPaint(
                   painter: NavCustomPainter(
                       _pos, _length, widget.color, Directionality.of(context),
@@ -433,14 +434,13 @@ class CurvedNavigationBarState2 extends State<CurvedNavigationBar2>
                           ),
                         ],
                       ),
-                      height: 80,
+                      height: 75,
                     ),
                   ),
                 ),
               ),
             ),
           ),
-
           Positioned(
             bottom: -30 - (75.0 - widget.height),
             left: Directionality.of(context) == TextDirection.rtl
@@ -513,7 +513,7 @@ class CurvedNavigationBarState2 extends State<CurvedNavigationBar2>
                                     shape: BoxShape.circle,
                                     boxShadow: [
                                       BoxShadow(
-                                        color: Theme.of(context).focusColor.withAlpha(110),
+                                        color: Theme.of(context).focusColor.withAlpha(120),
                                         // offset: const Offset(0, 0),
                                         spreadRadius: 0.2,
                                         blurRadius: 11,
@@ -532,7 +532,7 @@ class CurvedNavigationBarState2 extends State<CurvedNavigationBar2>
           Positioned(
             left: 0,
             right: 0,
-            bottom: 0 - (75.0 - widget.height),
+            bottom: 0 - (70.0 - widget.height),
             child: SizedBox(
                 height: 75.0,
                 child: Row(
