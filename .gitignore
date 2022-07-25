@@ -1,0 +1,10 @@
+
+*.aar
+.dart_tool/*
+build/*
+.idea/*
+windows/*
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+android/*
