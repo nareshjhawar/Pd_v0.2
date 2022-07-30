@@ -12,14 +12,17 @@ class DrawerItem {
 class DrawerItems {
   static final home =
       DrawerItem(title: "Home", icon: Icons.grid_view_outlined);
-  static final routine =
-      DrawerItem(title: "Routine", icon: Icons.grid_view_outlined);
-  static final analytics =
-      DrawerItem(title: "Analytics", icon: FontAwesomeIcons.chartPie);
-  // static final profile =
-  //     DrawerItem(title: "Profile", icon: Icons.person_outlined);
-  static final recommend =
-      DrawerItem(title: "Recommend", icon: Icons.person_outlined);
+  static final profile =
+      DrawerItem(title: "Profile", icon: Icons.person_outlined);
+  static final logout =
+      DrawerItem(title: "Logout", icon: Icons.logout);
+  // static final routine =
+  //     DrawerItem(title: "Routine", icon: Icons.grid_view_outlined);
+  // static final analytics =
+  //     DrawerItem(title: "Analytics", icon: FontAwesomeIcons.chartPie);
+  //
+  // static final recommend =
+  //     DrawerItem(title: "Recommend", icon: Icons.person_outlined);
 
-  static final List<DrawerItem> all = [home, routine, analytics,recommend];
+  static final List<DrawerItem> all = [home,profile,logout];
 }

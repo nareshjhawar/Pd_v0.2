@@ -57,7 +57,7 @@ class Mytheme {
   static final card_color1 = Color(0xFF5C5292).withOpacity(0.5);
   static const card_color2 = Color(0xFF6A88E5);// prime
 
-  static const date_color = Color(0xFFCBBDF3);
+  static const date_color = Color(0xFFE0D5F8);
 
 static final drawer_icons = Color(0xFFCDC2F6); //
 
@@ -71,7 +71,7 @@ static final drawer_icons = Color(0xFFCDC2F6); //
 
   static final time_color = Color(0xFFC7B8FF);
   static final tl_card = Color(0xFFB9C6EE);
-  static final tl_card_sh = Color(0xFF2E2949);
+  static const tl_card_sh = Color(0xFF2E2949);
   static final tl_card_tx1 = Color(0xFFC3A8F3);
   static final tl_card_tx2 = Color(0xFFC4CCEF);
   // static final tl_card1 = Color(0xFFC3A8F3);
@@ -83,12 +83,13 @@ static final drawer_icons = Color(0xFFCDC2F6); //
   // final Brightness.light = Colors.red;
 
 
+
   static final darkthem = ThemeData(
       scaffoldBackgroundColor:  const Color(0xff181a1f),
       splashColor: const Color(0xff434345),
       hoverColor: const Color(0xff242a3e),
       primaryColorLight: Color(0xff1f1a32),
-      primaryColor: Color(0xFFA89EEE), // text
+      primaryColor: Color(0xFFBCB4F8), // text
 
       focusColor: Color(0xFFCDC2F6),
 
@@ -103,7 +104,7 @@ static final drawer_icons = Color(0xFFCDC2F6); //
       systemOverlayStyle: SystemUiOverlayStyle(
         statusBarBrightness: Brightness.dark,
       ),
-    )
+    ),
 
   );
 
@@ -115,7 +116,7 @@ static final drawer_icons = Color(0xFFCDC2F6); //
 
     focusColor: Color(0xFF695FA5),
 
-    cardColor:Color(0xFF5C5392).withOpacity(0.5),
+    cardColor:Color(0xFFB3ABDE).withOpacity(0.5),
     canvasColor:Color(0xFF6A88E5),
     shadowColor: Color(0xFF8D8FED),
 

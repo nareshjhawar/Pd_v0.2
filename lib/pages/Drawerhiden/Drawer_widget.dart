@@ -43,9 +43,8 @@ class _DrawerWidgetState extends State<DrawerWidget>
   }
   late final List? _widgetOption=[
     MyHomePage(opendrawer: onpenDrawer,),
-    MyRoutine(opendrawer: onpenDrawer,),
-    MyAnalytics(),
-    Responsive(opendrawer: onpenDrawer,),
+    MyProfile(),
+    MyProfile(),
   ];
 
   @override
@@ -84,7 +83,7 @@ class _DrawerWidgetState extends State<DrawerWidget>
               height: 300,
               child: ListView.builder(
                 physics: NeverScrollableScrollPhysics(),
-                  itemCount: 4,
+                  itemCount: 3,
                   itemBuilder: (BuildContext context,hindex){
                 List<DrawerItem> items=DrawerItems.all;
                 return ListTile(
@@ -125,9 +124,9 @@ class _DrawerWidgetState extends State<DrawerWidget>
         shape: BoxShape.circle,
         boxShadow: [
           BoxShadow(
-            color: Theme.of(context).shadowColor.withOpacity(0.35),
+            color: Theme.of(context).shadowColor.withOpacity(0.2),
             offset: const Offset(-5,5),
-            spreadRadius: 4,
+            spreadRadius: 1,
             blurRadius: 20,
           ),
         ],
@@ -173,7 +172,8 @@ class _DrawerWidgetState extends State<DrawerWidget>
   }
 }
 
-//
+// old copy
+
 // import 'package:flutter/material.dart';
 // import 'package:flutter_todo/data/thems.dart';
 // import 'package:flutter_todo/pages/global_myvar.dart' as Globals;

@@ -13,7 +13,7 @@ class TaskTimeline extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 80,
-      padding: const EdgeInsets.symmetric(horizontal: 15),
+      padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Row(
         children: [
           _buildTimeline(context,detail['tlColor']),
@@ -30,16 +30,16 @@ class TaskTimeline extends StatelessWidget {
                     children: [
                       Container(
                         margin: const EdgeInsets.only(top:0,),
-                        decoration:BoxDecoration(
-                          boxShadow: [
-                            BoxShadow(
-                              color: Theme.of(context).shadowColor.withOpacity(0.15),
-                              offset: const Offset(-4, 5),
-                              spreadRadius: 0.4,
-                              blurRadius: 20,
-                            ),
-                          ],
-                        ) ,
+                        // decoration:BoxDecoration(
+                        //   boxShadow: [
+                        //     BoxShadow(
+                        //       color: Theme.of(context).shadowColor.withOpacity(0.1),
+                        //       offset: const Offset(-4, 5),
+                        //       spreadRadius: 0.4,
+                        //       blurRadius: 15,
+                        //     ),
+                        //   ],
+                        // ) ,
                           child: FadeAnimation(
                             delay: 1.5,
                             child: Text(
@@ -47,6 +47,7 @@ class TaskTimeline extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 15.5,
                               color: Theme.of(context).primaryColor,
+                              fontWeight: FontWeight.w500,
                             ),
                             ),
                           ),
@@ -79,18 +80,18 @@ class TaskTimeline extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            Theme.of(context).cardColor.withOpacity(0.7),
-            Theme.of(context).canvasColor.withOpacity(0.9),
+            Theme.of(context).canvasColor.withOpacity(0.8),
+            Theme.of(context).cardColor.withOpacity(0.9),
           ],
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
         ),
         boxShadow: [
           BoxShadow(
-            color: Theme.of(context).shadowColor.withOpacity(0.15),
+            color: Theme.of(context).shadowColor.withOpacity(0.1),
             offset: const Offset(-6, 6),
-            spreadRadius: 4,
-            blurRadius: 16,
+            spreadRadius: 1,
+            blurRadius: 10,
           ),
         ],
           // color: Mytheme.primary_color.withOpacity(0.09),
@@ -113,7 +114,11 @@ class TaskTimeline extends StatelessWidget {
             const SizedBox(height: 3.5),
             Text(
               slot,
-              style: TextStyle(color: Mytheme.tl_card_tx2 ),
+              style: TextStyle(
+                  // color: Theme.of(context).primaryColor.withOpacity(0.7)
+                color: Colors.white.withOpacity(0.8),
+
+              ),
             )
           ],
         ),
@@ -141,10 +146,10 @@ class TaskTimeline extends StatelessWidget {
                     color: Theme.of(context).canvasColor),
                 boxShadow: [
                   BoxShadow(
-                    color: Theme.of(context).shadowColor.withOpacity(0.3),
+                    color: Theme.of(context).shadowColor.withOpacity(0.2),
                     offset: const Offset(-4, 4),
-                    spreadRadius: 2,
-                    blurRadius: 15,
+                    spreadRadius: 1,
+                    blurRadius: 10,
                   ),
                 ],
               ),

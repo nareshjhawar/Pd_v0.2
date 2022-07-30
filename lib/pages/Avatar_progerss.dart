@@ -44,10 +44,10 @@ class _Progerss_AvaterState extends State<Progerss_Avater>
 
         boxShadow: [
           BoxShadow(
-            color: Theme.of(context).shadowColor.withOpacity(0.4),
-            offset: const Offset(-5,5),
-            spreadRadius: 3.5,
-            blurRadius: 50,
+            color: Theme.of(context).shadowColor.withOpacity(0.2),
+            offset: const Offset(-5,2),
+            spreadRadius: 1,
+            blurRadius: 30,
           ),
         ],
       ),
