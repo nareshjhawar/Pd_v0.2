@@ -48,10 +48,10 @@ class DateWidget extends StatelessWidget {
           ),
           boxShadow: [
             BoxShadow(
-              color: Theme.of(context).shadowColor.withAlpha(60),
+              color: Theme.of(context).shadowColor.withAlpha(40),
               offset: const Offset(-10,10),
               // spreadRadius: 0.5,
-              blurRadius: 20,
+              blurRadius: 15,
             ),
           ],
         ),

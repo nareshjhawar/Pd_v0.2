@@ -4,6 +4,8 @@ import 'package:flutter_todo/data/thems.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_todo/pages/homepage.dart';
 
+import 'global_myvar.dart';
+
 
 class ChangeThembutton extends StatefulWidget {
   ChangeThembutton({Key? key}) : super(key: key);
@@ -27,6 +29,9 @@ class _ChangeThembuttonState extends State<ChangeThembutton> {
           final provider = Provider.of<ThemProvider>(context, listen: false);
           Isicons = !Isicons;
           Ison = themprovider.isDarkMode ;
+
+          // SimpleGlobal.isdark_mode = Ison ;
+
           // TweenAnimationBuilder(
           //     tween: Tween(begin: 0.0,end: 1.0),
           //     duration: Duration(milliseconds: 1500),

@@ -7,6 +7,7 @@ import 'package:flutter_todo/db/notes_database.dart';
 import 'package:flutter_todo/pages/note_form.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../model/note.dart';
+// import 'dart:html';
 
 class Note_Task extends StatefulWidget {
   final Note? note;
@@ -25,6 +26,10 @@ class _Note_TaskState extends State<Note_Task> {
 
   bool Ison = false;
   final _controller = TextEditingController();
+  final _formkey = GlobalKey<FormState>();
+
+  // get nameController => null;
+  TextEditingController nameController = TextEditingController();
 
   @override
   void initState() {
@@ -40,82 +45,273 @@ class _Note_TaskState extends State<Note_Task> {
     var we = MediaQuery.of(context).size.width;
     var he = MediaQuery.of(context).size.height;
 
-    return ClipRRect(
+    return Stack(
+      children: [
+        Mytheme.darkapp,
+        Scaffold(
+        // extendBody: true,
+        backgroundColor: Colors.transparent,
+        body: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          // child: SizedBox(
+          //   child: Column(
+          //     children: [
+          //
+          //       FadeAnimation(
+          //           delay: 0.3,
+          //           child: NoteFormWidget(
+          //             // time: time,
+          //             // onChangedtime: (time) {
+          //             //   setState(() => this.time = time);
+          //             // },
+          //             description: description,
+          //               onChangedDescription: (title) {
+          //                 setState(() => this.description = title);
+          //               },
+          //             // slot: slot,
+          //             // onChangedslot: (slot) {
+          //             //   setState(() => this.slot = slot);
+          //             // },
+          //               )
+          //       ),
+          //       FadeAnimation(
+          //           delay: 0.4,
+          //           child: widget.note?.description == null
+          //               ? _buildButtonCreate(context)
+          //               : _buildButtonSave(context)
+          //       ),
+          //       FadeAnimation(
+          //         delay: 0.2,
+          //         child: Container(
+          //           margin: EdgeInsets.only(top: he * 0.04,),
+          //           width: 55,
+          //           height: 55,
+          //           alignment: Alignment.center,
+          //           decoration: BoxDecoration(
+          //               color: Colors.grey[300], shape: BoxShape.circle),
+          //           child: Container(
+          //               width: 47,
+          //               height: 47,
+          //               alignment: Alignment.center,
+          //               decoration: const BoxDecoration(
+          //                 shape: BoxShape.circle,
+          //                 color: Color(0xffF4F6FD),
+          //               ),
+          //               child: IconButton(
+          //                   onPressed: () {
+          //                     Navigator.of(context).pop();
+          //                   },
+          //                   icon: const Icon(
+          //                     Icons.close,
+          //                     color: Colors.black,
+          //                     size: 20,
+          //                   )
+          //               )
+          //           ),
+          //         ),
+          //       ),
+          //     ],
+          //   ),
+          // ),
+          child:task_screen(he,we) ,
+        ),
+      ),]
+    );
+  }
+  Widget task_screen(var he, var we){
+    final tsytle = TextStyle(
+      color: Theme.of(context).primaryColor,
+      fontSize: 30,
+      fontWeight: FontWeight.w700,
+    );
+    final tsytle1 = TextStyle(
+      color: Theme.of(context).primaryColor,
+      fontSize: 20,
+      fontWeight: FontWeight.w500,
+    );
+    final f2deco = BoxDecoration(
+      gradient: LinearGradient(
+        colors: [//0xFF5C5292
+          Theme.of(context).cardColor.withOpacity(0.7),
+          Theme.of(context).canvasColor.withOpacity(0.7),
+        ],
+        begin: Alignment.topCenter,
+        end: Alignment.bottomLeft,
+      ),
+      borderRadius: BorderRadius.all(Radius.circular(30)),
+    ) ;
+    return SafeArea(
+      child: Container(
+        padding: EdgeInsets.fromLTRB(30, 30, 30, 20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Center(child: Text("Add Task",style: tsytle,)),
+            SizedBox(height: he*0.02,),
+            // Form(
+            //   key: _formkey,
+            //   child: ListView(
+            //     padding: EdgeInsets.all(25),
+            //     children: <Widget>[
+            //       PasswordField(),
+            //     ],
+            //   ),
+            // ),
+            Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children :[
+                  // title
+                  TextField(
+                    controller: nameController,
+                    decoration: InputDecoration(
+                      focusColor: Theme.of(context).primaryColor,
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color:Theme.of(context).primaryColor,width: 2,style: BorderStyle.solid
+                        ),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Theme.of(context).primaryColor.withOpacity(0.6),width: 2,style: BorderStyle.solid
+                        ),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      labelText: 'Title',
+                      labelStyle: TextStyle(
+                          color: Theme.of(context).primaryColor
+                      ),
+                    ),),
 
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaY: 40,sigmaX: 40),
-
-        child: Scaffold(
-          // extendBody: true,
-          backgroundColor: Colors.transparent,
-          body: SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
-            child: SizedBox(
-              child: Column(
-                children: [
-
-                  FadeAnimation(
-                      delay: 0.3,
-                      child: NoteFormWidget(
-                        // time: time,
-                        // onChangedtime: (time) {
-                        //   setState(() => this.time = time);
-                        // },
-                        description: description,
-                          onChangedDescription: (title) {
-                            setState(() => this.description = title);
-                          },
-                        // slot: slot,
-                        // onChangedslot: (slot) {
-                        //   setState(() => this.slot = slot);
-                        // },
-                          )
-                  ),
-                  FadeAnimation(
-                      delay: 0.4,
-                      child: widget.note?.description == null
-                          ? _buildButtonCreate(context)
-                          : _buildButtonSave(context)
-                  ),
-                  FadeAnimation(
-                    delay: 0.2,
+                  SizedBox(height: he*0.02,),
+                  // note
+                  TextField(
+                    controller: nameController,
+                    decoration: InputDecoration(
+                      focusColor: Theme.of(context).primaryColor,
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color:Theme.of(context).primaryColor,width: 2,style: BorderStyle.solid
+                        ),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Theme.of(context).primaryColor.withOpacity(0.6),width: 2,style: BorderStyle.solid
+                        ),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      labelText: 'Note',
+                      labelStyle: TextStyle(
+                          color: Theme.of(context).primaryColor
+                      ),
+                    ),),
+                  SizedBox(height: he*0.02,),
+                  // note
+                  TextField(
+                    controller: nameController,
+                    decoration: InputDecoration(
+                      focusColor: Theme.of(context).primaryColor,
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color:Theme.of(context).primaryColor,width: 2,style: BorderStyle.solid
+                        ),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Theme.of(context).primaryColor.withOpacity(0.6),width: 2,style: BorderStyle.solid
+                        ),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      labelText: 'Date',
+                      labelStyle: TextStyle(
+                          color: Theme.of(context).primaryColor
+                      ),
+                    ),),
+                  SizedBox(height: he*0.02,),
+                  // time
+                  // reminder
+                  TextField(
+                    controller: nameController,
+                    decoration: InputDecoration(
+                      focusColor: Theme.of(context).primaryColor,
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color:Theme.of(context).primaryColor,width: 2,style: BorderStyle.solid
+                        ),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Theme.of(context).primaryColor.withOpacity(0.6),width: 2,style: BorderStyle.solid
+                        ),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      labelText: 'Reminder',
+                      labelStyle: TextStyle(
+                          color: Theme.of(context).primaryColor
+                      ),
+                    ),),
+                  SizedBox(height: he*0.02,),
+                  // button
+                  Center(
                     child: Container(
                       margin: EdgeInsets.only(top: he * 0.04,),
                       width: 55,
                       height: 55,
                       alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                          color: Colors.grey[300], shape: BoxShape.circle),
-                      child: Container(
-                          width: 47,
-                          height: 47,
-                          alignment: Alignment.center,
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Color(0xffF4F6FD),
-                          ),
-                          child: IconButton(
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                              icon: const Icon(
-                                Icons.close,
-                                color: Colors.black,
-                                size: 20,
-                              )
+                      decoration: f2deco,
+                      child: IconButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          icon: Icon(
+                            Icons.add_rounded,
+                            color: Theme.of(context).primaryColor,
+                            size: 30,
                           )
                       ),
                     ),
                   ),
-                ],
-              ),
+                  Center(
+                    child: Container(
+                      margin: EdgeInsets.only(top: he * 0.04,),
+                      width: 55,
+                      height: 55,
+                      alignment: Alignment.center,
+                      decoration: f2deco,
+                      child: IconButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          icon:  Icon(
+                            Icons.close,
+                            color: Theme.of(context).primaryColor,
+                            size: 25,
+                          )
+                      ),
+                    ),
+                  ),
+              ]
             ),
-          ),
+          ],
         ),
       ),
     );
   }
-
   // TODO Update button ...
   Widget _buildButtonCreate(BuildContext context) {
     var we = MediaQuery.of(context).size.width;
@@ -171,30 +367,18 @@ class _Note_TaskState extends State<Note_Task> {
     var we = MediaQuery.of(context).size.width;
     var he = MediaQuery.of(context).size.height;
     return Container(
+      decoration: BoxDecoration(
+        color: Colors.blue,
+        shape: BoxShape.circle,
+      ),
       width: we * 0.4,
       height: 50,
       margin: EdgeInsets.only(left: we * 0.45),
       child: ElevatedButton(
-          onPressed: updateNote,
-          style: ElevatedButton.styleFrom(
-              primary: const Color(0xFF002FFF),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(40))),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                "Save",
-                style: GoogleFonts.lato(color: Colors.white),
-              ),
-              SizedBox(
-                width: we * 0.03,
-              ),
-              const Icon(
-                Icons.edit,
-                color: Colors.white,
-              )
-            ],
+          onPressed: null,
+          child: Text(
+            "Save",
+            style: GoogleFonts.lato(color: Colors.white),
           )),
     );
   }
