@@ -35,10 +35,10 @@ class _MyProfileState extends State<MyProfile> {
         ),
         boxShadow: [
           BoxShadow(
-            color: Theme.of(context).primaryColor.withOpacity(0.05),
+            color: Theme.of(context).primaryColor.withOpacity(0.15),
             offset: const Offset(-8,8),
             spreadRadius: 0.5,
-            blurRadius: 10,
+            blurRadius: 25,
           ),
         ]
     ) ;
@@ -66,10 +66,11 @@ class _MyProfileState extends State<MyProfile> {
       shape: BoxShape.circle,
     ) ;
     final f5deco = BoxDecoration(
+      // backgroundBlendMode: BlendMode.plus,
         gradient: LinearGradient(
           colors: [//0xFF5C5292
-            Theme.of(context).cardColor.withOpacity(0.0),
-            Theme.of(context).canvasColor.withOpacity(0.0),
+            Theme.of(context).focusColor.withOpacity(0.1),
+            Theme.of(context).canvasColor.withOpacity(0.1),
           ],
           begin: Alignment.topCenter,
           end: Alignment.bottomLeft,
@@ -119,7 +120,7 @@ class _MyProfileState extends State<MyProfile> {
         ],
       ),
       body: Stack(
-        children: <Widget>[
+        children: [
           Mytheme.darkapp,
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -172,7 +173,6 @@ class _MyProfileState extends State<MyProfile> {
               ),
             ],
           ),
-
           Container(
             margin: EdgeInsets.only(top: he*0.1),
             child: Column(
@@ -199,12 +199,10 @@ class _MyProfileState extends State<MyProfile> {
                 SizedBox(
                   height: he*0.71,
                   child: Padding(
-                    padding: const EdgeInsets.only(top:15,left: 30,right: 30),
+                    padding: const EdgeInsets.all(30.0),
                     child: SingleChildScrollView(
                       child: Column(
                         children: [
-                          SizedBox(height: he*0.01,),
-
                           TextField(
                             controller: nameController,
                             decoration: InputDecoration(
@@ -413,6 +411,35 @@ class _MyProfileState extends State<MyProfile> {
               ],
             ),
           ),
+          // Container(
+          //   // decoration: f2deco,
+          //   padding: EdgeInsets.only(bottom: 40),
+          //   alignment: Alignment.bottomCenter,
+          //   child: Row(
+          //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          //       children: [
+          //         Container(
+          //           width: 70,
+          //           height: 70,
+          //           decoration: f4deco,
+          //           child: IconButton(
+          //             onPressed: null,
+          //             icon: Icon(Icons.close_rounded),
+          //           ),
+          //         ),
+          //         Container(
+          //           width: 70,
+          //           height: 70,
+          //           decoration: f4deco,
+          //           child: IconButton(
+          //             onPressed: null,
+          //             icon: Icon(Icons.check_rounded),
+          //           ),
+          //         ),
+          //
+          //       ],
+          //     ),
+          // ),
         ],
       ),
     );

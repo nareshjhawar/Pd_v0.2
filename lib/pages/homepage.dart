@@ -380,26 +380,11 @@ class _MyHomePageState extends State<MyHomePage> {
                       size: 35,
                     ),
 
-                    onPressed: () {
-                    //   Icon(Icons.close,size: 50,);
-                    // await Navigator.of(context).push(PageTransition(
-                    //     type: PageTransitionType.fade, child: const Note_Task()));
-                      showModalBottomSheet(
-                        // isScrollControlled: true,
-                          anchorPoint: Offset(0, 20),
-                          elevation: 0,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.vertical(
-                              top: Radius.circular(20)
-                            ),
-                          ),
-                          context: context,
-                          builder: (context) => Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20)
-                            ),
-                              child: Note_Task()),
-                          );
+                    onPressed: ()  async {
+                      Icon(Icons.close,size: 50,);
+                    await Navigator.of(context).push(PageTransition(
+                        type: PageTransitionType.fade, child: const Note_Task()));
+                    // refreshNote();
                   },
                   ),
                 ),
@@ -905,5 +890,4 @@ class _MyHomePageState extends State<MyHomePage> {
       ]),
     );
   }
-
 }

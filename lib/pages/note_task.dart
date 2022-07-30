@@ -118,7 +118,6 @@ class _Note_TaskState extends State<Note_Task> {
       ),]
     );
   }
-
   Widget task_screen(var he, var we){
     final tsytle = TextStyle(
       color: Theme.of(context).primaryColor,
@@ -141,185 +140,175 @@ class _Note_TaskState extends State<Note_Task> {
       ),
       borderRadius: BorderRadius.all(Radius.circular(30)),
     ) ;
-    return Container(
-      padding: EdgeInsets.fromLTRB(30, 30, 30, 20),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Center(child:
-          Column(
-            children: [
-              Text("Add Task",style: tsytle,),
+    return SafeArea(
+      child: Container(
+        padding: EdgeInsets.fromLTRB(30, 30, 30, 20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Center(child: Text("Add Task",style: tsytle,)),
+            SizedBox(height: he*0.02,),
+            // Form(
+            //   key: _formkey,
+            //   child: ListView(
+            //     padding: EdgeInsets.all(25),
+            //     children: <Widget>[
+            //       PasswordField(),
+            //     ],
+            //   ),
+            // ),
+            Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children :[
+                  // title
+                  TextField(
+                    controller: nameController,
+                    decoration: InputDecoration(
+                      focusColor: Theme.of(context).primaryColor,
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color:Theme.of(context).primaryColor,width: 2,style: BorderStyle.solid
+                        ),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Theme.of(context).primaryColor.withOpacity(0.6),width: 2,style: BorderStyle.solid
+                        ),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      labelText: 'Title',
+                      labelStyle: TextStyle(
+                          color: Theme.of(context).primaryColor
+                      ),
+                    ),),
 
-              Text("(Day Specific)",style:TextStyle(
-                color: Theme.of(context).primaryColor,
-                fontSize: 16,
-              ),),
-            ],
-          )
-          ),
-          SizedBox(height: he*0.04,),
-          // Form(
-          //   key: _formkey,
-          //   child: ListView(
-          //     padding: EdgeInsets.all(25),
-          //     children: <Widget>[
-          //       PasswordField(),
-          //     ],
-          //   ),
-          // ),
-          Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children :[
-                // title
-                TextField(
-                  controller: nameController,
-                  decoration: InputDecoration(
-                    focusColor: Theme.of(context).primaryColor,
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                          color:Theme.of(context).primaryColor,width: 2,style: BorderStyle.solid
+                  SizedBox(height: he*0.02,),
+                  // note
+                  TextField(
+                    controller: nameController,
+                    decoration: InputDecoration(
+                      focusColor: Theme.of(context).primaryColor,
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color:Theme.of(context).primaryColor,width: 2,style: BorderStyle.solid
+                        ),
+                        borderRadius: BorderRadius.circular(20),
                       ),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                          color: Theme.of(context).primaryColor.withOpacity(0.6),width: 2,style: BorderStyle.solid
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Theme.of(context).primaryColor.withOpacity(0.6),width: 2,style: BorderStyle.solid
+                        ),
+                        borderRadius: BorderRadius.circular(20),
                       ),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    labelText: 'Title',
-                    labelStyle: TextStyle(
-                        color: Theme.of(context).primaryColor
-                    ),
-                  ),),
-
-                SizedBox(height: he*0.02,),
-                // note
-                TextField(
-                  controller: nameController,
-                  decoration: InputDecoration(
-                    focusColor: Theme.of(context).primaryColor,
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                          color:Theme.of(context).primaryColor,width: 2,style: BorderStyle.solid
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
                       ),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                          color: Theme.of(context).primaryColor.withOpacity(0.6),width: 2,style: BorderStyle.solid
+                      labelText: 'Note',
+                      labelStyle: TextStyle(
+                          color: Theme.of(context).primaryColor
                       ),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    labelText: 'Note',
-                    labelStyle: TextStyle(
-                        color: Theme.of(context).primaryColor
-                    ),
-                  ),),
-                SizedBox(height: he*0.02,),
-                // note
-                TextField(
-                  controller: nameController,
-                  decoration: InputDecoration(
-                    focusColor: Theme.of(context).primaryColor,
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                          color:Theme.of(context).primaryColor,width: 2,style: BorderStyle.solid
+                    ),),
+                  SizedBox(height: he*0.02,),
+                  // note
+                  TextField(
+                    controller: nameController,
+                    decoration: InputDecoration(
+                      focusColor: Theme.of(context).primaryColor,
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color:Theme.of(context).primaryColor,width: 2,style: BorderStyle.solid
+                        ),
+                        borderRadius: BorderRadius.circular(20),
                       ),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                          color: Theme.of(context).primaryColor.withOpacity(0.6),width: 2,style: BorderStyle.solid
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Theme.of(context).primaryColor.withOpacity(0.6),width: 2,style: BorderStyle.solid
+                        ),
+                        borderRadius: BorderRadius.circular(20),
                       ),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    labelText: 'Date',
-                    labelStyle: TextStyle(
-                        color: Theme.of(context).primaryColor
-                    ),
-                  ),),
-                SizedBox(height: he*0.02,),
-                // time
-                // reminder
-                TextField(
-                  controller: nameController,
-                  decoration: InputDecoration(
-                    focusColor: Theme.of(context).primaryColor,
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                          color:Theme.of(context).primaryColor,width: 2,style: BorderStyle.solid
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
                       ),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                          color: Theme.of(context).primaryColor.withOpacity(0.6),width: 2,style: BorderStyle.solid
+                      labelText: 'Date',
+                      labelStyle: TextStyle(
+                          color: Theme.of(context).primaryColor
                       ),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    labelText: 'Reminder',
-                    labelStyle: TextStyle(
-                        color: Theme.of(context).primaryColor
-                    ),
-                  ),),
-                SizedBox(height: he*0.02,),
-                // button
-                Center(
-                  child: Container(
-                    margin: EdgeInsets.only(top: he * 0.04,),
-                    width: 55,
-                    height: 55,
-                    alignment: Alignment.center,
-                    decoration: f2deco,
-                    child: IconButton(
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                        icon: Icon(
-                          Icons.add_rounded,
-                          color: Theme.of(context).primaryColor,
-                          size: 30,
-                        )
+                    ),),
+                  SizedBox(height: he*0.02,),
+                  // time
+                  // reminder
+                  TextField(
+                    controller: nameController,
+                    decoration: InputDecoration(
+                      focusColor: Theme.of(context).primaryColor,
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color:Theme.of(context).primaryColor,width: 2,style: BorderStyle.solid
+                        ),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Theme.of(context).primaryColor.withOpacity(0.6),width: 2,style: BorderStyle.solid
+                        ),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      labelText: 'Reminder',
+                      labelStyle: TextStyle(
+                          color: Theme.of(context).primaryColor
+                      ),
+                    ),),
+                  SizedBox(height: he*0.02,),
+                  // button
+                  Center(
+                    child: Container(
+                      margin: EdgeInsets.only(top: he * 0.04,),
+                      width: 55,
+                      height: 55,
+                      alignment: Alignment.center,
+                      decoration: f2deco,
+                      child: IconButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          icon: Icon(
+                            Icons.add_rounded,
+                            color: Theme.of(context).primaryColor,
+                            size: 30,
+                          )
+                      ),
                     ),
                   ),
-                ),
-                Center(
-                  child: Container(
-                    margin: EdgeInsets.only(top: he * 0.04,),
-                    width: 55,
-                    height: 55,
-                    alignment: Alignment.center,
-                    decoration: f2deco,
-                    child: IconButton(
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                        icon:  Icon(
-                          Icons.close,
-                          color: Theme.of(context).primaryColor,
-                          size: 25,
-                        )
+                  Center(
+                    child: Container(
+                      margin: EdgeInsets.only(top: he * 0.04,),
+                      width: 55,
+                      height: 55,
+                      alignment: Alignment.center,
+                      decoration: f2deco,
+                      child: IconButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          icon:  Icon(
+                            Icons.close,
+                            color: Theme.of(context).primaryColor,
+                            size: 25,
+                          )
+                      ),
                     ),
                   ),
-                ),
-            ]
-          ),
-        ],
+              ]
+            ),
+          ],
+        ),
       ),
     );
   }
