@@ -8,8 +8,3 @@ windows/*
 .flutter-plugins-dependencies
 .packages
 android/*
-*.cc
-.flutter-plugins-dependencies
-.flutter-plugins
-*.h
-*.cmake
