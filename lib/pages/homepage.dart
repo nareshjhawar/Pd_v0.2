@@ -190,7 +190,7 @@ class _MyHomePageState extends State<MyHomePage> {
       extendBody: true,
       extendBodyBehindAppBar: true,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        bottomNavigationBar: index == 0 ? CurvedNavigationBar(
+        bottomNavigationBar: CurvedNavigationBar(
           key: _bottomNavigationKey,
           backgroundColor: Mytheme.main_bg,
           animationDuration: const Duration(milliseconds: 600),
@@ -207,6 +207,16 @@ class _MyHomePageState extends State<MyHomePage> {
 
             Icon(
               Icons.settings,
+              size: 28,
+              color : Colors.white70,
+            ),
+            Icon(
+                Icons.account_circle_outlined,
+                size: 28,
+                color : Colors.white70),
+
+            Icon(
+              Icons.cable,
               size: 28,
               color : Colors.white70,
             ),
@@ -236,56 +246,7 @@ class _MyHomePageState extends State<MyHomePage> {
             begin: Alignment.topRight,
             end: Alignment.bottomCenter,
           ),
-        )
-            : CurvedNavigationBar2 (
-          key: _bottomNavigationKey,
-          backgroundColor:  Mytheme.main_bg,
-          animationDuration: const Duration(milliseconds: 600),
-          index: index,
-          items:  const [
-            Icon(
-                Icons.home,
-                size: 28,
-                color : Colors.white70),
-            Icon(
-                Icons.settings,
-                size: 28,
-                color : Colors.white70),
-            Icon(
-                Icons.account_circle_outlined,
-                size: 28,
-                color : Colors.white70),
-
-            Icon(
-              Icons.cable,
-              size: 28,
-              color : Colors.white70,
-            ),
-          ],
-          // buttonBackgroundColor: Colors.red,
-          buttonBackgroundGradient: LinearGradient(
-            colors: [
-              Theme.of(context).cardColor,
-              Theme.of(context).canvasColor,
-
-            ],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
-          onTap: (index) {
-            setState(() {
-              this.index=index;
-            });
-          },
-          gradient: LinearGradient(
-            colors: [
-              Theme.of(context).cardColor.withOpacity(0.1),
-              Theme.of(context).canvasColor.withOpacity(0.1),
-            ],
-            begin: Alignment.topRight,
-            end: Alignment.bottomCenter,
-          ),
-        ) ,
+        ),
       appBar: index ==0 ?AppBar(
         elevation: 0,
         automaticallyImplyLeading: false,
@@ -310,7 +271,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 width: we * 0.3,
               ),
               // ScaleTransition(child: ChangeThembutton())
-              ChangeThembutton()
+              ChangeThembutton(),
             ],
           )
         ],
