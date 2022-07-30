@@ -18,18 +18,27 @@ class _ChartState extends State<Chart> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Text(
+            "Weekly",
+            style: GoogleFonts.lato(
+                fontSize: 20,
+                color: Theme.of(context).focusColor,
+                fontWeight: FontWeight.w500),
+          ),
           FadeInDown(
             duration: Duration(milliseconds: 400),
             child: Container(
-              decoration: BoxDecoration(boxShadow: [
-                BoxShadow(
-                    color: Theme.of(context).shadowColor.withAlpha(40),
-                    offset: const Offset(1.5, 1.5),
-                    spreadRadius: 5,
-                    blurRadius: 60)
-              ]),
+              // decoration: BoxDecoration(
+              //   shape: BoxShape.circle,
+              //     boxShadow: [
+              //   BoxShadow(
+              //       color: Theme.of(context).shadowColor.withAlpha(40),
+              //       // offset: const Offset(1.5, 1.5),
+              //       spreadRadius: 1,
+              //       blurRadius: 40)
+              // ]),
               width: 200,
-              height: 100,
+              height: 80,
               // color: Colors.red,
               child: LineChart(
                 LineChartData(
@@ -58,7 +67,7 @@ class _ChartState extends State<Chart> {
                           ],
                           isCurved: true,
                           color: Color(0xFF9B96E7),
-                          barWidth: 2,
+                          barWidth: 1,
                           dotData: FlDotData(show: false)
                       )
                     ]),
@@ -71,7 +80,7 @@ class _ChartState extends State<Chart> {
             height: 40,
           ),
           Text(
-            "Reports",
+            "Daily Report",
             style: GoogleFonts.lato(
                 fontSize: 20,
                 color: Theme.of(context).focusColor,
@@ -96,7 +105,6 @@ class _ChartState extends State<Chart> {
               )
             ],
           ),
-
         ],
       ),
     );

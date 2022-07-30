@@ -138,7 +138,7 @@ class CurvedNavigationBarState extends State<CurvedNavigationBar>
                 ),
 
                 child: BackdropFilter(
-                  filter: ImageFilter.blur(sigmaX: 30,sigmaY: 30),
+                  filter: ImageFilter.blur(sigmaX: 16,sigmaY: 16),
                   child: CustomPaint(
                     painter: NavCustomPainter(
                         _pos, _length, widget.color, Directionality.of(context),
@@ -186,10 +186,10 @@ class CurvedNavigationBarState extends State<CurvedNavigationBar>
                     boxShadow: [
                       BoxShadow(
                         // color: Colors.transparent,
-                        color : Theme.of(context).shadowColor.withOpacity(0.3),
+                        color : Theme.of(context).shadowColor.withOpacity(0.2),
                         offset: const Offset(-5, 10),
-                        spreadRadius: 4,
-                        blurRadius: 20,
+                        spreadRadius: 1,
+                        blurRadius: 15,
                       ),
                     ],
                     shape: BoxShape.circle,
@@ -415,7 +415,7 @@ class CurvedNavigationBarState2 extends State<CurvedNavigationBar2>
               ),
 
               child: BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 5,sigmaY: 5),
+                filter: ImageFilter.blur(sigmaX: 16,sigmaY: 16),
                 child: CustomPaint(
                   painter: NavCustomPainter(
                       _pos, _length, widget.color, Directionality.of(context),
@@ -461,10 +461,10 @@ class CurvedNavigationBarState2 extends State<CurvedNavigationBar2>
                     boxShadow: [
                       BoxShadow(
                         // color: Colors.transparent,
-                        color : Theme.of(context).shadowColor.withOpacity(0.3),
+                        color : Theme.of(context).shadowColor.withOpacity(0.2),
                         offset: const Offset(-5, 10),
-                        spreadRadius: 4,
-                        blurRadius: 20,
+                        spreadRadius: 1,
+                        blurRadius: 15,
                       ),
                     ],
                     shape: BoxShape.circle,
