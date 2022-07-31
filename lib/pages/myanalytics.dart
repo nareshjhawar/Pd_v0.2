@@ -47,6 +47,7 @@ class _MyAnalyticsState extends State<MyAnalytics> {
       body: Stack(
         children: [
           Mytheme.darkapp,
+          Text('Anayltics')
         ],
       ),
     );
