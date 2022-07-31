@@ -12,6 +12,7 @@ import '../Avatar_progerss.dart';
 import '../chart.dart';
 import '../responsive.dart';
 import '../user/loginPage.dart';
+import '../user/start_screen.dart';
 import 'drawer_items.dart';
 
 class DrawerWidget extends StatefulWidget {
@@ -46,7 +47,7 @@ class _DrawerWidgetState extends State<DrawerWidget>
   late final List? _widgetOption=[
     MyHomePage(opendrawer: onpenDrawer,),
     MyProfile(),
-    MyLogin(),
+    Start_screenWidget(),
   ];
 
   @override

@@ -130,6 +130,8 @@ flutter:
   assets:
     - assets/noise.png
     - assets/Avatar.png
+    - assets/logo/head.png
+
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

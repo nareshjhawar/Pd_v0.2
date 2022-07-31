@@ -382,6 +382,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     onPressed: ()=> showModalBottomSheet(
                       constraints: BoxConstraints(maxHeight: he*0.75),
                       isScrollControlled: true,
+                      enableDrag: true,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30)
                       ),
