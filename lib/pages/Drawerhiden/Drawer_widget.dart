@@ -6,10 +6,12 @@ import 'package:flutter_todo/pages/homepage.dart';
 import 'package:flutter_todo/pages/myanalytics.dart';
 import 'package:flutter_todo/pages/myprofile.dart';
 import 'package:flutter_todo/pages/myroutine.dart';
+import 'package:flutter_todo/pages/user/mylogin.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../Avatar_progerss.dart';
 import '../chart.dart';
 import '../responsive.dart';
+import '../user/loginPage.dart';
 import 'drawer_items.dart';
 
 class DrawerWidget extends StatefulWidget {
@@ -44,7 +46,7 @@ class _DrawerWidgetState extends State<DrawerWidget>
   late final List? _widgetOption=[
     MyHomePage(opendrawer: onpenDrawer,),
     MyProfile(),
-    MyProfile(),
+    MyLogin(),
   ];
 
   @override
@@ -179,7 +181,7 @@ class _DrawerWidgetState extends State<DrawerWidget>
 // import 'package:flutter_todo/pages/global_myvar.dart' as Globals;
 //
 // import 'package:flutter_todo/pages/myanalytics.dart';
-// import 'package:flutter_todo/pages/myprofile.dart';
+// import 'package:flutter_todo/pages/mylogin.dart';
 // import 'package:flutter_todo/pages/myroutine.dart';
 // import 'package:google_fonts/google_fonts.dart';
 // import '../Avatar_progerss.dart';

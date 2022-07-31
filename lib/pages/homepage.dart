@@ -6,7 +6,7 @@ import 'package:flutter_todo/data/thems.dart';
 import 'package:flutter_todo/pages/detail/widgets/task_timeline.dart';
 import 'package:flutter_todo/pages/myanalytics.dart';
 import 'package:flutter_todo/pages/myprofile.dart';
-// import 'package:flutter_todo/pages/myprofile.dart';
+// import 'package:flutter_todo/pages/mylogin.dart';
 import 'package:flutter_todo/pages/myroutine.dart';
 import 'package:flutter_todo/pages/mysettings.dart';
 
@@ -224,7 +224,7 @@ class _MyHomePageState extends State<MyHomePage> {
               size: 28,
               color : Colors.white70,
             ),
-          ],
+                      ],
           // buttonBackgroundColor: Colors.red,
           buttonBackgroundGradient: LinearGradient(
             colors: [
@@ -337,7 +337,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 : PageSettings(),
         
         floatingActionButton: index ==0 ?FadeAnimation(
-          delay: 1.2,
+          delay: 0.9,
           child: Container(
             decoration: BoxDecoration(
               shape: BoxShape.circle,
@@ -379,13 +379,44 @@ class _MyHomePageState extends State<MyHomePage> {
                       Icons.add,
                       size: 35,
                     ),
+                    onPressed: ()=> showModalBottomSheet(
+                      constraints: BoxConstraints(maxHeight: he*0.75),
+                      isScrollControlled: true,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30)
+                      ),
+                      backgroundColor: Colors.transparent,
+                      context: context,
+                      builder: (context) => ClipRRect(
+                        borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
+                        child: Stack(
+                              children: [
+                                Mytheme.darkapp,
+                                Note_Task(),
+                              ],
+                            ),
+                      ),
+                      // builder: (context) => ClipRRect(
+                      //   borderRadius: BorderRadius.circular(30),
+                      //   child: BackdropFilter(
+                      //     filter: ImageFilter.blur(sigmaX:50,sigmaY: 50),
+                      //     child: Column(
+                      //       mainAxisSize: MainAxisSize.min,
+                      //       children: [
+                      //         Note_Task(),
+                      //       ],
+                      //     ),
+                      //   ),
+                      // ),
 
-                    onPressed: ()  async {
-                      Icon(Icons.close,size: 50,);
-                    await Navigator.of(context).push(PageTransition(
-                        type: PageTransitionType.fade, child: const Note_Task()));
-                    // refreshNote();
-                  },
+                    ),// modalsheet
+
+                  //   onPressed: ()  async {
+                  //     Icon(Icons.close,size: 50,);
+                  //   await Navigator.of(context).push(PageTransition(
+                  //       type: PageTransitionType.fade, child: const Note_Task()));
+                  //   // refreshNote();
+                  // },
                   ),
                 ),
               ),

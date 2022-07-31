@@ -56,8 +56,8 @@ class _MyProfileState extends State<MyProfile> {
     final f4deco = BoxDecoration(
         gradient: LinearGradient(
           colors: [//0xFF5C5292
-            Theme.of(context).focusColor.withOpacity(0.8),
-            Theme.of(context).canvasColor.withOpacity(0.2),
+            Theme.of(context).focusColor.withOpacity(0.6),
+            Theme.of(context).canvasColor.withOpacity(0.3),
           ],
           begin: Alignment.topCenter,
           end: Alignment.bottomLeft,
@@ -66,15 +66,8 @@ class _MyProfileState extends State<MyProfile> {
       shape: BoxShape.circle,
     ) ;
     final f5deco = BoxDecoration(
-      // backgroundBlendMode: BlendMode.plus,
-        gradient: LinearGradient(
-          colors: [//0xFF5C5292
-            Theme.of(context).focusColor.withOpacity(0.1),
-            Theme.of(context).canvasColor.withOpacity(0.1),
-          ],
-          begin: Alignment.topCenter,
-          end: Alignment.bottomLeft,
-        ),
+      backgroundBlendMode: BlendMode.darken,
+        color: Colors.transparent,
         borderRadius: BorderRadius.circular(40)
     ) ;
 
@@ -173,6 +166,7 @@ class _MyProfileState extends State<MyProfile> {
               ),
             ],
           ),
+
           Container(
             margin: EdgeInsets.only(top: he*0.1),
             child: Column(
@@ -199,10 +193,13 @@ class _MyProfileState extends State<MyProfile> {
                 SizedBox(
                   height: he*0.71,
                   child: Padding(
-                    padding: const EdgeInsets.all(30.0),
+                    padding: const EdgeInsets.only(top:15,left: 30,right: 30),
                     child: SingleChildScrollView(
                       child: Column(
                         children: [
+                          SizedBox(
+                            height: he*0.01,
+                          ),
                           TextField(
                             controller: nameController,
                             decoration: InputDecoration(
