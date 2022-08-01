@@ -1,8 +1,13 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_todo/pages/Drawerhiden/hidendrawer.dart';
+import 'package:flutter_todo/pages/user/mylogin.dart';
+import 'package:flutter_todo/pages/user/start_screen.dart';
 import 'package:provider/provider.dart';
 import 'data/shared/Task_saved.dart';
 import 'data/thems.dart';
+import 'pages/user/loginPage.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,7 +33,8 @@ class MyApp extends StatelessWidget {
           theme: Mytheme.darkthem,
           // initialRoute: Routes.settings,
           // onGenerateRoute: RouterGenerator.generateRoutes,
-          home: HidenDrawer(),
+          home:Start_screenWidget()
+
         );
       });
 }

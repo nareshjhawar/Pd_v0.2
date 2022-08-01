@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
 import '../../data/thems.dart';
 import '../homepage.dart';
 import 'Drawer_widget.dart';
-import 'package:flutter/services.dart';
 
 class HidenDrawer extends StatefulWidget {
   HidenDrawer({Key? key}) : super(key: key);
@@ -16,6 +17,7 @@ class _HidenDrawerState extends State<HidenDrawer> {
   late double yOffset;
   late double scaleFactor;
   late bool isDrawingOpen;
+
   // int dely = 300;
   bool isDragging = false;
 
@@ -48,15 +50,16 @@ class _HidenDrawerState extends State<HidenDrawer> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-      body: Stack(children: [
-        Mytheme.darkapp,
-        DrawerWidget(
-          closdDrawer: closeDrawer,
+        body: Stack(
+          children: [
+            Mytheme.darkapp,
+            DrawerWidget(
+              closdDrawer: closeDrawer,
+            ),
+            buildpage(),
+          ],
         ),
-        buildpage()
-      ]
-      )
-  );
+      );
 
   Widget buildpage() {
     return GestureDetector(

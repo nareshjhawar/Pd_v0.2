@@ -1,22 +1,17 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_todo/data/thems.dart';
-import 'package:flutter_todo/pages/global_myvar.dart' as Globals;
 import 'package:flutter_todo/pages/homepage.dart';
-
-import 'package:flutter_todo/pages/myanalytics.dart';
 import 'package:flutter_todo/pages/myprofile.dart';
-import 'package:flutter_todo/pages/myroutine.dart';
-import 'package:flutter_todo/pages/user/mylogin.dart';
 import 'package:google_fonts/google_fonts.dart';
+
 import '../Avatar_progerss.dart';
 import '../chart.dart';
-import '../responsive.dart';
-import '../user/loginPage.dart';
 import '../user/start_screen.dart';
 import 'drawer_items.dart';
 
 class DrawerWidget extends StatefulWidget {
   VoidCallback closdDrawer;
+
   DrawerWidget({required this.closdDrawer});
 
   @override
@@ -25,16 +20,14 @@ class DrawerWidget extends StatefulWidget {
 
 class _DrawerWidgetState extends State<DrawerWidget>
     with SingleTickerProviderStateMixin {
-
   final double runanim = 0.4;
 
-    late double xOffset;
-    late double yOffset;
-    late double scaleFactor;
-    late bool isDrawingOpen;
+  late double xOffset;
+  late double yOffset;
+  late double scaleFactor;
+  late bool isDrawingOpen;
 
-    bool isDragging = false;
-
+  bool isDragging = false;
 
   void onpenDrawer() {
     setState(() {
@@ -44,9 +37,12 @@ class _DrawerWidgetState extends State<DrawerWidget>
       isDrawingOpen = false;
     });
   }
-  late final List? _widgetOption=[
-    MyHomePage(opendrawer: onpenDrawer,),
-    MyProfile(),
+
+  late final List _widgetOption = [
+    MyHomePage(
+      opendrawer: onpenDrawer,
+    ),
+    const MyProfile(),
     Start_screenWidget(),
   ];
 
@@ -59,8 +55,8 @@ class _DrawerWidgetState extends State<DrawerWidget>
         child: Column(
       children: [
         _buildButton(context),
-        Container(margin:EdgeInsets.only(left: 60),
-            child: Progerss_Avater()),
+        Container(
+            margin: const EdgeInsets.only(left: 60), child: Progerss_Avater()),
         SizedBox(
           height: he * 0.02,
         ),
@@ -77,44 +73,59 @@ class _DrawerWidgetState extends State<DrawerWidget>
     ));
   }
 
-  Widget buildDrawerItem(BuildContext context) =>
-      Padding(
+  Widget buildDrawerItem(BuildContext context) => Padding(
         padding: const EdgeInsets.only(left: 30),
         child: Column(
           children: [
             Container(
               height: 300,
               child: ListView.builder(
-                physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   itemCount: 3,
-                  itemBuilder: (BuildContext context,hindex){
-                List<DrawerItem> items=DrawerItems.all;
-                return ListTile(
-                              contentPadding:
-                                  const EdgeInsets.symmetric(horizontal: 30, vertical: 1),
-                              leading:
-                                Icon(
-                                  items[hindex].icon,
-                                  color: Theme.of(context).focusColor,
-                                  size: 25,
-                              ),
-                              title: Text(
-                                items[hindex].title,
-                                style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w600,
-                                    color: Theme.of(context).focusColor),
-                              ),
-                          onTap: ()=>Navigator.push(context,MaterialPageRoute(
-                              builder: (context)=>_widgetOption?[
-                                hindex],)),
-                            );
+                  itemBuilder: (BuildContext context, hindex) {
+                    List<DrawerItem> items = DrawerItems.all;
+                    return ListTile(
+                      contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 30, vertical: 1),
+                      leading: Icon(
+                        items[hindex].icon,
+                        color: Theme.of(context).focusColor,
+                        size: 25,
+                      ),
+                      title: Text(
+                        items[hindex].title,
+                        style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            color: Theme.of(context).focusColor),
+                      ),
+                      onTap: () {
+                        if (hindex == 2) {
+                          FirebaseAuth.instance.signOut().then(
+                                (value) => Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => _widgetOption[hindex],
+                                  ),
+                                ),
+                              );
+                        } else {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => _widgetOption[hindex],
+                            ),
+                          );
+                        }
+                      },
+                    );
                   }),
             )
           ],
           // children: DrawerItems.all.map((item) =>
         ),
-       );
+      );
+
   Widget _buildButton(context) {
     var we = MediaQuery.of(context).size.width;
     var he = MediaQuery.of(context).size.height;
@@ -128,7 +139,7 @@ class _DrawerWidgetState extends State<DrawerWidget>
         boxShadow: [
           BoxShadow(
             color: Theme.of(context).shadowColor.withOpacity(0.2),
-            offset: const Offset(-5,5),
+            offset: const Offset(-5, 5),
             spreadRadius: 1,
             blurRadius: 20,
           ),
