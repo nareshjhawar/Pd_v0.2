@@ -14,6 +14,7 @@ import 'package:flutter/material.dart';
 // import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_todo/pages/note_task.dart';
 import 'package:flutter_todo/pages/button_change_them.dart';
+import 'package:flutter_todo/pages/set_routine.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:page_transition/page_transition.dart';
@@ -440,6 +441,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 height: he*0.4,
                 child: Column(
                   children: [
+                    //welcome text
                     FadeAnimation(
                       delay: 0.5,
                       child: Container(
@@ -459,6 +461,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       ),
                     ),
+                    //cardstack
                     FadeAnimation(
                       delay: 1.0,
                       child: Column(
@@ -479,8 +482,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                     borderRadius: const BorderRadius.all(Radius.circular(30)),
                                     gradient: LinearGradient(
                                       colors: [//0xFF5C5292
-                                        Theme.of(context).cardColor.withOpacity(0.7),
-                                        Theme.of(context).canvasColor.withOpacity(0.7),
+                                        Theme.of(context).cardColor.withOpacity(0.9),
+                                        Theme.of(context).canvasColor.withOpacity(0.9),
                                       ],
                                       begin: Alignment.topCenter,
                                       end: Alignment.bottomLeft,
@@ -490,7 +493,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         color: Theme.of(context).shadowColor,
                                         offset: const Offset(-5,5),
                                         spreadRadius: 1,
-                                        blurRadius: 15,
+                                        blurRadius: 10,
                                       ),
                                     ],
                                   ),
@@ -502,42 +505,54 @@ class _MyHomePageState extends State<MyHomePage> {
                                     clipBehavior: Clip.antiAlias,
                                     elevation: 0,
                                     // shadowColor: Colors.pinkAccent,
-                                    child: Container(
-                                      width: we * 0.85,
+                                    child: ElevatedButton(
+                                      style: ButtonStyle(
+                                        backgroundColor:
+                                        MaterialStateProperty.all(Colors.transparent),
+                                      ),
+
+                                      onPressed: () {
+                                        Navigator.push(context, MaterialPageRoute(
+                                          builder: (context)=> Set_Routine(),
+                                        ));
+                                      },
                                       child: Container(
-                                        margin: const EdgeInsets.only(
-                                          top: 25,
-                                          left: 20,
-                                        ),
-                                        child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              "Insert tasks",
-                                              style: TextStyle(
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.w600,
-                                                  color: Mytheme.text_1.withOpacity(0.7)),
-                                            ),
-                                            SizedBox(
-                                              height: he * 0.01,
-                                            ),
-                                            Text(
-                                              tasklist[i].title,
-                                              style: TextStyle(
-                                                fontSize: 35,
-                                                color: Mytheme.text_1,
-                                                fontWeight: FontWeight.bold,
+                                        width: we * 0.85,
+                                        child: Container(
+                                          margin: const EdgeInsets.only(
+                                            top: 25,
+                                            left: 20,
+                                          ),
+                                          child: Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                "Insert tasks",
+                                                style: TextStyle(
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.w600,
+                                                    color: Mytheme.text_1.withOpacity(0.7)),
                                               ),
-                                            ),
-                                            SizedBox(height: he * 0.04),
-                                            Padding(
-                                                padding: const EdgeInsets.only(right: 30),
-                                                child: LineProgress(
-                                                  value: notes.length.toDouble(),
-                                                  Color: tasklist[i].progresscolor,
-                                                )),
-                                          ],
+                                              SizedBox(
+                                                height: he * 0.01,
+                                              ),
+                                              Text(
+                                                tasklist[i].title,
+                                                style: TextStyle(
+                                                  fontSize: 35,
+                                                  color: Mytheme.text_1,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                              SizedBox(height: he * 0.04),
+                                              Padding(
+                                                  padding: const EdgeInsets.only(right: 30),
+                                                  child: LineProgress(
+                                                    value: notes.length.toDouble(),
+                                                    Color: tasklist[i].progresscolor,
+                                                  )),
+                                            ],
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -551,186 +566,6 @@ class _MyHomePageState extends State<MyHomePage> {
                         ],
                       ),
                     ),
-                    // SizedBox(
-                    //   height: he * 0.0,
-                    // ),
-
-                    // //imp list ***
-                    // ClipRRect(
-                    //   // clipBehavior: Clip.antiAlias,
-                    //   borderRadius: BorderRadius.circular(30),
-                    //   child: BackdropFilter(
-                    //     filter: ImageFilter.blur(sigmaY: 120, sigmaX: 120),
-                    //     child: Container(
-                    //     decoration: const BoxDecoration(
-                    //       borderRadius: const BorderRadius.only(
-                    //           topRight: const Radius.circular(20),
-                    //           topLeft: const Radius.circular(20),
-                    //       ) ,
-                    //     ),
-                    //     child: Column(
-                    //       children: [
-                    //         FadeAnimation(
-                    //           delay: 1.0,
-                    //           child: Container(
-                    //             margin: const EdgeInsets.only(
-                    //                 left: 30,top:5,bottom: 0),
-                    //             child: Row(
-                    //               mainAxisAlignment: MainAxisAlignment.start,
-                    //               children: [
-                    //                 Text(
-                    //                   "Calendar",
-                    //                   style: TextStyle(
-                    //                       fontSize: 18,
-                    //                       fontWeight: FontWeight.w600,
-                    //                       color: Theme.of(context).primaryColor),
-                    //                 ),
-                    //                 SizedBox(
-                    //                   width: we * 0.55,
-                    //                 ),
-                    //                 IconButton(
-                    //                     onPressed: (){
-                    //                       setState((){
-                    //                         isVisible =!isVisible;
-                    //                       });
-                    //                     },
-                    //                     icon: Icon(
-                    //                       Icons.keyboard_arrow_down,
-                    //                       color: Theme.of(context).primaryColor,
-                    //                       size: 30,
-                    //                     )
-                    //                 ),
-                    //               ],
-                    //             ),
-                    //           ),
-                    //         ),
-                    //         FadeAnimation(
-                    //       delay: 1.2,
-                    //       child: Container(
-                    //         clipBehavior: Clip.none,
-                    //       // margin: const EdgeInsets.only(
-                    //       //     left: 0,top:0,bottom: 0,right: 0),
-                    //       child: DatePicker(
-                    //         DateTime.now(),
-                    //         daysCount: 14,
-                    //         width: we*0.155,
-                    //         height:he*0.125,
-                    //         // height: 60,
-                    //         // deactivatedColor: Mytheme.prime_color2,
-                    //         controller: _controller,
-                    //
-                    //         initialSelectedDate: DateTime.now(),
-                    //         // selectionColor: Mytheme.prime_color2,
-                    //
-                    //         selectedTextColor: Colors.white.withOpacity(0.97),
-                    //         dateTextStyle: const TextStyle(
-                    //             fontWeight: FontWeight.w600,
-                    //             fontSize: 26,
-                    //             color: Mytheme.date_color),
-                    //         dayTextStyle: const TextStyle(fontSize: 13,
-                    //             color: Mytheme.date_color),
-                    //         // monthTextStyle: const TextStyle(fontSize: 12,
-                    //         //     color: Mytheme.main_bg),
-                    //
-                    //
-                    //         // activeDates: [
-                    //         //   DateTime.now().add(Duration(days: 0)),
-                    //         //   DateTime.now().add(Duration(days: 1)),
-                    //         // ],
-                    //         onDateChange: (date) {
-                    //           // New date selected
-                    //           setState(() {
-                    //             _selectedValue = date;
-                    //           });
-                    //         },
-                    //       ),
-                    //       ),
-                    //     ),
-                    //         FadeAnimation(
-                    //           delay: 1.4,
-                    //           child: Container(
-                    //             clipBehavior: Clip.none,
-                    //             alignment: Alignment.topLeft,
-                    //             margin: const EdgeInsets.only(top: 5,left: 30,),
-                    //             child: Row(
-                    //               mainAxisAlignment: MainAxisAlignment.start,
-                    //               children:[
-                    //                 Text(
-                    //                 "Today's Routine",
-                    //                 style: TextStyle(
-                    //                     letterSpacing: 0.2,
-                    //                     fontWeight: FontWeight.w600,
-                    //                     color: Theme.of(context).primaryColor,
-                    //                     fontSize: 17.5),
-                    //               ),
-                    //                 SizedBox(
-                    //                   width: we * 0.4,
-                    //                 ),
-                    //                 IconButton(
-                    //                     onPressed: (){
-                    //                       setState((){
-                    //                         isVisible =!isVisible;
-                    //                       });
-                    //                     },
-                    //                     icon: Icon(
-                    //                       Icons.keyboard_arrow_down,
-                    //                       color: Theme.of(context).primaryColor,
-                    //                       size: 30,
-                    //                     )
-                    //                 ),
-                    //               ]
-                    //             ),
-                    //           ),
-                    //         ),
-                    //         FadeAnimation(
-                    //           delay: 1.5,
-                    //           child: Visibility(
-                    //             visible: isVisible,
-                    //             child: SizedBox(
-                    //             width: we,
-                    //             height: he*0.35,
-                    //             child: details != null
-                    //                 ? SingleChildScrollView(
-                    //               padding: EdgeInsets.only(left: 15,top: he*0.17,bottom: he*0.25),//error flex top
-                    //                   child: Center(
-                    //               heightFactor: 0.65,
-                    //                     child: FadeAnimation(
-                    //                       delay: 0.3,
-                    //                       child: ListView.builder(
-                    //                         // clipBehavior: Clip.none,
-                    //                             physics: const NeverScrollableScrollPhysics(),
-                    //                             scrollDirection: Axis.vertical,
-                    //                             shrinkWrap: true,
-                    //                             itemCount: details.length,
-                    //                             itemBuilder: (BuildContext context, int index) {
-                    //                               return TaskTimeline(
-                    //                                 detail: details.elementAt(index),
-                    //                               );
-                    //                             }),
-                    //                     ),
-                    //
-                    //                   ),
-                    //                 )
-                    //                 : Container(
-                    //               margin: const EdgeInsets.only(left: 30, top: 30),
-                    //               child: const Text(
-                    //                 "No Tasks",
-                    //                 style: TextStyle(
-                    //                   fontSize: 20,
-                    //                   color: Mytheme.primary_color,
-                    //                 ),
-                    //               ),
-                    //             ),
-                    //
-                    //       ),
-                    //           ),
-                    //         ),
-                    //         // SingleChildScrollView(child: BarChartPage())
-                    //       ]
-                    //     ),
-                    //     ),
-                    //   ),
-                    // ),
                   ],
                 ),
               ),
@@ -742,7 +577,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(30),
                       child: BackdropFilter(
-                        filter: ImageFilter.blur(sigmaY: 120, sigmaX: 120),
+                        filter: ImageFilter.blur(sigmaY: 80, sigmaX: 80),
                         child: Container(
                           decoration: const BoxDecoration(
                             borderRadius: const BorderRadius.only(

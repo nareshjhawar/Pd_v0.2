@@ -33,8 +33,7 @@ class MyApp extends StatelessWidget {
           theme: Mytheme.darkthem,
           // initialRoute: Routes.settings,
           // onGenerateRoute: RouterGenerator.generateRoutes,
-          home:Start_screenWidget()
-
+          home: Start_screenWidget(),
         );
       });
 }
