@@ -41,7 +41,7 @@ class TaskTimeline extends StatelessWidget {
                         //   ],
                         // ) ,
                           child: FadeAnimation(
-                            delay: 1.5,
+                            delay: 0.5,
                             child: Text(
                                 detail['time'],
                             style: TextStyle(
@@ -56,7 +56,7 @@ class TaskTimeline extends StatelessWidget {
                       !detail.containsKey('isLast')
                           ? detail['title'].isNotEmpty
                           ? FadeAnimation(
-                              delay: 1.4,
+                              delay: 1.0,
                             child: _buildCard(context,detail['bgColor'], detail['title'],
                             detail['slot']),
                           )
@@ -88,8 +88,8 @@ class TaskTimeline extends StatelessWidget {
         ),
         boxShadow: [
           BoxShadow(
-            color: Theme.of(context).shadowColor.withOpacity(0.1),
-            offset: const Offset(-6, 6),
+            color: Theme.of(context).shadowColor.withAlpha(20),
+            offset: const Offset(-5, 5),
             spreadRadius: 1,
             blurRadius: 10,
           ),

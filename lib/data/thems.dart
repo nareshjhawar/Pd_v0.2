@@ -100,7 +100,7 @@ static final drawer_icons = Color(0xFFCDC2F6); //
 
       cardColor:Color(0xFF5C5292).withOpacity(0.8), //color 1
       canvasColor:Color(0xFF6A88E5), //color2
-      shadowColor: prime_color1.withOpacity(0.2), //shadow
+      shadowColor: prime_color1.withOpacity(0.1), //shadow
 
     dividerColor: Color(0xFF665FB7).withOpacity(0.6),
     highlightColor: Color(0xFF8F9CE5),
@@ -123,7 +123,7 @@ static final drawer_icons = Color(0xFFCDC2F6); //
 
     cardColor:Color(0xFFB3ABDE).withOpacity(0.5),
     canvasColor:Color(0xFF6A88E5),
-    shadowColor: Color(0xFF8D8FED),
+    shadowColor: Color(0xFF8D9FED).withOpacity(0.6),
 
     dividerColor: Color(0xFF58568B).withOpacity(0.6),
     highlightColor: Color(0xFFAEA5EE),

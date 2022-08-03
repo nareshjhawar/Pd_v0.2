@@ -53,10 +53,10 @@ class BarChartSample1State extends State<BarChartSample1> {
           ),
           boxShadow: [
             BoxShadow(
-              color: Theme.of(context).primaryColor.withOpacity(0.1),
+              color: Theme.of(context).primaryColor.withAlpha(15),
               offset: const Offset(-5,5),
-              spreadRadius: 1,
-              blurRadius: 10,
+              spreadRadius: 0.5,
+              blurRadius: 8,
             ),
           ],
           borderRadius: BorderRadius.all(Radius.circular(18)),

@@ -131,6 +131,11 @@ flutter:
     - assets/noise.png
     - assets/Avatar.png
     - assets/logo/head.png
+    - assets/Mask_Group.png
+    - assets/apple.png
+    - assets/google.png
+    - assets/facebook.png
+
 
   #   - images/a_dot_ham.jpeg
 
