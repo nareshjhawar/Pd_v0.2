@@ -514,7 +514,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                       onPressed: () {
                                         Navigator.push(context, MaterialPageRoute(
                                           builder: (context)=> Set_Routine(),
-                                        ));
+                                        )
+                                        );
                                       },
                                       child: Container(
                                         width: we * 0.85,

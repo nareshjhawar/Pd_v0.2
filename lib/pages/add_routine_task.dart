@@ -7,15 +7,15 @@ import 'package:flutter_todo/db/notes_database.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../model/note.dart';
 
-class Note_Task extends StatefulWidget {
+class Add_Routine_Task extends StatefulWidget {
 
-  const Note_Task({Key? key}) : super(key: key);
+  const Add_Routine_Task({Key? key}) : super(key: key);
 
   @override
-  _Note_TaskState createState() => _Note_TaskState();
+  _Add_Routine_TaskState createState() => _Add_Routine_TaskState();
 }
 
-class _Note_TaskState extends State<Note_Task> {
+class _Add_Routine_TaskState extends State<Add_Routine_Task> {
   TimeOfDay startTime = TimeOfDay.now();
   TimeOfDay endTime = TimeOfDay.now();
 
@@ -71,12 +71,8 @@ class _Note_TaskState extends State<Note_Task> {
               height: he*0.1,
               child: Column(
                 children: [
-                  Center(child: Text("Add Task",style: tsytle,)),
+                  Center(child: Text("Add Routine Task",style: tsytle,)),
                   SizedBox(height: he*0.005,),
-                  Center(child: Text("(Day Specific)",style: TextStyle(
-                    color: Theme.of(context).primaryColor,
-                    fontSize: 18,
-                  ),)),
 
                 ],
               ),
@@ -95,16 +91,6 @@ class _Note_TaskState extends State<Note_Task> {
                                 // title
                                 _buildTextField(hintText: 'Title'),
 
-                                SizedBox(height: he*0.02,),
-                                // note
-                                _buildTextField(hintText: 'Note'),
-                                SizedBox(height: he*0.02,),
-                                // date
-                                _buildTextField(hintText: 'Date'),
-                                SizedBox(height: he*0.02,),
-                                // time
-                                // reminder
-                                _buildTextField(hintText: 'Reminder'),
                                 SizedBox(height: he*0.02,),
                                 Text('Time',style: tsytle1,),
                                 SizedBox(height: he*0.02,),
