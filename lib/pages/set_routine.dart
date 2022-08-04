@@ -264,7 +264,7 @@ class _Set_RoutineState extends State<Set_Routine> {
                 child: BackdropFilter(
                   filter:ImageFilter.blur(sigmaX: 16,sigmaY: 16),
                   child: Container(
-                    color:Colors.transparent,
+                    color:Colors.white.withOpacity(0.03),
                     // decoration: f4deco,
                     padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20, ),
                     child: Column(
