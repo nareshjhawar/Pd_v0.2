@@ -332,10 +332,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
       body:
             index == 0 ? homeScreen(he, we) :
-            index==1? PageSettings() :
-            index==2 ? MyProfile() :
-            index==3 ? MyAnalytics()
-                : PageSettings(),
+            index==1? const PageSettings() :
+            index==2 ? const MyProfile() :
+            index==3 ? const MyAnalytics()
+                : const PageSettings(),
         
         floatingActionButton: index ==0 ?FadeAnimation(
           delay: 0.9,
@@ -345,7 +345,7 @@ class _MyHomePageState extends State<MyHomePage> {
               boxShadow: [
                 BoxShadow(
                   // color: Colors.transparent,
-                  color : Color(0xff7086e0).withOpacity(0.3),
+                  color : const Color(0xff7086e0).withOpacity(0.3),
                   offset: const Offset(-5, 15),
                   spreadRadius: 1,
                   blurRadius: 20,
@@ -375,8 +375,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     backgroundColor: Colors.transparent,
                     elevation: 20,
                     // materialTapTargetSize: Ma,
-                    shape: CircleBorder() ,
-                    child: Icon (
+                    shape: const CircleBorder() ,
+                    child: const Icon (
                       Icons.add,
                       size: 35,
                     ),
@@ -390,11 +390,11 @@ class _MyHomePageState extends State<MyHomePage> {
                       backgroundColor: Colors.transparent,
                       context: context,
                       builder: (context) => ClipRRect(
-                        borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
+                        borderRadius: const BorderRadius.vertical(top: Radius.circular(30)),
                         child: Stack(
                               children: [
                                 Mytheme.darkapp,
-                                Note_Task(),
+                                const Note_Task(),
                               ],
                             ),
                       ),
@@ -738,7 +738,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                       ),
                                       Column(
                                         children: [
-                                          BarChartPage(),
+                                          const BarChartPage(),
                                           SizedBox(height: he*0.1,)
                                         ],
                                       )

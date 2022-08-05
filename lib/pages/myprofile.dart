@@ -120,7 +120,7 @@ class _MyProfileState extends State<MyProfile> {
             children: [
               Container(
                 margin: EdgeInsets.only(top: he*0.14),
-                padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                 height: he*0.1,
                 width: we*0.85,
                 decoration: f5deco,
@@ -162,7 +162,7 @@ class _MyProfileState extends State<MyProfile> {
                 height: he*0.29,
                 width: we*0.43,
                 decoration: f2deco,
-                child: Center(),
+                child: const Center(),
               ),
             ],
           ),
@@ -178,10 +178,10 @@ class _MyProfileState extends State<MyProfile> {
                       child: CustomPaint(
                         painter: CirclePainter(),
                         child: Padding(
-                          padding: EdgeInsets.all(12),
+                          padding: const EdgeInsets.all(12),
                           child: CircleAvatar(
                               radius: we*0.16,
-                              backgroundImage: AssetImage("assets/Avatar.png")
+                              backgroundImage: const AssetImage("assets/Avatar.png")
                           ),
 
                         ),

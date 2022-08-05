@@ -8,3 +8,7 @@ windows/*
 .flutter-plugins-dependencies
 .packages
 android/*
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+lib/generated_plugin_registrant.dart
