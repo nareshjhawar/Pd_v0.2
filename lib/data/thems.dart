@@ -26,9 +26,9 @@ class Mytheme {
     color: HexColor.fromHex("#181a1f"),
     position: "topLeft",
   );
-  static final darkapp2 = DarkRadialBackground2(
-    // color: HexColor.fromHex("#181a1f"),
-    // position: "topLeft",
+  static final darkapp2 = DarkRadialBackground3(
+    color1: HexColor.fromHex("#181a1f"),
+    position1: "topLeft",
   );
 
   static late final metheme = darkapp;

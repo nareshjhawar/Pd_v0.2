@@ -62,7 +62,9 @@ dependencies:
 
   flutter_slidable: ^1.2.0
 
-  # Database 
+  # Database
+  firebase_core: ^1.10.5
+  firebase_auth: ^3.3.3
   sqflite: ^2.0.2
 
   # for Fonts .. 
@@ -135,6 +137,7 @@ flutter:
     - assets/apple.png
     - assets/google.png
     - assets/facebook.png
+    - assets/sign_in.png
 
 
   #   - images/a_dot_ham.jpeg

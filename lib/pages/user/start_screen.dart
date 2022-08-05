@@ -105,7 +105,7 @@ class _Start_screenWidgetState extends State<Start_screenWidget> {
             ),
           ),
           FadeAnimation(
-            delay: delay_time+2.0,
+            delay: delay_time+1.5,
             child: Align(
               alignment: Alignment.bottomLeft,
               child: Container(

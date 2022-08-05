@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_todo/pages/global_myvar.dart';
-import 'package:flutter_todo/pages/paints/CIrcle_paint.dart';
+// import 'package:flutter_todo/pages/global_myvar.dart';
+// import 'package:flutter_todo/pages/paints/CIrcle_paint.dart';
+import 'package:flutter_todo/pages/user/reset_password.dart';
+import '../../Utils/fire_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
+// import 'package:flutter_todo/pages/Drawerhiden/hidendrawer.dart';
+import 'package:flutter_todo/pages/user/signup_screen.dart';
+
+import '../../Utils/Widgets.dart';
 import '../../data/thems.dart';
 import '../Drawerhiden/hidendrawer.dart';
 import '../homepage.dart';
@@ -14,19 +21,21 @@ class MyLogin extends StatefulWidget {
 }
 
 class _MyLoginState extends State<MyLogin> {
-  TextEditingController nameController = TextEditingController();
+  TextEditingController _passwordTextController = TextEditingController();
+  TextEditingController _emailTextController = TextEditingController();
+
+  bool _isProcessing = false;
 
 
   @override
   Widget build(BuildContext context) {
-    var we = MediaQuery.of(context).size.width;
     var he = MediaQuery.of(context).size.height;
 
     final f2deco = BoxDecoration(
       gradient: LinearGradient(
         colors: [//0xFF5C5292
-          Theme.of(context).focusColor.withOpacity(0.8),
-          Theme.of(context).canvasColor.withOpacity(0.2),
+          Theme.of(context).focusColor.withOpacity(0.7),
+          Theme.of(context).canvasColor.withOpacity(0.1),
         ],
         begin: Alignment.topCenter,
         end: Alignment.bottomLeft,
@@ -45,37 +54,9 @@ class _MyLoginState extends State<MyLogin> {
           ),
         ]
     ) ;
-    final f3deco = BoxDecoration(
-        gradient: LinearGradient(
-          colors: [//0xFF5C5292
-            Theme.of(context).focusColor.withOpacity(0.4),
-            Theme.of(context).canvasColor.withOpacity(0.1),
-          ],
-          begin: Alignment.topCenter,
-          end: Alignment.bottomLeft,
-        ),
-        borderRadius: BorderRadius.circular(20)
-    ) ;
-    final f4deco = BoxDecoration(
-        gradient: LinearGradient(
-          colors: [//0xFF5C5292
-            Theme.of(context).focusColor.withOpacity(0.6),
-            Theme.of(context).canvasColor.withOpacity(0.3),
-          ],
-          begin: Alignment.topCenter,
-          end: Alignment.bottomLeft,
-        ),
-        // borderRadius: BorderRadius.circular(20)
-      shape: BoxShape.circle,
-    ) ;
-    final f5deco = BoxDecoration(
-      backgroundBlendMode: BlendMode.darken,
-        color: Colors.transparent,
-        borderRadius: BorderRadius.circular(40)
-    ) ;
     final b_deco =ButtonStyle(
       padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-        EdgeInsets.all(15)
+        EdgeInsets.all(10)
       ),
       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
         RoundedRectangleBorder(
@@ -88,44 +69,52 @@ class _MyLoginState extends State<MyLogin> {
       MaterialStateProperty.all(Colors.transparent),
     );
 
+    // final _snackBar2 = SnackBar(
+    //   content: Text('Try Again'),
+    //   duration: const Duration(seconds: 3),
+    //   action: SnackBarAction(
+    //     label:'Click',
+    //     onPressed: () {
+    //       print('Action is clicked');
+    //     },
+    //     textColor: Colors.white,
+    //     disabledTextColor: Colors.grey,
+    //   ),
+    //   onVisible: () {
+    //     print('Snackbar is visible');
+    //   },
+    //   shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10))),
+    //   behavior: SnackBarBehavior.floating,
+    //   margin: EdgeInsets.all(30.0),
+    //   padding: EdgeInsets.all(15.0),
+    // );
 
     final tsytle1 = TextStyle(
       color: Colors.white,
-      fontSize: 18,
+      fontSize: 20,
       fontWeight: FontWeight.w500,
     );
-    final tsytle = TextStyle(
-      color: Theme.of(context).primaryColor,
-      fontSize: 18,
-      fontWeight: FontWeight.w400,
-    );
-    final tsytle2 = TextStyle(
-      color: Theme.of(context).primaryColor,
-      fontSize: 25,
-      fontWeight: FontWeight.w600,
-    );
-
-
 
     return Scaffold(
       body: Stack(
         children:[
           Mytheme.darkapp,
           Container(
-            margin: EdgeInsets.only(top: he*0.07),
+            margin: EdgeInsets.only(top: he*0.05),
             alignment: Alignment.topCenter,
             child: SizedBox(
               height: he*0.3,
-                child: Image.asset('assets/Mask_Group.png')),
+                child: Image.asset('assets/sign_in.png')),
           ),
           Container(
             alignment: Alignment.bottomCenter,
-            padding: const EdgeInsets.only(left: 19, right: 18, top: 10, bottom: 33, ),
+            padding: const EdgeInsets.all(25),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.center,
               children:[
+                //welcome text
                 Column(
                   children:[
                     Text(
@@ -152,78 +141,74 @@ class _MyLoginState extends State<MyLogin> {
                   ],
                 ),
                 SizedBox(height: he*0.04),
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(37),
-                    color: Colors.white,
-                  ),
-                  padding: EdgeInsets.all(15),
-                  child: Row(
-                    children:[
-                      Icon(Icons.alternate_email_rounded),
-                      SizedBox(width: we*0.05),
-                      Text(
-                        "johnsondoe@nomail.com",
-                        style: tsytle,
+                // fields
+                Column(
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(30)
                       ),
-                    ],
-                  ),
-                ),
-                SizedBox(height: he*0.02),
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(37),
-                    color: Colors.white,
-                  ),
-                  padding: EdgeInsets.all(15),
-                  child: Row(
-                    children:[
-                      Icon(Icons.lock_outline_rounded),
-                      SizedBox(width: we*0.05),
-                      Text(
-                        "*****************",
-                        style: tsytle,
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(height: he*0.02),
-                Container(
-                  decoration: f2deco,
-                  child: ElevatedButton(
-                    style: b_deco,
-                    onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(
-                          builder: (context)=> HidenDrawer(),
-                        fullscreenDialog: true,
-
-                      ));
-                    },
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      // crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Continue",
-                          textAlign: TextAlign.center,
-                          style: tsytle1,
-                        ),
-                        Icon(Icons.arrow_forward_ios_rounded,size: 20,
-                          color: Colors.white,),
-                      ],
+                      child: reusableTextField(
+                          "Username",
+                          Icons.alternate_email,
+                          false,
+                          _emailTextController),
                     ),
-                  ),
+                    SizedBox(height: he*0.02),
+                    Container(
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(30)
+                      ),
+                      child: reusableTextField("Password", Icons.lock_outline, true,
+                          _passwordTextController),
+                    ),
+                  ],
                 ),
-                SizedBox(height: he*0.04),
+                forgetPassword(context),
+                _isProcessing
+                    ? CircularProgressIndicator(
+                    color: Theme.of(context).primaryColor)
+                    : Container(
+                      decoration: f2deco,
+                      child: firebaseUIButton(context, "Sign In", () async {
+                  setState(() {
+                      _isProcessing = true;
+                  });
+                  User? user = await FireAuth.signInUsingEmailPassword(
+                      email: _emailTextController.text,
+                      password: _passwordTextController.text,
+                  );
+
+                  setState(() {
+                      _isProcessing = false;
+                  });
+
+                  if (user != null) {
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => HidenDrawer(),
+                            fullscreenDialog: true,
+                          ));
+                  }
+                  else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                        snackBar_error('Incorrect user details'));
+                  }
+                }),
+                    ),
+
+                SizedBox(height: he*0.03),
                 Row(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children:[
                     Container(
-                      width: 64,
-                      height: 64,
+                      width: 50,
+                      height: 50,
                       child: Stack(
                         children:[
                           Container(
@@ -259,8 +244,8 @@ class _MyLoginState extends State<MyLogin> {
                     ),
                     SizedBox(width: 24),
                     Container(
-                      width: 64,
-                      height: 64,
+                      width: 50,
+                      height: 50,
                       child: Stack(
                         children:[
                           Container(
@@ -296,8 +281,8 @@ class _MyLoginState extends State<MyLogin> {
                     ),
                     SizedBox(width: 24),
                     Container(
-                      width: 64,
-                      height: 64,
+                      width: 50,
+                      height: 50,
                       child: Stack(
                         children:[
                           Container(
@@ -340,36 +325,40 @@ class _MyLoginState extends State<MyLogin> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children:[
-                      Text('.'*30,style: TextStyle(color:Colors.white ),),
-                      SizedBox(width: 9.50),
-                      Text(
-                        "Or",
-                        style: tsytle1,
-                      ),
-                      SizedBox(width: 9.50),
-                      Text('.'*30,style: TextStyle(color:Colors.white ),),
+                      Center(child:
+                      Text('Create an account',
+                        style: TextStyle(color: Colors.white70,fontSize: 18),
+                      )),
+
                     ],
                   ),
                 ),
                 SizedBox(height: he*0.02),
                 Container(
-          decoration: f2deco,
-          child: ElevatedButton(
-            style: b_deco,
-            onPressed: () {
-              Navigator.push(context, MaterialPageRoute(
-                builder: (context)=> HidenDrawer(),
-                fullscreenDialog: true,
+                  decoration: f2deco,
+                  child: ElevatedButton(
+                    style: b_deco,
+                    onPressed: () {
+                      showModalBottomSheet(
+                          constraints: BoxConstraints(maxHeight: he*0.65),
+                          isScrollControlled: true,
+                          enableDrag: true,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30)
+                          ),
+                          backgroundColor: Colors.transparent,
+                          context: context,
 
-              ));
+                          builder: (context) =>  ClipRRect(
+                              borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
+                              child: const SignUpScreen()));
             },
             child: Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.center,
-              // crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  "Create an Account",
+                  "Sign up",
                   textAlign: TextAlign.center,
                   style: tsytle1,
                 ),
@@ -387,32 +376,52 @@ class _MyLoginState extends State<MyLogin> {
     );
   }
 
-  Widget _buildTextField({required String hintText}){
+  Row signUpOption() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Text("Don't have account?",
+            style: TextStyle(color: Colors.white70)),
+        GestureDetector(
+          onTap: () {
+            Navigator.push((context),
+                MaterialPageRoute(builder: (context) => const SignUpScreen()));
+          },
+          child: const Text(
+            " Sign Up",
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          ),
+        )
+      ],
+    );
+  }
+
+  Widget forgetPassword(BuildContext context) {
+    var he = MediaQuery.of(context).size.height;
+
     return Container(
-      child: TextField(
-        controller: nameController,
-        decoration: InputDecoration(
-          focusColor: Theme.of(context).primaryColor,
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-                color:Theme.of(context).primaryColor,width: 2,style: BorderStyle.solid
+      width: MediaQuery.of(context).size.width,
+      alignment: Alignment.bottomRight,
+      child: TextButton(
+        child: const Text(
+          "Forgot Password?",
+          style: TextStyle(color: Colors.white70),
+          textAlign: TextAlign.right,
+        ),
+        onPressed: () => showModalBottomSheet(
+            constraints: BoxConstraints(maxHeight: he*0.4),
+            isScrollControlled: true,
+            enableDrag: true,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30)
             ),
-            borderRadius: BorderRadius.circular(20),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-                color: Theme.of(context).primaryColor.withOpacity(0.6),width: 2,style: BorderStyle.solid
-            ),
-            borderRadius: BorderRadius.circular(20),
-          ),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(20),
-          ),
-          labelText: hintText,
-          labelStyle: TextStyle(
-              color: Theme.of(context).primaryColor
-          ),
-        ),),
+            backgroundColor: Colors.transparent,
+            context: context,
+
+            builder: (context) =>  ClipRRect(
+                borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
+                child: const ResetPassword())),
+      ),
     );
   }
 
