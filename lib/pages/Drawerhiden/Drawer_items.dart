@@ -11,11 +11,11 @@ class DrawerItem {
 
 class DrawerItems {
   static final home =
-      DrawerItem(title: "Home", icon: Icons.grid_view_outlined);
+      DrawerItem(title: "Home", icon: Icons.home_rounded);
   static final profile =
-      DrawerItem(title: "Profile", icon: Icons.person_outlined);
+      DrawerItem(title: "Profile", icon: Icons.person_rounded);
   static final logout =
-      DrawerItem(title: "Logout", icon: Icons.logout);
+      DrawerItem(title: "Logout", icon: Icons.logout_rounded);
   // static final routine =
   //     DrawerItem(title: "Routine", icon: Icons.grid_view_outlined);
   // static final analytics =

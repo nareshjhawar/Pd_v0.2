@@ -1,9 +1,12 @@
 import 'dart:ui';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_todo/data/thems.dart';
 import 'package:flutter_todo/pages/add_routine_task.dart';
 import 'package:timeline_tile/timeline_tile.dart';
+
+import '../Utils/Widgets.dart';
 
 class Set_Routine extends StatefulWidget {
 
@@ -17,7 +20,7 @@ class _Set_RoutineState extends State<Set_Routine> {
   TimeOfDay startTime = TimeOfDay.now();
   TimeOfDay endTime = TimeOfDay.now();
 
-
+  DateTime dateTime = DateTime.now();
   bool Ison = false;
 
   TextEditingController nameController = TextEditingController();
@@ -41,8 +44,8 @@ class _Set_RoutineState extends State<Set_Routine> {
     final f2deco = BoxDecoration(
       gradient: LinearGradient(
         colors: [
-          Theme.of(context).cardColor,
-          Theme.of(context).canvasColor,
+          Theme.of(context).cardColor.withOpacity(0.9),
+          Theme.of(context).canvasColor.withOpacity(0.9),
         ],
         begin: Alignment.topCenter,
         end: Alignment.bottomLeft,
@@ -50,10 +53,10 @@ class _Set_RoutineState extends State<Set_Routine> {
       boxShadow: [
         BoxShadow(
           // color: Colors.transparent,
-          color : Color(0xff7086e0).withOpacity(0.15),
+          color : Color(0xff7086e0).withOpacity(0.1),
           offset: const Offset(-5, 5),
           spreadRadius: 1,
-          blurRadius: 15,
+          blurRadius: 10,
         ),
       ],
       borderRadius: BorderRadius.all(Radius.circular(30)),
@@ -156,29 +159,20 @@ class _Set_RoutineState extends State<Set_Routine> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children:[
               Container(
-                decoration: f2deco,
-                padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10, ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children:[
-                    Text(
-                      "Week Days",
-                      style: tsytle1,
+                  margin: EdgeInsets.only(left: 5),
+                  child: Text("Routine",
+                    style: TextStyle(
+                      color: Color(0xff9370b1).withAlpha(40),
+                      fontFamily: 'poppins',
+                      fontSize: 75,
+                      fontWeight: FontWeight.w700,
                     ),
-                    SizedBox(width: 20),
-                    Text(
-                      "Weekends",
-                      style: tsytle1,
-                    ),
-                  ],
-                ),
+                  )
               ),
-              SizedBox(height: he*0.01),
+              // SizedBox(height: he*0.01),
               Container(
                 clipBehavior: Clip.none,
-                padding: const EdgeInsets.symmetric(horizontal: 30,vertical :15),
+                padding: const EdgeInsets.symmetric(horizontal: 30,vertical :12),
                 child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
@@ -231,6 +225,15 @@ class _Set_RoutineState extends State<Set_Routine> {
                             });
                           }),
                         ),
+                        // ElevatedButton(
+                        //     onPressed: (){
+                        //       showSheet(
+                        //           context,
+                        //           child:buildDatePicker(),
+                        //           onClicked: ()=> Navigator.pop(context),
+                        //       );
+                        //     },
+                        //     child:Text(dateTime.toString()) ),
                       ],
                     ),
                     SizedBox(height: 10),
@@ -264,8 +267,7 @@ class _Set_RoutineState extends State<Set_Routine> {
                 child: BackdropFilter(
                   filter:ImageFilter.blur(sigmaX: 16,sigmaY: 16),
                   child: Container(
-                    color:Colors.white.withOpacity(0.03),
-                    // decoration: f4deco,
+                    color:Colors.white.withOpacity(0.04),
                     padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20, ),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
@@ -323,10 +325,7 @@ class _Set_RoutineState extends State<Set_Routine> {
                                       crossAxisAlignment: CrossAxisAlignment.center,
                                       children:[
                                         Container(
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(20),
-                                            color: Color(0xff716d6d).withOpacity(0.3),
-                                          ),
+                                          decoration: f2deco,
                                           child: ElevatedButton(
                                             style: b_deco,
 
@@ -374,7 +373,7 @@ class _Set_RoutineState extends State<Set_Routine> {
                                                                 height: 55,
                                                                 decoration: BoxDecoration(
                                                                   shape: BoxShape.circle,
-                                                                  color: Color(0xffd9d9d9).withOpacity(0.2),
+                                                                  color: Color(0xffd9d9d9).withOpacity(0.25),
                                                                 ),
                                                               ),
                                                             ),
@@ -427,10 +426,7 @@ class _Set_RoutineState extends State<Set_Routine> {
                                       crossAxisAlignment: CrossAxisAlignment.center,
                                       children:[
                                         Container(
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(20),
-                                            color: Color(0xff716d6d).withOpacity(0.3),
-                                          ),
+                                          decoration: f2deco,
                                           child: ElevatedButton(
                                             style: b_deco,
 
@@ -478,7 +474,7 @@ class _Set_RoutineState extends State<Set_Routine> {
                                                                 height: 55,
                                                                 decoration: BoxDecoration(
                                                                   shape: BoxShape.circle,
-                                                                  color: Color(0xffd9d9d9).withOpacity(0.2),
+                                                                  color: Color(0xffd9d9d9).withOpacity(0.25),
                                                                 ),
                                                               ),
                                                             ),
@@ -530,10 +526,7 @@ class _Set_RoutineState extends State<Set_Routine> {
                                       crossAxisAlignment: CrossAxisAlignment.center,
                                       children:[
                                         Container(
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(20),
-                                            color: Color(0xff716d6d).withOpacity(0.3),
-                                          ),
+                                          decoration: f2deco,
                                           child: ElevatedButton(
                                             style: b_deco,
 
@@ -581,7 +574,7 @@ class _Set_RoutineState extends State<Set_Routine> {
                                                                 height: 55,
                                                                 decoration: BoxDecoration(
                                                                   shape: BoxShape.circle,
-                                                                  color: Color(0xffd9d9d9).withOpacity(0.2),
+                                                                  color: Color(0xffd9d9d9).withOpacity(0.25),
                                                                 ),
                                                               ),
                                                             ),
@@ -634,10 +627,7 @@ class _Set_RoutineState extends State<Set_Routine> {
                                       crossAxisAlignment: CrossAxisAlignment.center,
                                       children:[
                                         Container(
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(20),
-                                            color: Color(0xff716d6d).withOpacity(0.3),
-                                          ),
+                                          decoration: f2deco,
                                           child: ElevatedButton(
                                             style: b_deco,
 
@@ -685,7 +675,7 @@ class _Set_RoutineState extends State<Set_Routine> {
                                                                 height: 55,
                                                                 decoration: BoxDecoration(
                                                                   shape: BoxShape.circle,
-                                                                  color: Color(0xffd9d9d9).withOpacity(0.2),
+                                                                  color: Color(0xffd9d9d9).withOpacity(0.25),
                                                                 ),
                                                               ),
                                                             ),
@@ -859,32 +849,13 @@ class _Set_RoutineState extends State<Set_Routine> {
     );
 
   }
-  Widget _buildTextField({required String hintText}){
-    return Container(
-      child: TextField(
-        controller: nameController,
-        decoration: InputDecoration(
-          focusColor: Theme.of(context).primaryColor,
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-                color:Theme.of(context).primaryColor,width: 2,style: BorderStyle.solid
-            ),
-            borderRadius: BorderRadius.circular(20),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-                color: Theme.of(context).primaryColor.withOpacity(0.6),width: 2,style: BorderStyle.solid
-            ),
-            borderRadius: BorderRadius.circular(20),
-          ),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(20),
-          ),
-          labelText: hintText,
-          labelStyle: TextStyle(
-              color: Theme.of(context).primaryColor
-          ),
-        ),),
-    );
-  }
+  Widget buildDatePicker() =>SizedBox(
+    height: 180,
+    child: CupertinoDatePicker(
+      initialDateTime: dateTime,
+      mode: CupertinoDatePickerMode.time,
+      onDateTimeChanged: (dateTime) =>
+            setState(()=> this.dateTime = dateTime),
+    ),
+  );
 }

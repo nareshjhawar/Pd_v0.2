@@ -35,13 +35,13 @@ dependencies:
     sdk: flutter
   date_picker_timeline:
 
-  glass:
-  calendar_view:
-  curved_navigation_bar: ^1.0.3
-  flutter_week_view:
+#  glass:
+#  calendar_view:
+#  curved_navigation_bar: ^1.0.3
+#  flutter_week_view:
   timeline_tile: ^2.0.0
-  flutter_gradients:
-  meta: ^1.7.0
+#  flutter_gradients:
+#  meta: ^1.7.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -49,18 +49,18 @@ dependencies:
 
   provider: ^6.0.2
 
-  flutter_svg: ^1.0.3
-  animated_theme_switcher:
-  glassmorphism: ^3.0.0
+#  flutter_svg: ^1.0.3
+#  animated_theme_switcher:
+#  glassmorphism: ^3.0.0
   
   # use chart in App
   fl_chart: ^0.51.0
-  hidden_drawer_menu:
+#  hidden_drawer_menu:
+#
+#  get:
 
-  get:
 
-
-  flutter_slidable: ^1.2.0
+#  flutter_slidable: ^1.2.0
 
   # Database
   firebase_core: ^1.10.5

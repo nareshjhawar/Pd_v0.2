@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 final b_deco =ButtonStyle(
@@ -86,3 +87,18 @@ snackBar_error(String title) => SnackBar(
   margin: EdgeInsets.all(30.0),
   padding: EdgeInsets.all(20.0),
 );
+
+showSheet(
+  BuildContext context,{
+    required Widget child,
+    required VoidCallback onClicked,
+  })=> showCupertinoModalPopup(context: context,
+    builder: (context) =>CupertinoActionSheet(
+      actions: [
+        child,
+      ],
+      cancelButton: CupertinoActionSheetAction(
+        child: Text('Select'),
+        onPressed: onClicked,
+      ),
+    ) );
