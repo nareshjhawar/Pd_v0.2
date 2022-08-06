@@ -1,17 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_todo/data/thems.dart';
-import 'package:flutter_todo/pages/global_myvar.dart' as Globals;
 import 'package:flutter_todo/pages/homepage.dart';
 
-import 'package:flutter_todo/pages/myanalytics.dart';
 import 'package:flutter_todo/pages/myprofile.dart';
-import 'package:flutter_todo/pages/myroutine.dart';
-import 'package:flutter_todo/pages/user/mylogin.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../Avatar_progerss.dart';
 import '../chart.dart';
-import '../responsive.dart';
-import '../user/loginPage.dart';
 import '../user/start_screen.dart';
 import 'drawer_items.dart';
 

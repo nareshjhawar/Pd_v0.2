@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_todo/Animation/fadeAnimation.dart';
 import 'package:flutter_todo/data/thems.dart';
-import 'package:flutter_todo/db/notes_database.dart';
+// import 'package:flutter_todo/db/notes_database.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../model/note.dart';
 

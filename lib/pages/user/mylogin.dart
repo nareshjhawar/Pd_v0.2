@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
-// import 'package:flutter_todo/pages/global_myvar.dart';
-// import 'package:flutter_todo/pages/paints/CIrcle_paint.dart';
 import 'package:flutter_todo/pages/user/reset_password.dart';
 import '../../Utils/fire_auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-// import 'package:flutter_todo/pages/Drawerhiden/hidendrawer.dart';
 import 'package:flutter_todo/pages/user/signup_screen.dart';
 
 import '../../Utils/Widgets.dart';
 import '../../data/thems.dart';
 import '../Drawerhiden/hidendrawer.dart';
-import '../homepage.dart';
 
 class MyLogin extends StatefulWidget {
   const MyLogin({Key? key}) : super(key: key);

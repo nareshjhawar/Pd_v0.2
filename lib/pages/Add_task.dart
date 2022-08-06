@@ -3,16 +3,12 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_todo/Animation/fadeAnimation.dart';
 import 'package:flutter_todo/data/thems.dart';
-import 'package:flutter_todo/db/notes_database.dart';
-import 'package:flutter_todo/pages/note_form.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../model/note.dart';
-// import 'dart:html';
 
 class Add_task extends StatefulWidget {
-  final Note? note;
+  // final Note? note;
 
-  const Add_task({Key? key, this.note}) : super(key: key);
+  const Add_task({Key? key}) : super(key: key);
 
   @override
   _Add_taskState createState() => _Add_taskState();
@@ -20,7 +16,7 @@ class Add_task extends StatefulWidget {
 
 class _Add_taskState extends State<Add_task> {
   // late String time;
-  late String description;
+  // late String description;
   // late String slot;
 
 
@@ -31,14 +27,14 @@ class _Add_taskState extends State<Add_task> {
   // get nameController => null;
   TextEditingController nameController = TextEditingController();
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    // time = widget.note?.time ?? '';
-    description = widget.note?.description ?? ''; // for get null or value
-    // slot = widget.note?.slot ?? '';
-  }
+  // @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   super.initState();
+  //   // time = widget.note?.time ?? '';
+  //   description = widget.note?.description ?? ''; // for get null or value
+  //   // slot = widget.note?.slot ?? '';
+  // }
 
   @override
   Widget build(BuildContext context) {

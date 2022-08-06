@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../extra/Values/values.dart';
+// import '../extra/Values/values.dart';
 import '../extra/darkRadialBackground.dart';
 
 
@@ -23,15 +23,12 @@ class Mytheme {
   static const main_bg =  Colors.transparent;
 
   static final darkapp = DarkRadialBackground(
-    color: HexColor.fromHex("#181a1f"),
+    color:const Color(0xff181a1f),
     position: "topLeft",
   );
-  static final darkapp2 = DarkRadialBackground3(
-    color1: HexColor.fromHex("#181a1f"),
-    position1: "topLeft",
-  );
 
-  static late final metheme = darkapp;
+
+  // static late final metheme = darkapp;
 
 
   static const prime_color1 = Color(0xFF6A88E5);
