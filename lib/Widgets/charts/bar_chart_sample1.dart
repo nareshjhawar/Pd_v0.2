@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
-import '../../data/thems.dart';
+import '../../Utils/thems.dart';
 // import 'package:example/utils/color_extensions.dart';
 
 class BarChartSample1 extends StatefulWidget {

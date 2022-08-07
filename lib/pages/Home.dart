@@ -1,23 +1,23 @@
 import 'dart:ui';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_todo/data/thems.dart';
-import 'package:flutter_todo/pages/myanalytics.dart';
-import 'package:flutter_todo/pages/myprofile.dart';
-import 'package:flutter_todo/pages/mysettings.dart';
+import 'package:flutter_pd/pages/Analytics.dart';
+import 'package:flutter_pd/pages/Profile.dart';
+import 'package:flutter_pd/pages/Settings.dart';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_todo/pages/note_task.dart';
-import 'package:flutter_todo/Widgets/button_change_them.dart';
-import 'package:flutter_todo/pages/set_routine.dart';
+import 'package:flutter_pd/pages/BottomSheets/DayTask.dart';
+import 'package:flutter_pd/Widgets/button_change_them.dart';
+import 'package:flutter_pd/pages/SetRoutine.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../Animation/fadeAnimation.dart';
+import '../Utils/thems.dart';
 import '../Widgets/charts/bar_chart_page.dart';
 import '../Widgets/curved_nav_bar/curved_navigation_bar.dart';
 import '../Widgets/timeline/task_timeline.dart';
 import '../data/tasks.dart';
 import '../Animation/linearprogress.dart';
-import '../model/note.dart';
+import '../data/note_model.dart';
 import '../Widgets/button_change_them.dart';
 import '../Widgets/date_picker/date_picker_widget.dart';
 

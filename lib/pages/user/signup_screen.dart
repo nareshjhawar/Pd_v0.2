@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../Utils/Widgets.dart';
 import '../../Utils/fire_auth.dart';
-import '../../data/thems.dart';
+import '../../Utils/thems.dart';
 import '../Drawerhiden/hidendrawer.dart';
 
 class SignUpScreen extends StatefulWidget {

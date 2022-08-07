@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_todo/Animation/fadeAnimation.dart';
-import 'package:flutter_todo/data/thems.dart';
+import 'package:flutter_pd/Animation/fadeAnimation.dart';
+import '../../Utils/thems.dart';
 import 'package:timeline_tile/timeline_tile.dart';
 
 class TaskTimeline extends StatelessWidget {

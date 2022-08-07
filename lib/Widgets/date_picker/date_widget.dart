@@ -4,11 +4,11 @@
 /// Author: Vivek Kaushik <me@vivekkasuhik.com>
 /// github: https://github.com/iamvivekkaushik/
 /// ***
-
-import 'package:flutter_todo/data/thems.dart';
-import 'package:flutter_todo/gestures/tap.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
+import '../../Utils/thems.dart';
+import 'gestures/tap.dart';
 
 class DateWidget extends StatelessWidget {
   final double? width;

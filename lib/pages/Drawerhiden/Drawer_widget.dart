@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_todo/pages/homepage.dart';
+import 'package:flutter_pd/pages/Home.dart';
 
-import 'package:flutter_todo/pages/myprofile.dart';
+import 'package:flutter_pd/pages/Profile.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../Widgets/Avatar_progerss.dart';
 import '../../Widgets/charts/chart.dart';
@@ -171,12 +171,12 @@ class _DrawerWidgetState extends State<DrawerWidget>
 // old copy
 
 // import 'package:flutter/material.dart';
-// import 'package:flutter_todo/data/thems.dart';
-// import 'package:flutter_todo/pages/global_myvar.dart' as Globals;
+// import '../Utils/thems.dart';
+// import 'package:flutter_pd/pages/global_myvar.dart' as Globals;
 //
-// import 'package:flutter_todo/pages/myanalytics.dart';
-// import 'package:flutter_todo/pages/mylogin.dart';
-// import 'package:flutter_todo/pages/myroutine.dart';
+// import 'package:flutter_pd/pages/Analytics.dart';
+// import 'package:flutter_pd/pages/mylogin.dart';
+// import 'package:flutter_pd/pages/myroutine.dart';
 // import 'package:google_fonts/google_fonts.dart';
 // import '../Avatar_progerss.dart';
 // import '../chart.dart';

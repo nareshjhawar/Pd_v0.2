@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_todo/pages/user/mylogin.dart';
+import 'package:flutter_pd/pages/user/mylogin.dart';
 
 import '../../Animation/fadeAnimation.dart';
-import '../../data/thems.dart';
+import '../../Utils/thems.dart';
 
 
 class Start_screenWidget extends StatefulWidget {

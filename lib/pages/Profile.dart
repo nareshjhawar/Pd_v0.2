@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_todo/Utils/global_myvar.dart';
+import 'package:flutter_pd/Utils/global_myvar.dart';
 
 import '../Widgets/paints/CIrcle_paint.dart';
-import '../data/thems.dart';
+import '../Utils/thems.dart';
 import '../Widgets/button_change_them.dart';
 class MyProfile extends StatefulWidget {
   const MyProfile({Key? key}) : super(key: key);

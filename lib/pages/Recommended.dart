@@ -1,20 +1,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_todo/pages/videoPage.dart';
+import 'package:flutter_pd/pages/BottomSheets/videoPage.dart';
 
-import '../data/thems.dart';
+import '../Utils/thems.dart';
 import '../Widgets/button_change_them.dart';
 
-class Responsive extends StatefulWidget {
+class Recommended extends StatefulWidget {
   VoidCallback opendrawer;
 
-  Responsive({Key? key, required this.opendrawer}) : super(key: key);
+  Recommended({Key? key, required this.opendrawer}) : super(key: key);
 
   @override
-  State<Responsive> createState() => _ResponsiveState();
+  State<Recommended> createState() => _RecommendedState();
 }
 
-class _ResponsiveState extends State<Responsive> {
+class _RecommendedState extends State<Recommended> {
   @override
   Widget build(BuildContext context) {
     var we = MediaQuery.of(context).size.width;

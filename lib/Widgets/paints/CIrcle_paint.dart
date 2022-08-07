@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_todo/Utils/global_myvar.dart';
-import 'package:flutter_todo/pages/mysettings.dart';
+import 'package:flutter_pd/Utils/global_myvar.dart';
+import 'package:flutter_pd/pages/Settings.dart';
 // import 'package:get/utils.dart';
 
-import '../../data/thems.dart';
+import '../../Utils/thems.dart';
 
 class CirclePainter extends CustomPainter {
 

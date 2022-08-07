@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_todo/data/thems.dart';
-import 'package:flutter_todo/Widgets/button_change_them.dart';
-import 'package:flutter_todo/Utils/global_myvar.dart';
+import '../Utils/thems.dart';
+import 'package:flutter_pd/Widgets/button_change_them.dart';
+import 'package:flutter_pd/Utils/global_myvar.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 

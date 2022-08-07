@@ -1,10 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_todo/pages/Drawerhiden/hidendrawer.dart';
-import 'package:flutter_todo/pages/user/start_screen.dart';
+import './pages/user/start_screen.dart';
 import 'package:provider/provider.dart';
-// import 'data/shared/Task_saved.dart';
-import 'data/thems.dart';
+import 'Utils/thems.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();

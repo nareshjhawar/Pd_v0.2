@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_todo/data/thems.dart';
 import 'package:provider/provider.dart';
+
+import '../Utils/thems.dart';
 
 class ChangeThembutton extends StatefulWidget {
   ChangeThembutton({Key? key}) : super(key: key);

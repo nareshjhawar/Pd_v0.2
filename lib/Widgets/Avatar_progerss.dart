@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_todo/data/thems.dart';
+import '../../Utils/thems.dart';
 
 class Progerss_Avater extends StatefulWidget {
   @override

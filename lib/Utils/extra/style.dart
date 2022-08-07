@@ -1,6 +1,6 @@
-import 'package:flutter_todo/extra/color.dart';
+import '../extra/color.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_todo/extra/dimen.dart';
+import '../extra/dimen.dart';
 
 const TextStyle defaultMonthTextStyle = TextStyle(
   color: AppColors.defaultMonthColor,

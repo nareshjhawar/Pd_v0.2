@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_todo/pages/user/reset_password.dart';
+import 'package:flutter_pd/pages/user/reset_password.dart';
 import '../../Utils/fire_auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-import 'package:flutter_todo/pages/user/signup_screen.dart';
+import 'package:flutter_pd/pages/user/signup_screen.dart';
 
 import '../../Utils/Widgets.dart';
-import '../../data/thems.dart';
+import '../../Utils/thems.dart';
 import '../Drawerhiden/hidendrawer.dart';
 
 class MyLogin extends StatefulWidget {

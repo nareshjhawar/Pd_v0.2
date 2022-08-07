@@ -1,10 +1,10 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter_todo/src/nav_clip.dart';
-import '../../data/thems.dart';
+import 'package:flutter_pd/Widgets/curved_nav_bar/src/nav_clip.dart';
+import '../../Utils/thems.dart';
 
-import '../../src/nav_button.dart';
-import '../../src/nav_custom_painter.dart';
+import '../../Widgets/curved_nav_bar/src/nav_button.dart';
+import '../../Widgets/curved_nav_bar/src/nav_custom_painter.dart';
 
 typedef _LetIndexPage = bool Function(int value);
 
