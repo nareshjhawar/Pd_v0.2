@@ -1,40 +1,62 @@
-const String tableNotes = 'notes';
+const String tableRoutines = 'routine';
 
-class NoteFields {
+class RoutineFields {
   static final List<String> values = [
     /// Add all fields
-    id, description,
+    id, time, title, interval
   ];
 
   static final String id = '_id';
-  static final String description = 'description';
+  static final String time = 'time';
+
+  static final String title = 'title';
+  static final String interval = 'interval';
+
 }
 
-class Note {
+class Routine {
   final int? id;
-  final String description;
+  final String time;
+  final String title;
+  final String interval;
 
-  const Note({
+
+  const Routine({
     this.id,
-    required this.description,
+    required this.time,
+    required this.title,
+    required this.interval,
+
   });
 
-  Note copy({
+  Routine copy({
     int? id,
-    String? description,
+    String? time,
+    String? title,
+    String? interval,
+
   }) =>
-      Note(
+      Routine(
         id: id ?? this.id,
-        description: description ?? this.description,
+        time: time ?? this.time,
+        title: title ?? this.title,
+        interval: interval ?? this.interval,
+
       );
 
-  static Note fromJson(Map<String, Object?> json) => Note(
-    id: json[NoteFields.id] as int?,
-    description: json[NoteFields.description] as String,
+  static Routine fromJson(Map<String, Object?> json) => Routine(
+    id: json[RoutineFields.id] as int?,
+    time: json[RoutineFields.time] as String,
+    title: json[RoutineFields.title] as String,
+    interval: json[RoutineFields.interval] as String,
+
   );
 
   Map<String, Object?> toJson() => {
-    NoteFields.id: id,
-    NoteFields.description: description,
+    RoutineFields.id: id,
+    RoutineFields.time: time,
+    RoutineFields.title: title,
+    RoutineFields.interval: interval,
+
   };
 }

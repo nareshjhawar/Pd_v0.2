@@ -15,6 +15,21 @@ final b_deco =ButtonStyle(
   shadowColor:
   MaterialStateProperty.all(Colors.transparent),
 );
+final b_deco1 =ButtonStyle(
+  // padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+  //     EdgeInsets.all(5)
+  // ),
+  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+    RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(20.0),
+    ),
+  ),
+  backgroundColor:
+  MaterialStateProperty.all(Colors.transparent),
+  shadowColor:
+  MaterialStateProperty.all(Colors.transparent),
+);
+
 
 Container firebaseUIButton(BuildContext context, String title, Function onTap) {
   return Container(
@@ -88,11 +103,10 @@ snackBar_error(String title) => SnackBar(
   padding: EdgeInsets.all(20.0),
 );
 
-showSheet(
-  BuildContext context,{
+void showSheet(BuildContext context,{
     required Widget child,
     required VoidCallback onClicked,
-  })=> showCupertinoModalPopup(context: context,
+  }) => showCupertinoModalPopup(context: context,
     builder: (context) =>CupertinoActionSheet(
       actions: [
         child,
@@ -102,3 +116,29 @@ showSheet(
         onPressed: onClicked,
       ),
     ) );
+BoxDecoration GlobalDeco(BuildContext context)
+  => BoxDecoration(
+  borderRadius: const BorderRadius.all(
+      Radius.circular(30)),
+  gradient: LinearGradient(
+    colors: [
+      //0xFF5C5292
+      Theme.of(context)
+          .cardColor
+          .withOpacity(0.9),
+      Theme.of(context)
+          .canvasColor
+          .withOpacity(0.9),
+    ],
+    begin: Alignment.topCenter,
+    end: Alignment.bottomLeft,
+  ),
+  boxShadow: [
+    BoxShadow(
+      color: Theme.of(context).shadowColor,
+      offset: const Offset(-5, 5),
+      spreadRadius: 1,
+      blurRadius: 10,
+    ),
+  ],
+);
