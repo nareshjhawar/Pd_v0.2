@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_todo/pages/global_myvar.dart';
+import 'package:flutter_todo/Utils/global_myvar.dart';
 import 'package:flutter_todo/pages/mysettings.dart';
 // import 'package:get/utils.dart';
 

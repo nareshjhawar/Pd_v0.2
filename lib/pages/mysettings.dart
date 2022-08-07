@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_todo/data/thems.dart';
-import 'package:flutter_todo/pages/button_change_them.dart';
-import 'package:flutter_todo/pages/global_myvar.dart';
-import 'package:flutter_todo/pages/paints/CIrcle_paint.dart';
+import 'package:flutter_todo/Widgets/button_change_them.dart';
+import 'package:flutter_todo/Utils/global_myvar.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import '../Animation/fadeAnimation.dart';
+import '../Widgets/paints/CIrcle_paint.dart';
 
 class PageSettings extends StatefulWidget {
   const PageSettings({Key? key}) : super(key: key);

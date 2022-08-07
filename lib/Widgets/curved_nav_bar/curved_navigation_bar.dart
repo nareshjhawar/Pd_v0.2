@@ -1,10 +1,10 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_todo/src/nav_clip.dart';
-import 'data/thems.dart';
+import '../../data/thems.dart';
 
-import 'src/nav_button.dart';
-import 'src/nav_custom_painter.dart';
+import '../../src/nav_button.dart';
+import '../../src/nav_custom_painter.dart';
 
 typedef _LetIndexPage = bool Function(int value);
 

@@ -1,25 +1,25 @@
 import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_todo/data/thems.dart';
-import 'package:flutter_todo/pages/detail/widgets/task_timeline.dart';
 import 'package:flutter_todo/pages/myanalytics.dart';
 import 'package:flutter_todo/pages/myprofile.dart';
 import 'package:flutter_todo/pages/mysettings.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_todo/pages/note_task.dart';
-import 'package:flutter_todo/pages/button_change_them.dart';
+import 'package:flutter_todo/Widgets/button_change_them.dart';
 import 'package:flutter_todo/pages/set_routine.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../Animation/fadeAnimation.dart';
-import '../curved_navigation_bar.dart';
+import '../Widgets/charts/bar_chart_page.dart';
+import '../Widgets/curved_nav_bar/curved_navigation_bar.dart';
+import '../Widgets/timeline/task_timeline.dart';
 import '../data/tasks.dart';
 import '../Animation/linearprogress.dart';
 import '../model/note.dart';
-import 'button_change_them.dart';
-import '/date_picker_widget.dart';
-import 'charts/bar_chart_page.dart';
+import '../Widgets/button_change_them.dart';
+import '../Widgets/date_picker/date_picker_widget.dart';
 
 class MyHomePage extends StatefulWidget {
   VoidCallback opendrawer;

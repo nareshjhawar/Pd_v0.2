@@ -1,6 +1,3 @@
-
-
-import 'package:flutter_todo/date_widget.dart';
 import 'package:flutter_todo/extra/color.dart';
 import 'package:flutter_todo/extra/style.dart';
 import 'package:flutter_todo/extra/dimen.dart';
@@ -8,6 +5,8 @@ import 'package:flutter_todo/extra/dimen.dart';
 import 'package:flutter_todo/gestures/tap.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
+
+import 'date_widget.dart';
 
 class DatePicker extends StatefulWidget {
   /// Start Date in case user wants to show past dates

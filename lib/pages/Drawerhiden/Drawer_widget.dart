@@ -3,8 +3,8 @@ import 'package:flutter_todo/pages/homepage.dart';
 
 import 'package:flutter_todo/pages/myprofile.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../Avatar_progerss.dart';
-import '../chart.dart';
+import '../../Widgets/Avatar_progerss.dart';
+import '../../Widgets/charts/chart.dart';
 import '../user/start_screen.dart';
 import 'drawer_items.dart';
 

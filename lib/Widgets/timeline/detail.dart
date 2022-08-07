@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../data/tasks.dart';
+import '../../../data/tasks.dart';
 
 class DetailPage extends StatelessWidget {
   final Task task;

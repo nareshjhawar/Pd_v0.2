@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../data/thems.dart';
-import 'button_change_them.dart';
+import '../Widgets/button_change_them.dart';
 
 class MyAnalytics extends StatefulWidget {
   const MyAnalytics({Key? key}) : super(key: key);
