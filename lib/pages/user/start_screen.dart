@@ -22,7 +22,7 @@ class _Start_screenWidgetState extends State<Start_screenWidget> {
 
     if (user != null) {
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => HidenDrawer()),
+        MaterialPageRoute(builder: (context) => HidenDrawer(user: user,)),
       );
     }
 

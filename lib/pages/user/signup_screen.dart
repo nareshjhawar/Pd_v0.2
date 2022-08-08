@@ -1,6 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
+import '../../Utils/modelClass.dart' as model;
 import '../../Utils/Widgets.dart';
 import '../../Utils/fire_auth.dart';
 import '../../Utils/util.dart';
@@ -85,10 +86,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           });
 
                           if (user != null) {
+                            model.UserCustom _user = model.UserCustom(
+                              name: _userNameTextController.text,
+                              uid: user.uid,
+                              routine: [],
+                              records: [],
+                            );
+
+                            // adding user in our database
+                            await FirebaseFirestore.instance
+                                .collection("users")
+                                .doc(user.uid)
+                                .set(_user.toJson());
+
                             Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => HidenDrawer()));
+                                    builder: (context) => HidenDrawer(user: user,)));
                           }
                         },
                       ),
