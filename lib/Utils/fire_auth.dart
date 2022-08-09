@@ -40,6 +40,7 @@ class FireAuth {
   }) async {
     FirebaseAuth auth = FirebaseAuth.instance;
     User? user;
+
     try {
       UserCredential userCredential = await auth.signInWithEmailAndPassword(
         email: email,
@@ -53,6 +54,7 @@ class FireAuth {
         print('Wrong password provided.');
       }
     }
+
     return user;
   }
 
