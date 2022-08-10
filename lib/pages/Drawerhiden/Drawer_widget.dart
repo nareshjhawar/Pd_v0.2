@@ -11,8 +11,9 @@ import 'drawer_items.dart';
 
 class DrawerWidget extends StatefulWidget {
   VoidCallback closdDrawer;
+  User user;
 
-  DrawerWidget({required this.closdDrawer});
+  DrawerWidget({required this.closdDrawer, required this.user});
 
   @override
   State<DrawerWidget> createState() => _DrawerWidgetState();
@@ -39,9 +40,7 @@ class _DrawerWidgetState extends State<DrawerWidget>
   }
 
   late final List _widgetOption = [
-    MyHomePage(
-      opendrawer: onpenDrawer,
-    ),
+    MyHomePage(opendrawer: onpenDrawer, user: widget.user),
     const MyProfile(),
     Start_screenWidget(),
   ];
@@ -52,25 +51,21 @@ class _DrawerWidgetState extends State<DrawerWidget>
     var he = MediaQuery.of(context).size.height;
 
     return SingleChildScrollView(
-        child: Column(
-      children: [
-        _buildButton(context),
-        Container(
-            margin: const EdgeInsets.only(left: 60), child: Progerss_Avater()),
-        SizedBox(
-          height: he * 0.02,
-        ),
-        _buidText(context),
-        // SizedBox(
-        //   height: he * 0.002,
-        // ),
-        buildDrawerItem(context),
-        // SizedBox(
-        //   height: he * 0.002,
-        // ),
-        Chart()
-      ],
-    ));
+      child: Column(
+        children: [
+          _buildButton(context),
+          Container(
+              margin: const EdgeInsets.only(left: 60),
+              child: Progerss_Avater()),
+          SizedBox(
+            height: he * 0.02,
+          ),
+          _buidText(context),
+          buildDrawerItem(context),
+          Chart(),
+        ],
+      ),
+    );
   }
 
   Widget buildDrawerItem(BuildContext context) => Padding(

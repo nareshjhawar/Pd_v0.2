@@ -56,10 +56,10 @@ class _SignInScreenState extends State<SignInScreen> {
                 _isProcessing
                     ? const CircularProgressIndicator()
                     : firebaseUIButton(context, "Sign In", () async {
-                  setState(() {
-                    _isProcessing = true;
-                  });
-                      User? user = await FireAuth.signInUsingEmailPassword(
+                        setState(() {
+                          _isProcessing = true;
+                        });
+                        User? user = await FireAuth.signInUsingEmailPassword(
                           email: _emailTextController.text,
                           password: _passwordTextController.text,
                         );
@@ -72,7 +72,8 @@ class _SignInScreenState extends State<SignInScreen> {
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => HidenDrawer()));
+                                  builder: (context) =>
+                                      HidenDrawer(user: user)));
                         }
                       }),
                 signUpOption()

@@ -34,6 +34,8 @@ dependencies:
   flutter:
     sdk: flutter
   date_picker_timeline:
+  cloud_firestore: ^3.1.4
+  uuid: ^3.0.5
 
   glass:
   calendar_view:
@@ -44,7 +46,7 @@ dependencies:
   meta: ^1.7.0
   firebase_core: ^1.10.5
   firebase_auth: ^3.3.3
-
+  fluttertoast: ^8.0.9
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
