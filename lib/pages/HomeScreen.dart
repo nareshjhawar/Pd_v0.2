@@ -399,7 +399,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            "Insert tasks",
+                                            "Activate Analyze mode",
                                             style: TextStyle(
                                                 fontSize: 16,
                                                 fontWeight: FontWeight.w600,
