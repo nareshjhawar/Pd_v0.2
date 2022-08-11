@@ -3,10 +3,15 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_pd/Animation/fadeAnimation.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../../data/data_model.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
 
 class Add_Routine_Task extends StatefulWidget {
+  User user;
 
-  const Add_Routine_Task({Key? key}) : super(key: key);
+  Add_Routine_Task({Key? key, required this.user}) : super(key: key);
 
   @override
   _Add_Routine_TaskState createState() => _Add_Routine_TaskState();
@@ -16,11 +21,9 @@ class _Add_Routine_TaskState extends State<Add_Routine_Task> {
   TimeOfDay startTime = TimeOfDay.now();
   TimeOfDay endTime = TimeOfDay.now();
 
-
   bool Ison = false;
 
   TextEditingController nameController = TextEditingController();
-
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +60,6 @@ class _Add_Routine_TaskState extends State<Add_Routine_Task> {
       ],
       borderRadius: BorderRadius.all(Radius.circular(40)),
     ) ;
-
 
     return Stack(
       children: [
@@ -270,6 +272,16 @@ class _Add_Routine_TaskState extends State<Add_Routine_Task> {
             decoration: f2deco,
             child: IconButton(
                 onPressed: () {
+                  TaskModel task = TaskModel(
+                      startTime: '${startTime.hour}:${startTime.minute}',
+                      title: nameController.text.toString(), endTime: '${startTime.hour}:${startTime.minute}');
+                  FirebaseFirestore.instance
+                      .collection("users")
+                      .doc(widget.user.uid)
+                      .update({
+                    'routine': FieldValue.arrayUnion([task.toJson()])
+                  });
+
                   Navigator.of(context).pop();
                 },
                 icon:  Icon(

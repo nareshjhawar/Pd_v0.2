@@ -1,6 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
+import '../../data/data_model.dart' as model ;
 import '../../Utils/Widgets.dart';
 import '../../Utils/fire_auth.dart';
 import '../../Utils/thems.dart';
@@ -43,7 +44,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
       margin: EdgeInsets.all(30.0),
       padding: EdgeInsets.all(15.0),
     );
-
 
     final f2deco = BoxDecoration(
         gradient: LinearGradient(
@@ -161,10 +161,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                         });
 
                                         if (user != null) {
+                                          model.UserCustom _user = model.UserCustom(
+                                            name: _userNameTextController.text,
+                                            uid: user.uid,
+                                            routine: [],
+                                            records: [],
+                                          );
+
+                                          // adding user in our database
+                                          await FirebaseFirestore.instance
+                                              .collection("users")
+                                              .doc(user.uid)
+                                              .set(_user.toJson());
+
                                           Navigator.push(
                                               context,
                                               MaterialPageRoute(
-                                                  builder: (context) => HidenDrawer(),
+                                                  builder: (context) => HidenDrawer(user: user,),
                                                 fullscreenDialog: true,
                                               ));
                                         }

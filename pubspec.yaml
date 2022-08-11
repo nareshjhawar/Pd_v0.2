@@ -38,8 +38,12 @@ dependencies:
   timeline_tile: ^2.0.0
 
   # Database
+  cloud_firestore: ^3.1.4
+  uuid: ^3.0.5
   firebase_core: ^1.10.5
   firebase_auth: ^3.3.3
+
+  fluttertoast: ^8.0.9
 
   # for Fonts .. 
   google_fonts: ^3.0.1

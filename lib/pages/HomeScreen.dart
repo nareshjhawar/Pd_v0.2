@@ -1,29 +1,34 @@
+import 'dart:convert';
 import 'dart:ui';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter_pd/Utils/Widgets.dart';
-import 'package:flutter_pd/pages/Analytics.dart';
-import 'package:flutter_pd/pages/Profile.dart';
-import 'package:flutter_pd/pages/Settings.dart';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_pd/pages/BottomSheets/DayTask.dart';
-import 'package:flutter_pd/Widgets/button_change_them.dart';
-import 'package:flutter_pd/pages/SetRoutine.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../Animation/fadeAnimation.dart';
+import '../Utils/Widgets.dart';
 import '../Utils/thems.dart';
+import '../Widgets/button_change_them.dart';
 import '../Widgets/charts/bar_chart_page.dart';
 import '../Widgets/curved_nav_bar/curved_navigation_bar.dart';
-import '../Widgets/timeline/task_timeline.dart';
-import '../Widgets/button_change_them.dart';
 import '../Widgets/date_picker/date_picker_widget.dart';
-import '../data/db.dart';
+import '../Widgets/timeline/task_timeline1.dart';
+import '../data/data_model.dart';
+import 'Analytics.dart';
+import 'BottomSheets/DayTask.dart';
+import 'Profile.dart';
+import 'SetRoutine.dart';
+import 'Settings.dart';
+
 
 class MyHomePage extends StatefulWidget {
   VoidCallback opendrawer;
+  User user;
 
-  MyHomePage({required this.opendrawer});
+  MyHomePage({required this.opendrawer, required this.user});
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -35,11 +40,44 @@ class _MyHomePageState extends State<MyHomePage> {
   bool isVisible = false;
   int index = 0;
 
+  List<TaskModel> routine=[];
+
   bool isLoading = false;
   DatePickerController _controller = DatePickerController();
-  DateTime selectedValue = DateTime.now();
+  DateTime _selectedValue = DateTime.now();
 
-  bool isChart = false;
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+
+  Future<void> getData() async {
+    setState(() {
+      isLoading = true;
+    });
+    try {
+      var userSnap = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(widget.user.uid)
+          .get();
+      for(var s in userSnap.data()!['routine']){
+
+        TaskModel task=TaskModel.fromMap(s);
+        // print(task.startTime);
+        routine.add(task);
+      }// [{},{}],{{},{}}
+      setState(() {});
+    } catch (e) {
+      print('error: \n\n $e \n\n');
+      Fluttertoast.showToast(msg: 'error in getting data');
+    }
+    setState(() {
+      isLoading = false;
+    });
+  }
+
+  bool ischart = false;
 
   @override
   Widget build(BuildContext context) {
@@ -71,6 +109,8 @@ class _MyHomePageState extends State<MyHomePage> {
               // buttonBackgroundColor: Colors.red,
               buttonBackgroundGradient: LinearGradient(
                 colors: [
+                  // Mytheme.nav_button_color1.withOpacity(0.6),
+                  // Mytheme.nav_button_color2.withOpacity(0.4),
                   Theme.of(context).cardColor,
                   Theme.of(context).canvasColor,
                 ],
@@ -163,12 +203,12 @@ class _MyHomePageState extends State<MyHomePage> {
       body: index == 0
           ? homeScreen(he, we)
           : index == 1
-              ? PageSettings()
+              ? const PageSettings()
               : index == 2
-                  ? MyProfile()
+                  ? const MyProfile()
                   : index == 3
-                      ? MyAnalytics()
-                      : PageSettings(),
+                      ? const MyAnalytics()
+                      : const PageSettings(),
       floatingActionButton: index == 0
           ? FadeAnimation(
               delay: 0.9,
@@ -178,7 +218,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   boxShadow: [
                     BoxShadow(
                       // color: Colors.transparent,
-                      color: Color(0xff7086e0).withOpacity(0.3),
+                      color: const Color(0xff7086e0).withOpacity(0.3),
                       offset: const Offset(-5, 15),
                       spreadRadius: 1,
                       blurRadius: 20,
@@ -207,8 +247,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         backgroundColor: Colors.transparent,
                         elevation: 20,
                         // materialTapTargetSize: Ma,
-                        shape: CircleBorder(),
-                        child: Icon(
+                        shape: const CircleBorder(),
+                        child: const Icon(
                           Icons.add,
                           size: 35,
                         ),
@@ -221,35 +261,18 @@ class _MyHomePageState extends State<MyHomePage> {
                           backgroundColor: Colors.transparent,
                           context: context,
                           builder: (context) => ClipRRect(
-                            borderRadius:
-                                BorderRadius.vertical(top: Radius.circular(30)),
+                            borderRadius: const BorderRadius.vertical(
+                                top: Radius.circular(30)),
                             child: Stack(
                               children: [
                                 Mytheme.darkapp,
-                                Note_Task(),
+                                const Note_Task(),
                               ],
                             ),
                           ),
-                          // builder: (context) => ClipRRect(
-                          //   borderRadius: BorderRadius.circular(30),
-                          //   child: BackdropFilter(
-                          //     filter: ImageFilter.blur(sigmaX:50,sigmaY: 50),
-                          //     child: Column(
-                          //       mainAxisSize: MainAxisSize.min,
-                          //       children: [
-                          //         Note_Task(),
-                          //       ],
-                          //     ),
-                          //   ),
-                          // ),
+
                         ), // modalsheet
 
-                        //   onPressed: ()  async {
-                        //     Icon(Icons.close,size: 50,);
-                        //   await Navigator.of(context).push(PageTransition(
-                        //       type: PageTransitionType.fade, child: const Note_Task()));
-                        //   // refreshNote();
-                        // },
                       ),
                     ),
                   ),
@@ -317,10 +340,11 @@ class _MyHomePageState extends State<MyHomePage> {
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                            builder: (context) => Set_Routine(),
+                                            builder: (context) => Set_Routine(user: widget.user,),
                                           ));
                                     },
                                     child: Container(
+
                                       margin: const EdgeInsets.symmetric(
                                           vertical: 20,
                                           horizontal: 15),
@@ -363,7 +387,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                            builder: (context) => Set_Routine(),
+                                            builder: (context) { return Container(); } ,
                                           ));
                                     },
                                     child: Container(
@@ -494,7 +518,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 onDateChange: (date) {
                                   // New date selected
                                   setState(() {
-                                    selectedValue = date;
+                                    _selectedValue = date;
                                   });
                                 },
                               ),
@@ -527,7 +551,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         onPressed: () {
                                           setState(() {
                                             isVisible = !isVisible;
-                                            isChart = !isChart;
+                                            ischart = !ischart;
                                           });
                                         },
                                         icon: Icon(
@@ -544,50 +568,52 @@ class _MyHomePageState extends State<MyHomePage> {
                               children: [
                                 Visibility(
                                   visible: isVisible,
-                                  child: details != null
-                                      ? SingleChildScrollView(
-                                          padding: EdgeInsets.only(
-                                              left: 15,
-                                              top: he * 0.17,
-                                              bottom: he * 0.25),
-                                          //error flex top
-                                          child: Center(
-                                            heightFactor: 0.65,
-                                            child: ListView.builder(
-                                                // clipBehavior: Clip.none,
-                                                physics:
-                                                    const NeverScrollableScrollPhysics(),
-                                                scrollDirection: Axis.vertical,
-                                                shrinkWrap: true,
-                                                itemCount: details.length,
-                                                itemBuilder:
-                                                    (BuildContext context,
-                                                        int index) {
-                                                  return TaskTimeline(
-                                                    detail: details
-                                                        .elementAt(index),
-                                                  );
-                                                }),
-                                          ),
-                                        )
-                                      : Container(
-                                          margin: const EdgeInsets.only(
-                                              left: 30, top: 30),
-                                          child: const Text(
-                                            "No Tasks",
-                                            style: TextStyle(
-                                              fontSize: 20,
-                                              color: Mytheme.primary_color,
-                                            ),
-                                          ),
-                                        ),
+                                  child: !isLoading
+                                      ? (routine.isNotEmpty
+                                          ? SingleChildScrollView(
+                                              padding: EdgeInsets.only(
+                                                  left: 15,
+                                                  top: he * 0.17,
+                                                  bottom: he * 0.25),
+                                              child: Center(
+                                                heightFactor: 0.65,
+                                                child: ListView.builder(
+                                                    // clipBehavior: Clip.none,
+                                                    physics:
+                                                        const NeverScrollableScrollPhysics(),
+                                                    scrollDirection:
+                                                        Axis.vertical,
+                                                    shrinkWrap: true,
+                                                    itemCount: routine.length,
+                                                    itemBuilder:
+                                                        (BuildContext context,
+                                                            int index) {
+                                                      return TaskTimeline(
+                                                        taskModel: routine
+                                                            .elementAt(index),
+                                                      );
+                                                    }),
+                                              ),
+                                            )
+                                          : Container(
+                                              margin: const EdgeInsets.only(
+                                                  left: 30, top: 30),
+                                              child: const Text(
+                                                "No Tasks",
+                                                style: TextStyle(
+                                                  fontSize: 20,
+                                                  color: Mytheme.primary_color,
+                                                ),
+                                              ),
+                                            ))
+                                      : const CircularProgressIndicator(),
                                 ),
                                 Column(
                                   children: [
-                                    BarChartPage(),
+                                    const BarChartPage(),
                                     SizedBox(
                                       height: he * 0.1,
-                                    )
+                                    ),
                                   ],
                                 )
                               ],

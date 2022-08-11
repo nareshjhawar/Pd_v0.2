@@ -65,26 +65,6 @@ class _MyLoginState extends State<MyLogin> {
       MaterialStateProperty.all(Colors.transparent),
     );
 
-    // final _snackBar2 = SnackBar(
-    //   content: Text('Try Again'),
-    //   duration: const Duration(seconds: 3),
-    //   action: SnackBarAction(
-    //     label:'Click',
-    //     onPressed: () {
-    //       print('Action is clicked');
-    //     },
-    //     textColor: Colors.white,
-    //     disabledTextColor: Colors.grey,
-    //   ),
-    //   onVisible: () {
-    //     print('Snackbar is visible');
-    //   },
-    //   shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10))),
-    //   behavior: SnackBarBehavior.floating,
-    //   margin: EdgeInsets.all(30.0),
-    //   padding: EdgeInsets.all(15.0),
-    // );
-
     final tsytle1 = TextStyle(
       color: Colors.white,
       fontSize: 20,
@@ -185,7 +165,7 @@ class _MyLoginState extends State<MyLogin> {
                       Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => HidenDrawer(),
+                              builder: (context) => HidenDrawer(user: user,),
                             fullscreenDialog: true,
                           ));
                   }

@@ -1,8 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_pd/pages/user/mylogin.dart';
 
 import '../../Animation/fadeAnimation.dart';
 import '../../Utils/thems.dart';
+import '../Drawerhiden/hidendrawer.dart';
 
 
 class Start_screenWidget extends StatefulWidget {
@@ -12,6 +15,22 @@ class Start_screenWidget extends StatefulWidget {
 
 class _Start_screenWidgetState extends State<Start_screenWidget> {
   double delay_time=0.5;
+
+  bool _isProcessing = false;
+
+  Future<FirebaseApp> _initializeFirebase() async {
+    FirebaseApp firebaseApp = await Firebase.initializeApp();
+
+    User? user = FirebaseAuth.instance.currentUser;
+
+    if (user != null) {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => HidenDrawer(user: user,)),
+      );
+    }
+
+    return firebaseApp;
+  }
 
 
   @override
@@ -123,32 +142,67 @@ class _Start_screenWidgetState extends State<Start_screenWidget> {
                       style: tsytle,
                     ),
                     SizedBox(height: he*0.14),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children:[
-                        Container(
-                          decoration: f2deco,
-                          child: ElevatedButton(
-                            style: b_deco,
-                            onPressed: () {
-                              Navigator.push(context, MaterialPageRoute(
-                                  builder: (context)=> MyLogin()));
-                            },
-                            child:  Padding(
-                              padding: const EdgeInsets.all(15.0),
-                              child: Text("Get Started",style: tsytle1),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.start,
+                    //   children:[
+                    //     Container(
+                    //       decoration: f2deco,
+                    //       child: ElevatedButton(
+                    //         style: b_deco,
+                    //         onPressed: () {
+                    //           Navigator.push(context, MaterialPageRoute(
+                    //               builder: (context)=> MyLogin()));
+                    //         },
+                    //         child:  Padding(
+                    //           padding: const EdgeInsets.all(15.0),
+                    //           child: Text("Get Started",style: tsytle1),
+                    //         ),
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
+                    FutureBuilder(
+                        future: _initializeFirebase(),
+                        builder: (ctx, snp) {
+                          if (snp.connectionState == ConnectionState.done) {
+                            return Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  decoration: f2deco,
+                                  child: ElevatedButton(
+                                    style: b_deco,
+                                    onPressed: () {},
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(15.0),
+                                      child: GestureDetector(
+                                          onTap: () {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        MyLogin()));
+                                          },
+                                          child: Text("Get Started", style: tsytle1)),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            );
+                          }
+                          return CircularProgressIndicator();
+                        }),
+
                   ],
                 ),
               ),
             ),
           ),
+
         ],
       ),
     );
   }
+
+
 }

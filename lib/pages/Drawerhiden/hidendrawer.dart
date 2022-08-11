@@ -1,11 +1,15 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../../Utils/thems.dart';
-import '../Home.dart';
+// import '../Home.dart';
+import '../HomeScreen.dart';
+
 import 'Drawer_widget.dart';
 import 'package:flutter/services.dart';
 
 class HidenDrawer extends StatefulWidget {
-  HidenDrawer({Key? key}) : super(key: key);
+  User user;
+  HidenDrawer({Key? key,required this.user}) : super(key: key);
 
   @override
   State<HidenDrawer> createState() => _HidenDrawerState();
@@ -52,6 +56,7 @@ class _HidenDrawerState extends State<HidenDrawer> {
         Mytheme.darkapp,
         DrawerWidget(
           closdDrawer: closeDrawer,
+          user: widget.user,
         ),
         buildpage()
       ]
@@ -79,6 +84,7 @@ class _HidenDrawerState extends State<HidenDrawer> {
             borderRadius: BorderRadius.circular(isDrawingOpen ? 30 : 0),
             child: MyHomePage(
               opendrawer: onpenDrawer,
+              user: widget.user
             ),
           )),
     );

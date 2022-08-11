@@ -1,16 +1,19 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_pd/pages/Home.dart';
+// import 'package:flutter_pd/pages/Home.dart';
 
 import 'package:flutter_pd/pages/Profile.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../Widgets/Avatar_progerss.dart';
 import '../../Widgets/charts/chart.dart';
+import '../HomeScreen.dart';
 import '../user/start_screen.dart';
 import 'drawer_items.dart';
 
 class DrawerWidget extends StatefulWidget {
   VoidCallback closdDrawer;
-  DrawerWidget({required this.closdDrawer});
+  User user;
+  DrawerWidget({required this.closdDrawer,required this.user});
 
   @override
   State<DrawerWidget> createState() => _DrawerWidgetState();
@@ -38,7 +41,7 @@ class _DrawerWidgetState extends State<DrawerWidget>
     });
   }
   late final List? _widgetOption=[
-    MyHomePage(opendrawer: onpenDrawer,),
+    MyHomePage(opendrawer: onpenDrawer,user: widget.user),
     MyProfile(),
     Start_screenWidget(),
   ];
@@ -98,9 +101,25 @@ class _DrawerWidgetState extends State<DrawerWidget>
                                     fontWeight: FontWeight.w600,
                                     color: Theme.of(context).focusColor),
                               ),
-                          onTap: ()=>Navigator.push(context,MaterialPageRoute(
-                              builder: (context)=>_widgetOption?[
-                                hindex],)),
+                          onTap: () {
+                            if (hindex == 2) {
+                              FirebaseAuth.instance.signOut().then(
+                                    (value) => Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => _widgetOption![hindex],
+                                  ),
+                                ),
+                              );
+                            } else {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => _widgetOption![hindex],
+                                ),
+                              );
+                            }
+                          },
                             );
                   }),
             )

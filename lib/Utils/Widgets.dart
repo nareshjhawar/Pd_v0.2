@@ -21,7 +21,7 @@ final b_deco1 =ButtonStyle(
   // ),
   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
     RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(20.0),
+      borderRadius: BorderRadius.circular(30.0),
     ),
   ),
   backgroundColor:
@@ -136,7 +136,7 @@ BoxDecoration GlobalDeco(BuildContext context)
   boxShadow: [
     BoxShadow(
       color: Theme.of(context).shadowColor,
-      offset: const Offset(-5, 5),
+      offset: const Offset(-5, 1.5),
       spreadRadius: 1,
       blurRadius: 10,
     ),

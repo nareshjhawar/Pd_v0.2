@@ -29,7 +29,7 @@ class _Progerss_AvaterState extends State<Progerss_Avater>
   @override
   void dispose() {
     // TODO: implement dispose
-    _controller!.reverse();
+    _controller!.dispose();
     super.dispose();
   }
 
